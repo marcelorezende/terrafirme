@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0A140E;}
+  @keyframes tfpulse{0%,100%{opacity:.3;transform:scale(.8);}50%{opacity:1;transform:scale(1.25);}}
+  a{text-decoration:none;color:inherit;}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="background:#0A140E;font-family:'Space Grotesk',sans-serif;color:#EFF1E9;overflow-x:hidden;">
+
+<!-- ===== NAV ===== -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(10,20,14,.82);backdrop-filter:blur(10px);border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;">
+    <a href="#top" style="display:flex;align-items:center;gap:11px;">
+      <svg width="28" height="28" viewBox="0 0 120 120"><g stroke="#2FB45C" stroke-width="3" opacity=".7"><line x1="30" y1="34" x2="60" y2="26"/><line x1="60" y1="26" x2="90" y2="36"/><line x1="60" y1="26" x2="60" y2="54"/><line x1="60" y1="54" x2="40" y2="76"/><line x1="60" y1="54" x2="80" y2="78"/></g><g fill="#2FB45C"><circle cx="30" cy="34" r="7"/><circle cx="90" cy="36" r="7"/><circle cx="40" cy="76" r="7"/><circle cx="80" cy="78" r="7"/></g><circle cx="60" cy="54" r="11" fill="#C6F25A"/></svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-.03em;">terrafirme</span>
+    </a>
+    <div style="display:flex;gap:22px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:#a9bdad;">
+      <a href="about.dc.html" style-hover="color:#C6F25A;">VISION</a>
+      <a href="#network" style-hover="color:#C6F25A;">NETWORK</a>
+      <a href="#projects" style-hover="color:#C6F25A;">FUTURE FARMER</a>
+      <a href="#station" style-hover="color:#C6F25A;">STATION</a>
+      <a href="methodology.dc.html" style-hover="color:#C6F25A;">METHOD</a>
+      <a href="contact.dc.html" style-hover="color:#C6F25A;">CONTACT</a>
+      <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="background:#C6F25A;color:#0E1C13;padding:9px 18px;border-radius:6px;font-weight:600;" style-hover="background:#d6ff7a;">JOIN</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<div id="top" style="position:relative;overflow:hidden;border-bottom:1px solid #234231;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff08 1px,transparent 1px);background-size:30px 30px;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:90px 40px 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid #234231;border-radius:999px;padding:7px 15px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#7d9a83;margin-bottom:26px;"><span style="width:8px;height:8px;border-radius:50%;background:#C6F25A;"></span>CANTABRIAN MIXED FORESTS · 43.21°N</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:62px;line-height:.99;letter-spacing:-.04em;margin:0 0 24px;">Map the network.<br><span style="color:#C6F25A;">Restore what connects.</span></h1>
+      <p style="font-size:17px;line-height:1.7;color:#b6c5b8;max-width:460px;margin:0 0 34px;">TerraFirme is a restoration-science initiative mapping a living landscape as a network of species and interactions — then rebuilding the connections that hold it together. Built in the open, with a community of scientists and enthusiasts.</p>
+      <div style="display:flex;gap:13px;flex-wrap:wrap;">
+        <a href="The Grove - Network Channels.dc.html" style="background:#C6F25A;color:#0E1C13;padding:15px 26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;font-weight:600;" style-hover="background:#d6ff7a;">OPEN THE NETWORK</a>
+        <a href="#projects" style="border:1.5px solid #2FB45C;color:#2FB45C;padding:14px 26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;" style-hover="background:#11271a;">THE FUTURE FARMER</a>
+      </div>
+    </div>
+    <div style="border:1px solid #234231;border-radius:14px;background:#0a140e;padding:12px;">
+      <svg viewBox="0 0 340 270" style="display:block;width:100%;height:auto;">
+        <g stroke="#2FB45C" stroke-width="1" opacity=".4"><line x1="60" y1="60" x2="150" y2="45"/><line x1="150" y1="45" x2="230" y2="62"/><line x1="230" y1="62" x2="290" y2="50"/><line x1="150" y1="45" x2="135" y2="135"/><line x1="230" y1="62" x2="245" y2="145"/><line x1="135" y1="135" x2="78" y2="195"/><line x1="135" y1="135" x2="185" y2="205"/><line x1="245" y1="145" x2="185" y2="205"/><line x1="245" y1="145" x2="295" y2="200"/><line x1="60" y1="60" x2="135" y2="135"/><line x1="290" y1="50" x2="245" y2="145"/><line x1="78" y1="195" x2="185" y2="205"/></g>
+        <g fill="#2FB45C"><circle cx="60" cy="60" r="5.5"/><circle cx="150" cy="45" r="7"/><circle cx="230" cy="62" r="7"/><circle cx="290" cy="50" r="5.5"/><circle cx="78" cy="195" r="5.5"/><circle cx="295" cy="200" r="5.5"/></g>
+        <circle cx="135" cy="135" r="9" fill="#0F8E73"/><circle cx="245" cy="145" r="9" fill="#0F8E73"/>
+        <circle cx="185" cy="205" r="12" fill="#C6F25A" style="transform-box:fill-box;transform-origin:center;animation:tfpulse 2.6s ease-in-out infinite;"/>
+        <circle cx="185" cy="205" r="12" fill="#C6F25A"/>
+      </svg>
+      <div style="display:flex;font-family:'Space Mono',monospace;border-top:1px solid #234231;margin-top:6px;">
+        <div style="flex:1;padding:13px 16px;border-right:1px solid #234231;"><div style="font-size:22px;">248</div><div style="font-size:9px;color:#5e7d66;">NODES</div></div>
+        <div style="flex:1;padding:13px 16px;border-right:1px solid #234231;"><div style="font-size:22px;">1.1k</div><div style="font-size:9px;color:#5e7d66;">EDGES</div></div>
+        <div style="flex:1;padding:13px 16px;border-right:1px solid #234231;"><div style="font-size:22px;color:#C6F25A;">10</div><div style="font-size:9px;color:#5e7d66;">HECTARES</div></div>
+        <div style="flex:1;padding:13px 16px;"><div style="font-size:22px;">1</div><div style="font-size:9px;color:#5e7d66;">ECOREGION</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MISSION ===== -->
+<div style="border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:56px 40px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:30px;flex-wrap:wrap;gap:10px;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;letter-spacing:.1em;color:#5e7d66;margin:0;font-family:'IBM Plex Mono',monospace;">WHAT WE DO</h2>
+      <p style="font-family:'Space Grotesk',sans-serif;font-size:16px;color:#b6c5b8;margin:0;max-width:520px;">A five-step cycle, run on every node in the network.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;">
+      <div style="border:1px solid #234231;border-radius:10px;padding:22px;" style-hover="border-color:#2FB45C;"><span style="width:13px;height:13px;border-radius:50%;background:#C6F25A;display:block;margin-bottom:16px;"></span><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">Assess</div><div style="font-size:12.5px;color:#7d9a83;line-height:1.55;margin-top:7px;">Score priority nodes for investigation.</div></div>
+      <div style="border:1px solid #234231;border-radius:10px;padding:22px;" style-hover="border-color:#2FB45C;"><span style="width:13px;height:13px;border-radius:50%;background:#2FB45C;display:block;margin-bottom:16px;"></span><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">Monitor</div><div style="font-size:12.5px;color:#7d9a83;line-height:1.55;margin-top:7px;">Track interactions and change over time.</div></div>
+      <div style="border:1px solid #234231;border-radius:10px;padding:22px;" style-hover="border-color:#2FB45C;"><span style="width:13px;height:13px;border-radius:50%;background:#0F8E73;display:block;margin-bottom:16px;"></span><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">Manage</div><div style="font-size:12.5px;color:#7d9a83;line-height:1.55;margin-top:7px;">Intervene to restore broken edges.</div></div>
+      <div style="border:1px solid #234231;border-radius:10px;padding:22px;" style-hover="border-color:#2FB45C;"><span style="width:13px;height:13px;border-radius:50%;background:#FF6A45;display:block;margin-bottom:16px;"></span><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">Replicate</div><div style="font-size:12.5px;color:#7d9a83;line-height:1.55;margin-top:7px;">Scale the method to new sites.</div></div>
+      <div style="border:1px solid #234231;border-radius:10px;padding:22px;" style-hover="border-color:#2FB45C;"><span style="width:13px;height:13px;border-radius:50%;background:#EFF1E9;display:block;margin-bottom:16px;"></span><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">Report</div><div style="font-size:12.5px;color:#7d9a83;line-height:1.55;margin-top:7px;">Publish open methods, code and data.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NETWORK ===== -->
+<div id="network" style="scroll-margin-top:80px;border-bottom:1px solid #234231;background:#0E1C13;">
+  <div style="max-width:1180px;margin:0 auto;padding:74px 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5e7d66;margin-bottom:18px;">THE PLATFORM</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;line-height:1.06;letter-spacing:-.03em;margin:0 0 20px;">Ecosystem connectivity, mapped live.</h2>
+      <p style="font-size:16px;line-height:1.72;color:#b6c5b8;max-width:480px;margin:0 0 26px;">An open, interactive graph of a living landscape. Pan the network, inspect any node, and see which connections — broken or thriving — matter most to the whole system.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:30px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:10px;height:10px;border-radius:50%;background:#C6F25A;margin-top:5px;flex:none;"></span><div><div style="font-weight:600;font-size:15px;">Interactive graph</div><div style="font-size:13px;color:#7d9a83;">248 species nodes, 1,114 measured edges.</div></div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:10px;height:10px;border-radius:50%;background:#2FB45C;margin-top:5px;flex:none;"></span><div><div style="font-weight:600;font-size:15px;">Priority scoring</div><div style="font-size:13px;color:#7d9a83;">Find the nodes to restore first.</div></div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:10px;height:10px;border-radius:50%;background:#0F8E73;margin-top:5px;flex:none;"></span><div><div style="font-weight:600;font-size:15px;">Open data &amp; code</div><div style="font-size:13px;color:#7d9a83;">Methods and snippets, free to reuse.</div></div></div>
+      </div>
+      <a href="The Grove - Network Channels.dc.html" style="display:inline-block;background:#C6F25A;color:#0E1C13;padding:14px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;font-weight:600;" style-hover="background:#d6ff7a;">OPEN THE NETWORK</a>
+    </div>
+    <div style="border:1px solid #234231;border-radius:14px;background:#0a140e;overflow:hidden;">
+      <div style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #234231;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#5e7d66;">PLOT C-07 · LIVE</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:#2FB45C;">MOD 0.62 · DEG μ=8.9</span>
+      </div>
+      <svg viewBox="0 0 360 240" style="display:block;width:100%;height:auto;">
+        <g stroke="#2FB45C" stroke-width="1" opacity=".38"><line x1="50" y1="60" x2="130" y2="44"/><line x1="130" y1="44" x2="210" y2="60"/><line x1="210" y1="60" x2="300" y2="48"/><line x1="130" y1="44" x2="120" y2="130"/><line x1="210" y1="60" x2="230" y2="140"/><line x1="120" y1="130" x2="70" y2="190"/><line x1="120" y1="130" x2="175" y2="200"/><line x1="230" y1="140" x2="175" y2="200"/><line x1="230" y1="140" x2="300" y2="195"/><line x1="50" y1="60" x2="120" y2="130"/><line x1="300" y1="48" x2="230" y2="140"/><line x1="70" y1="190" x2="175" y2="200"/><line x1="300" y1="195" x2="300" y2="48"/></g>
+        <g fill="#2FB45C"><circle cx="50" cy="60" r="5.5"/><circle cx="130" cy="44" r="7"/><circle cx="210" cy="60" r="7"/><circle cx="300" cy="48" r="5.5"/><circle cx="70" cy="190" r="5.5"/><circle cx="300" cy="195" r="5.5"/></g>
+        <circle cx="120" cy="130" r="9" fill="#0F8E73"/><circle cx="230" cy="140" r="9" fill="#0F8E73"/>
+        <circle cx="175" cy="200" r="12" fill="#C6F25A" style="transform-box:fill-box;transform-origin:center;animation:tfpulse 2.6s ease-in-out infinite;"/>
+        <circle cx="175" cy="200" r="12" fill="#C6F25A"/>
+      </svg>
+      <div style="display:flex;gap:18px;padding:13px 18px;border-top:1px solid #234231;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#7d9a83;letter-spacing:.06em;flex-wrap:wrap;">
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#C6F25A;"></span>PRIORITY</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#2FB45C;"></span>SPECIES</span>
+        <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#0F8E73;"></span>PROCESS</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- full-bleed habitat band -->
+<div style="position:relative;border-bottom:1px solid #234231;">
+  <image-slot id="ln-habitat2" src="assets/photos/habitat-valley.jpg" style="width:100%;height:340px;display:block;" shape="rect" placeholder="Forest photo (wide)"></image-slot>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,14,.92),rgba(10,20,14,.35));"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;"><div style="max-width:1180px;margin:0 auto;padding:0 40px;width:100%;"><div style="max-width:440px;"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#C6F25A;margin-bottom:14px;">THE FIRST ECOREGION</div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;line-height:1.1;letter-spacing:-.02em;">The Cantabrian Mixed Forests — a baseline worth restoring.</div></div></div></div>
+</div>
+
+<!-- ===== FUTURE FARMER PROJECTS ===== -->
+<div id="projects" style="scroll-margin-top:80px;border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:74px 40px;">
+    <div style="text-align:center;max-width:640px;margin:0 auto 46px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#5e7d66;margin-bottom:16px;">A TERRAFIRME INITIATIVE</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:46px;line-height:1.02;letter-spacing:-.035em;margin:0 0 16px;">The Future Farmer</h2>
+      <p style="font-size:16px;line-height:1.7;color:#b6c5b8;margin:0;">Three ways into the network — a card game to learn it, an app to explore it, and a forum to build it together.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      <!-- card game -->
+      <div style="border:1px solid #234231;border-radius:12px;overflow:hidden;background:#0E1C13;display:flex;flex-direction:column;" style-hover="border-color:#2FB45C;">
+        <div style="position:relative;"><image-slot id="ln-game" src="assets/photos/forest-falls.jpg" style="width:100%;height:180px;display:block;" shape="rect" placeholder="Game art"></image-slot><span style="position:absolute;top:12px;left:12px;background:#C6F25A;color:#0E1C13;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;padding:6px 10px;border-radius:5px;font-weight:600;">LAUNCHES 12 OCT</span></div>
+        <div style="padding:22px;display:flex;flex-direction:column;flex:1;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#5e7d66;margin-bottom:8px;">CARD GAME</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.02em;margin-bottom:8px;">Learn the network by playing it.</div>
+          <p style="font-size:13.5px;line-height:1.6;color:#7d9a83;margin:0 0 18px;">An environmental-education card game. 120 cards, 2–5 players. Build a resilient farm, learn how ecosystems connect.</p>
+          <a href="#support" style="margin-top:auto;text-align:center;border:1.5px solid #2FB45C;color:#2FB45C;padding:12px;border-radius:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;" style-hover="background:#11271a;">GET NOTIFIED</a>
+        </div>
+      </div>
+      <!-- app -->
+      <div style="border:1px solid #234231;border-radius:12px;overflow:hidden;background:#0E1C13;display:flex;flex-direction:column;" style-hover="border-color:#2FB45C;">
+        <div style="position:relative;height:180px;background:#0a140e;overflow:hidden;">
+          <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff0a 1px,transparent 1px);background-size:20px 20px;"></div>
+          <svg viewBox="0 0 260 180" style="position:relative;display:block;width:100%;height:100%;"><g stroke="#2FB45C" stroke-width="1" opacity=".4"><line x1="50" y1="50" x2="120" y2="38"/><line x1="120" y1="38" x2="190" y2="56"/><line x1="120" y1="38" x2="110" y2="100"/><line x1="190" y1="56" x2="205" y2="115"/><line x1="110" y1="100" x2="60" y2="145"/><line x1="110" y1="100" x2="150" y2="150"/><line x1="205" y1="115" x2="150" y2="150"/></g><g fill="#2FB45C"><circle cx="50" cy="50" r="5"/><circle cx="120" cy="38" r="6"/><circle cx="190" cy="56" r="6"/><circle cx="60" cy="145" r="5"/></g><circle cx="110" cy="100" r="7" fill="#0F8E73"/><circle cx="150" cy="150" r="9" fill="#C6F25A" style="transform-box:fill-box;transform-origin:center;animation:tfpulse 2.6s ease-in-out infinite;"/><circle cx="150" cy="150" r="9" fill="#C6F25A"/></svg>
+          <span style="position:absolute;top:12px;left:12px;background:#0E1C13;border:1px solid #2FB45C;color:#2FB45C;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;padding:5px 10px;border-radius:5px;">IN DEVELOPMENT</span>
+        </div>
+        <div style="padding:22px;display:flex;flex-direction:column;flex:1;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#5e7d66;margin-bottom:8px;">APP</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.02em;margin-bottom:8px;">The whole network in your pocket.</div>
+          <p style="font-size:13.5px;line-height:1.6;color:#7d9a83;margin:0 0 18px;">Pan the live graph, inspect any node, and open a restoration plan for any priority hub — synced to the field station.</p>
+          <a href="#support" style="margin-top:auto;text-align:center;border:1.5px solid #2FB45C;color:#2FB45C;padding:12px;border-radius:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;" style-hover="background:#11271a;">JOIN THE BETA</a>
+        </div>
+      </div>
+      <!-- forum -->
+      <div style="border:1px solid #234231;border-radius:12px;overflow:hidden;background:#0E1C13;display:flex;flex-direction:column;" style-hover="border-color:#2FB45C;">
+        <div style="position:relative;"><image-slot id="ln-forum" src="assets/photos/fieldwork.jpg" style="width:100%;height:180px;display:block;" shape="rect" placeholder="Community photo"></image-slot><span style="position:absolute;top:12px;left:12px;background:#C6F25A;color:#0E1C13;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;padding:6px 10px;border-radius:5px;font-weight:600;">LIVE ON PATREON</span></div>
+        <div style="padding:22px;display:flex;flex-direction:column;flex:1;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#5e7d66;margin-bottom:8px;">FORUM — TFFF</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.02em;margin-bottom:8px;">Co-create the science with us.</div>
+          <p style="font-size:13.5px;line-height:1.6;color:#7d9a83;margin:0 0 18px;">The Future Farmer Forum is our community of wildlife enthusiasts and experts — sharing ideas, data and methods on Patreon.</p>
+          <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="margin-top:auto;text-align:center;background:#C6F25A;color:#0E1C13;padding:12px;border-radius:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;font-weight:600;" style-hover="background:#d6ff7a;">JOIN ON PATREON</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STATION ===== -->
+<div id="station" style="scroll-margin-top:80px;border-bottom:1px solid #234231;background:#0E1C13;">
+  <div style="max-width:1180px;margin:0 auto;padding:74px 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+    <div style="border:1px solid #234231;border-radius:14px;overflow:hidden;position:relative;">
+      <image-slot id="ln-station2" src="assets/photos/station-plot.jpg" style="width:100%;height:360px;display:block;" shape="rect" placeholder="Station photo"></image-slot>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(0deg,rgba(10,20,14,.92),transparent);font-family:'Space Mono',monospace;font-size:11px;color:#C6F25A;">43.21°N 4.89°W · PLOT C-07</div>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#5e7d66;margin-bottom:18px;">THE STATION</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:40px;line-height:1.06;letter-spacing:-.03em;margin:0 0 20px;">A 10-hectare living laboratory.</h2>
+      <p style="font-size:16px;line-height:1.72;color:#b6c5b8;max-width:480px;margin:0 0 28px;">A private experimental station in the Cantabrian Mixed Forests, where the network leaves the screen. We plant, tag and track priority nodes on the ground — then feed every measurement back into the open graph.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid #234231;border-radius:10px;overflow:hidden;background:#234231;">
+        <div style="background:#0E1C13;padding:18px;"><div style="font-family:'Space Mono',monospace;font-size:24px;">10 ha</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#5e7d66;letter-spacing:.1em;margin-top:3px;">UNDER STUDY</div></div>
+        <div style="background:#0E1C13;padding:18px;"><div style="font-family:'Space Mono',monospace;font-size:24px;color:#C6F25A;">14</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#5e7d66;letter-spacing:.1em;margin-top:3px;">EDGES RESTORED · 2026</div></div>
+        <div style="background:#0E1C13;padding:18px;"><div style="font-family:'Space Mono',monospace;font-size:24px;">248</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#5e7d66;letter-spacing:.1em;margin-top:3px;">SPECIES NODES</div></div>
+        <div style="background:#0E1C13;padding:18px;"><div style="font-family:'Space Mono',monospace;font-size:24px;">2026</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#5e7d66;letter-spacing:.1em;margin-top:3px;">EST. · YEAR ONE</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUPPORT / TIERS ===== -->
+<div id="support" style="scroll-margin-top:80px;border-bottom:1px solid #234231;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff07 1px,transparent 1px);background-size:30px 30px;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:74px 40px;">
+    <div style="text-align:center;max-width:620px;margin:0 auto 46px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#5e7d66;margin-bottom:16px;">SUPPORT THE WORK</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:40px;line-height:1.04;letter-spacing:-.035em;margin:0 0 16px;">Join the network.</h2>
+      <p style="font-size:16px;line-height:1.7;color:#b6c5b8;margin:0;">Memberships keep the platform open and finance the 2026/2027 workplan. Pick a tier on Patreon — every node added moves the science faster.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;">
+      <!-- observer -->
+      <div style="border:1px solid #234231;border-radius:12px;background:#0E1C13;padding:30px;display:flex;flex-direction:column;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5e7d66;margin-bottom:14px;">OBSERVER</div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;letter-spacing:-.03em;">€5</span><span style="font-family:'Space Mono',monospace;font-size:12px;color:#7d9a83;">/mo</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#b6c5b8;flex:1;">
+          <div style="display:flex;gap:9px;"><span style="color:#2FB45C;">→</span>Access to the live network</div>
+          <div style="display:flex;gap:9px;"><span style="color:#2FB45C;">→</span>Monthly field notes</div>
+          <div style="display:flex;gap:9px;"><span style="color:#2FB45C;">→</span>Community read access</div>
+        </div>
+        <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="margin-top:24px;text-align:center;border:1.5px solid #2FB45C;color:#2FB45C;padding:12px;border-radius:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;" style-hover="background:#11271a;">CHOOSE OBSERVER</a>
+      </div>
+      <!-- contributor (featured) -->
+      <div style="border:1.5px solid #C6F25A;border-radius:12px;background:#0E1C13;padding:30px;display:flex;flex-direction:column;position:relative;box-shadow:0 0 0 4px rgba(198,242,90,.07);">
+        <span style="position:absolute;top:-11px;left:30px;background:#C6F25A;color:#0E1C13;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;padding:5px 11px;border-radius:5px;font-weight:600;">MOST POPULAR</span>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#C6F25A;margin-bottom:14px;">CONTRIBUTOR</div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;letter-spacing:-.03em;">€15</span><span style="font-family:'Space Mono',monospace;font-size:12px;color:#7d9a83;">/mo</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#b6c5b8;flex:1;">
+          <div style="display:flex;gap:9px;"><span style="color:#C6F25A;">→</span>Everything in Observer</div>
+          <div style="display:flex;gap:9px;"><span style="color:#C6F25A;">→</span>The Future Farmer print-and-play</div>
+          <div style="display:flex;gap:9px;"><span style="color:#C6F25A;">→</span>Vote on priority nodes</div>
+          <div style="display:flex;gap:9px;"><span style="color:#C6F25A;">→</span>Full TFFF forum access</div>
+        </div>
+        <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="margin-top:24px;text-align:center;background:#C6F25A;color:#0E1C13;padding:13px;border-radius:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;font-weight:600;" style-hover="background:#d6ff7a;">CHOOSE CONTRIBUTOR</a>
+      </div>
+      <!-- steward -->
+      <div style="border:1px solid #234231;border-radius:12px;background:#0E1C13;padding:30px;display:flex;flex-direction:column;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5e7d66;margin-bottom:14px;">NODE STEWARD</div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px;"><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;letter-spacing:-.03em;">€40</span><span style="font-family:'Space Mono',monospace;font-size:12px;color:#7d9a83;">/mo</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#b6c5b8;flex:1;">
+          <div style="display:flex;gap:9px;"><span style="color:#2FB45C;">→</span>Everything in Contributor</div>
+          <div style="display:flex;gap:9px;"><span style="color:#2FB45C;">→</span>TFFF code-snippet library</div>
+          <div style="display:flex;gap:9px;"><span style="color:#2FB45C;">→</span>Adopt &amp; name a node</div>
+          <div style="display:flex;gap:9px;"><span style="color:#2FB45C;">→</span>Quarterly raw-data drops</div>
+        </div>
+        <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="margin-top:24px;text-align:center;border:1.5px solid #2FB45C;color:#2FB45C;padding:12px;border-radius:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;" style-hover="background:#11271a;">CHOOSE STEWARD</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5e7d66;letter-spacing:.04em;">Prefer one-off? Buy individual <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="color:#2FB45C;border-bottom:1px solid #2FB45C44;">TFFF code snippets</a> from the store.</div>
+  </div>
+</div>
+
+<!-- ===== YEAR ONE OUTPUTS ===== -->
+<div style="border-bottom:1px solid #234231;background:#0E1C13;">
+  <div style="max-width:1180px;margin:0 auto;padding:64px 40px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:34px;">
+      <h2 style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;color:#5e7d66;margin:0;">2026 / 2027 OUTPUTS</h2>
+      <p style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:500;letter-spacing:-.02em;margin:0;">Year one deliverables.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#234231;border:1px solid #234231;border-radius:10px;overflow:hidden;">
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">01</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Cantabrian network, 2026</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">Draft graph — code + live on the platform.</div></div>
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">02</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Pre-agriculture baseline</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">Reconstructed network — code + platform.</div></div>
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">03</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Priority-node methodology</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">20 pp · EN GR JP FR ES PT (PDF).</div></div>
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">04</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Open interactive platform</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">Public, browsable network (EN).</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff08 1px,transparent 1px);background-size:28px 28px;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:64px 40px 30px;">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid #234231;">
+      <div>
+        <div style="display:flex;align-items:center;gap:13px;margin-bottom:18px;">
+          <svg width="40" height="40" viewBox="0 0 120 120"><g stroke="#2FB45C" stroke-width="2.6" opacity=".7"><line x1="30" y1="34" x2="60" y2="26"/><line x1="60" y1="26" x2="90" y2="36"/><line x1="60" y1="26" x2="60" y2="54"/><line x1="60" y1="54" x2="40" y2="76"/><line x1="60" y1="54" x2="80" y2="78"/><line x1="40" y1="76" x2="60" y2="96"/><line x1="80" y1="78" x2="60" y2="96"/></g><g fill="#2FB45C"><circle cx="30" cy="34" r="6"/><circle cx="90" cy="36" r="6"/><circle cx="40" cy="76" r="6"/><circle cx="80" cy="78" r="6"/><circle cx="60" cy="96" r="6"/><circle cx="60" cy="26" r="6"/></g><circle cx="60" cy="54" r="11" fill="#C6F25A"/></svg>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:-.03em;">terrafirme</span>
+        </div>
+        <p style="font-size:14px;line-height:1.7;color:#7d9a83;max-width:330px;margin:0 0 18px;">Mapping and restoring the ecosystem networks of the Cantabrian Mixed Forests. Built in the open.</p>
+        <div style="display:flex;gap:8px;max-width:330px;">
+          <div style="flex:1;border:1px solid #234231;border-radius:7px;padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5e7d66;">you@email.org</div>
+          <a href="#" style="background:#C6F25A;color:#0E1C13;padding:11px 16px;border-radius:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;font-weight:600;" style-hover="background:#d6ff7a;">SUBSCRIBE</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5e7d66;margin-bottom:18px;">EXPLORE</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:#b6c5b8;">
+          <a href="about.dc.html" style-hover="color:#C6F25A;">Vision &amp; objectives</a>
+          <a href="The Grove - Network Channels.dc.html" style-hover="color:#C6F25A;">The network graph</a>
+          <a href="#projects" style-hover="color:#C6F25A;">The Future Farmer</a>
+          <a href="#station" style-hover="color:#C6F25A;">The station</a>
+          <a href="#support" style-hover="color:#C6F25A;">Support &amp; tiers</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5e7d66;margin-bottom:18px;">CONNECT</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:#b6c5b8;">
+          <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style-hover="color:#C6F25A;">Patreon — TFFF</a>
+          <a href="contact.dc.html" style-hover="color:#C6F25A;">Contact</a>
+          <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style-hover="color:#C6F25A;">Code snippets store</a>
+          <a href="methodology.dc.html" style-hover="color:#C6F25A;">Open methodology</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:24px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#5e7d66;">
+      <span>© 2026 TERRAFIRME · CANTABRIAN MIXED FORESTS</span>
+      <span>ASSESS · MONITOR · MANAGE · REPLICATE · REPORT</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER MARKER -->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

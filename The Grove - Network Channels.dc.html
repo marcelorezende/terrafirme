@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#0A140E;}
+  a{text-decoration:none;color:inherit;}
+  ::-webkit-scrollbar{width:10px;height:10px;}
+  ::-webkit-scrollbar-thumb{background:#234231;border-radius:6px;}
+  ::-webkit-scrollbar-track{background:#0A140E;}
+  @keyframes tfpulse{0%,100%{opacity:.35;transform:scale(.85);}50%{opacity:1;transform:scale(1.18);}}
+</style>
+<script src="./grove-network.js"></script>
+</helmet>
+
+<div style="background:#0A140E;font-family:'Space Grotesk',sans-serif;color:#EFF1E9;height:100vh;display:flex;flex-direction:column;overflow:hidden;">
+  <!-- header -->
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid #234231;flex:none;">
+    <div style="display:flex;align-items:center;gap:13px;">
+      <svg width="30" height="30" viewBox="0 0 120 120"><g stroke="#2FB45C" stroke-width="3" opacity=".7"><line x1="30" y1="34" x2="60" y2="26"/><line x1="60" y1="26" x2="90" y2="36"/><line x1="60" y1="26" x2="60" y2="54"/><line x1="60" y1="54" x2="40" y2="76"/><line x1="60" y1="54" x2="80" y2="78"/></g><g fill="#2FB45C"><circle cx="30" cy="34" r="7"/><circle cx="90" cy="36" r="7"/><circle cx="40" cy="76" r="7"/><circle cx="80" cy="78" r="7"/></g><circle cx="60" cy="54" r="11" fill="#C6F25A"/></svg>
+      <div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;letter-spacing:-.02em;line-height:1;">Network Channels</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:#5e7d66;margin-top:4px;">THE GROVE · MATELA — 273 obs · 175 taxa · 53 mapped into the seed network</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:22px;">
+      <div style="display:flex;gap:18px;font-family:'Space Mono',monospace;font-size:11px;">
+        <div style="text-align:right;"><div style="font-size:17px;color:#EFF1E9;">{{ sCount }}</div><div style="font-size:9px;color:#5e7d66;">SPECIES</div></div>
+        <div style="text-align:right;"><div style="font-size:17px;color:#EFF1E9;">{{ cCount }}</div><div style="font-size:9px;color:#5e7d66;">CHANNELS</div></div>
+        <div style="text-align:right;"><div style="font-size:17px;color:#C6F25A;">{{ rgCount }}</div><div style="font-size:9px;color:#5e7d66;">RESEARCH GRADE</div></div>
+      </div>
+      <a href="TerraFirme Website.dc.html#network" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#2FB45C;border:1px solid #234231;padding:8px 14px;border-radius:6px;" style-hover="background:#11271a;">← TERRAFIRME</a>
+    </div>
+  </div>
+  <!-- filter bar -->
+  <div style="flex:none;">{{ filterbar }}</div>
+  <!-- main -->
+  <div style="flex:1;display:flex;min-height:0;">
+    <div style="flex:1;min-width:0;position:relative;background-image:radial-gradient(#ffffff07 1px,transparent 1px);background-size:30px 30px;">{{ graph }}</div>
+    <div style="width:392px;flex:none;border-left:1px solid #234231;overflow-y:auto;background:#0b1610;">{{ panel }}</div>
+  </div>
+</div>
+
+<template id="__bundler_thumbnail"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#0A140E"/><g stroke="#2FB45C" stroke-width="3" opacity="0.5"><line x1="600" y1="400" x2="400" y2="260"/><line x1="600" y1="400" x2="820" y2="280"/><line x1="600" y1="400" x2="470" y2="560"/><line x1="600" y1="400" x2="780" y2="560"/><line x1="400" y1="260" x2="820" y2="280"/></g><circle cx="600" cy="400" r="40" fill="#C6F25A"/><circle cx="400" cy="260" r="22" fill="#E0A23C"/><circle cx="820" cy="280" r="22" fill="#5BA9DE"/><circle cx="470" cy="560" r="20" fill="#B08FE0"/><circle cx="780" cy="560" r="20" fill="#36B3A6"/></svg></template></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  state = { ready:false, hover:null, selChannel:null, selNode:null, fGrade:'all', fType:null, votes:{} };
+
+  componentDidMount(){
+    const G = window.GROVE; if(!G){ setTimeout(()=>this.forceUpdate(),120); return; }
+    this.G = G;
+    G.species.forEach(s=>{ s.kind = s.taxon==='Plantae' ? 'plant' : 'animal'; });
+    // base votes from data + saved overrides
+    const votes = {};
+    G.channels.forEach(c=>votes[c.id]={a:c.agree,d:c.disagree});
+    try{ const saved=JSON.parse(localStorage.getItem('grove_votes_v1')||'{}');
+      Object.keys(saved).forEach(id=>{ if(votes[id]) votes[id]=saved[id]; }); }catch(e){}
+    // degree
+    const deg={}; G.species.forEach(s=>deg[s.id]=0);
+    G.channels.forEach(c=>{deg[c.a]=(deg[c.a]||0)+1;deg[c.b]=(deg[c.b]||0)+1;});
+    this.deg=deg;
+    this.nodes = this.layout(G.species, G.channels, deg);
+    this.setState({ready:true, votes});
+  }
+
+  // deterministic force layout
+  layout(species, channels, deg){
+    const W=940,H=700,cx=W/2,cy=H/2;
+    let seed=20260619; const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+    const groupAng={plant:0,herbivore:0.9,gall:1.5,pollinator:2.0,predator:3.0,spider:3.6,decomposer:4.2,amphibian:4.8,bird:5.4,mammal:5.9};
+    const idx={}; const nodes=species.map((s,i)=>{
+      const ang=(groupAng[s.group]||0)+ (rnd()-0.5)*0.7;
+      const r=170+rnd()*150;
+      const n={...s, x:cx+Math.cos(ang)*r, y:cy+Math.sin(ang)*r, vx:0, vy:0, deg:deg[s.id]||0};
+      idx[s.id]=i; return n;
+    });
+    const edges=channels.map(c=>({a:idx[c.a],b:idx[c.b]})).filter(e=>e.a!=null&&e.b!=null);
+    const REP=2600, L=118, K=0.025, CEN=0.004;
+    for(let it=0;it<400;it++){
+      for(let i=0;i<nodes.length;i++){nodes[i].fx=0;nodes[i].fy=0;}
+      for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+        let dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y; let d2=dx*dx+dy*dy+0.01; let f=REP/d2;
+        let d=Math.sqrt(d2); let ux=dx/d, uy=dy/d; nodes[i].fx+=ux*f;nodes[i].fy+=uy*f;nodes[j].fx-=ux*f;nodes[j].fy-=uy*f;
+      }
+      for(const e of edges){const a=nodes[e.a],b=nodes[e.b];let dx=b.x-a.x,dy=b.y-a.y;let d=Math.sqrt(dx*dx+dy*dy)+0.01;let diff=(d-L)*K;let ux=dx/d,uy=dy/d;a.fx+=ux*diff*d*0.06;a.fy+=uy*diff*d*0.06;b.fx-=ux*diff*d*0.06;b.fy-=uy*diff*d*0.06;}
+      for(const n of nodes){n.fx+=(cx-n.x)*CEN;n.fy+=(cy-n.y)*CEN;
+        let fx=Math.max(-9,Math.min(9,n.fx)),fy=Math.max(-9,Math.min(9,n.fy));
+        n.x+=fx;n.y+=fy;
+        n.x=Math.max(40,Math.min(W-40,n.x));n.y=Math.max(40,Math.min(H-40,n.y));}
+    }
+    nodes.forEach(n=>{n.r=7+Math.sqrt(n.deg)*3.4;});
+    this.W=W;this.H=H;
+    return nodes;
+  }
+
+  grade(ch){ const v=this.state.votes[ch.id]||{a:ch.agree,d:ch.disagree};
+    const a=v.a,d=v.d,tot=a+d;
+    if(a>=4&&(tot===0||a/tot>=2/3))return'research';
+    if(a>=2&&a/Math.max(tot,1)>=0.5)return'review';
+    return'proposed'; }
+
+  vote(ch,kind){ const votes={...this.state.votes}; const v={...(votes[ch.id]||{a:ch.agree,d:ch.disagree})};
+    if(kind==='a')v.a++; else v.d++; votes[ch.id]=v;
+    try{localStorage.setItem('grove_votes_v1',JSON.stringify(votes));}catch(e){}
+    this.setState({votes}); }
+
+  resetVotes(){ const votes={}; this.G.channels.forEach(c=>votes[c.id]={a:c.agree,d:c.disagree});
+    try{localStorage.removeItem('grove_votes_v1');}catch(e){} this.setState({votes,selChannel:this.state.selChannel}); }
+
+  metaOf(n){
+    const roleMap={plant:'Producer',herbivore:'Herbivore',gall:'Galler / leaf-miner',pollinator:'Pollinator',predator:'Predator',spider:'Predator (web-builder)',decomposer:'Decomposer / detritivore',amphibian:'Predator (vertebrate)',bird:'Disperser / insectivore',mammal:'Consumer (vertebrate)',agent:'Agent — farmer'};
+    const T=(this.G.TAXON[n.taxon]||{});
+    return {
+      node_id:n.sci, node_type:n.agent?'agent':'species',
+      taxon_group:n.agent?'Homo sapiens (human agent)':(T.label||n.taxon),
+      functional_role:roleMap[n.group]||'—',
+      id_status:n.agent?'n/a — actor':(n.idGrade==='research'?'research-grade':'needs confirmation'),
+      observations:n.agent?'—':n.n, channels:n.deg,
+      source:n.agent?'Field actor (TFFF)':'iNaturalist · thegrove', license:'CC-BY-NC'
+    };
+  }
+
+  renderVals(){
+    const G=this.G||window.GROVE; const h=React.createElement;
+    if(!G||!this.state.ready){
+      return { sCount:'—',cCount:'—',rgCount:'—',
+        filterbar:h('div',{style:{height:'1px'}}),
+        graph:h('div',{style:{display:'flex',alignItems:'center',justifyContent:'center',height:'100%',fontFamily:"'IBM Plex Mono',monospace",fontSize:'12px',color:'#5e7d66'}},'Computing network…'),
+        panel:h('div',{style:{padding:'24px',fontFamily:"'IBM Plex Mono',monospace",fontSize:'12px',color:'#5e7d66'}},'Loading…') };
+    }
+    const { TAXON,TYPES,GRADE }=G; const st=this.state; const nodes=this.nodes;
+    const byId={}; nodes.forEach(n=>byId[n.id]=n);
+    const rgCount=G.channels.filter(c=>this.grade(c)==='research').length;
+
+    // active set for highlight
+    const focus = st.selNode || st.hover;
+    const incident = id => G.channels.filter(c=>c.a===id||c.b===id);
+    const chMatchesFilter = c => (st.fGrade==='all'||this.grade(c)===st.fGrade) && (!st.fType||c.type===st.fType);
+    const chActive = c => {
+      if(!chMatchesFilter(c)) return false;
+      if(focus) return c.a===focus||c.b===focus;
+      if(st.selChannel) return c.id===st.selChannel;
+      return true;
+    };
+
+    // ---- GRAPH ----
+    const edgeEls=G.channels.map(c=>{
+      const a=byId[c.a],b=byId[c.b]; if(!a||!b)return null;
+      const g=this.grade(c); const gd=GRADE[g];
+      const act=chActive(c); const matchF=chMatchesFilter(c);
+      const sel=st.selChannel===c.id;
+      const op = sel?1 : act?0.85 : (focus||st.selChannel||st.fType||st.fGrade!=='all')?0.06:0.34;
+      return h('line',{key:c.id,x1:a.x,y1:a.y,x2:b.x,y2:b.y,
+        stroke:gd.c,strokeWidth:sel?3.4:(1+(st.votes[c.id]?st.votes[c.id].a:c.agree)*0.18),
+        strokeDasharray:gd.dash,opacity:op,strokeLinecap:'round',style:{cursor:'pointer',transition:'opacity .15s'},
+        onClick:()=>this.setState({selChannel:c.id,selNode:null})});
+    });
+    const nodeEls=nodes.map(n=>{
+      const tax=TAXON[n.taxon]||TAXON.Animalia;
+      const isFocus=focus===n.id;
+      const neighbor = focus && incident(focus).some(c=>c.a===n.id||c.b===n.id);
+      const dim = (focus&&!isFocus&&!neighbor) || (st.selChannel && !(()=>{const c=G.channels.find(x=>x.id===st.selChannel);return c&&(c.a===n.id||c.b===n.id);})());
+      const showLabel = isFocus||neighbor||n.deg>=5||n.agent;
+      return h('g',{key:n.id,style:{cursor:'pointer'},
+        onMouseEnter:()=>this.setState({hover:n.id}),onMouseLeave:()=>this.setState({hover:null}),
+        onClick:()=>this.setState({selNode:n.id,selChannel:null})},
+        n.agent?h('circle',{cx:n.x,cy:n.y,r:n.r+7,fill:'none',stroke:'#C6F25A',strokeWidth:1.5,strokeDasharray:'3 3',opacity:dim?0.2:0.95}):null,
+        n.taxon!=='Plantae'?h('circle',{cx:n.x,cy:n.y,r:n.r+3.5,fill:'none',stroke:tax.c,strokeWidth:1.4,opacity:dim?0.15:0.6}):null,
+        h('circle',{cx:n.x,cy:n.y,r:n.r,fill:tax.c,opacity:dim?0.18:1,stroke:isFocus?'#fff':'#0A140E',strokeWidth:isFocus?2:1.5}),
+        showLabel?h('text',{x:n.x,y:n.y-n.r-6,textAnchor:'middle',fontFamily:"'Space Grotesk',sans-serif",fontSize:11,fontWeight:600,fill:dim?'#3a5c47':'#EFF1E9',style:{pointerEvents:'none'}},n.common||n.sci):null);
+    });
+    const graph=h('svg',{viewBox:'0 0 '+this.W+' '+this.H,preserveAspectRatio:'xMidYMid meet',
+      style:{position:'absolute',inset:0,width:'100%',height:'100%'},
+      onClick:(e)=>{ if(e.target.tagName==='svg') this.setState({selNode:null,selChannel:null,hover:null}); }},
+      h('g',null,edgeEls),h('g',null,nodeEls));
+
+    // ---- FILTER BAR ----
+    const chip=(active,label,onClick,dot)=>h('button',{onClick,style:{display:'flex',alignItems:'center',gap:7,background:active?'#1c3327':'transparent',border:'1px solid '+(active?'#2FB45C':'#234231'),color:active?'#EFF1E9':'#a9bdad',padding:'7px 12px',borderRadius:6,fontFamily:"'IBM Plex Mono',monospace",fontSize:10.5,letterSpacing:'.06em',cursor:'pointer'}},
+      dot?h('span',{style:{width:9,height:9,borderRadius:'50%',background:dot,display:'inline-block'}}):null,label);
+    const gradeChips=['all','research','review','proposed'].map(g=>chip(st.fGrade===g,g==='all'?'ALL':GRADE[g].label.toUpperCase(),()=>this.setState({fGrade:g}),g==='all'?null:GRADE[g].c));
+    const typeChips=Object.keys(TYPES).map(t=>chip(st.fType===t,TYPES[t].label.toUpperCase(),()=>this.setState({fType:st.fType===t?null:t}),TYPES[t].c));
+    const filterbar=h('div',{style:{display:'flex',gap:18,alignItems:'center',padding:'12px 24px',borderBottom:'1px solid #234231',flexWrap:'wrap'}},
+      h('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,color:'#5e7d66',letterSpacing:'.12em'}},'GRADE'),
+      h('div',{style:{display:'flex',gap:7,flexWrap:'wrap'}},gradeChips),
+      h('span',{style:{width:1,height:20,background:'#234231'}}),
+      h('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,color:'#5e7d66',letterSpacing:'.12em'}},'CHANNEL TYPE'),
+      h('div',{style:{display:'flex',gap:7,flexWrap:'wrap'}},typeChips));
+
+    // ---- PANEL ----
+    let panel;
+    const taxDot=(taxon)=>h('span',{style:{width:11,height:11,borderRadius:'50%',background:(TAXON[taxon]||TAXON.Animalia).c,display:'inline-block',flex:'none'}});
+    const gradePill=(g)=>h('span',{style:{display:'inline-flex',alignItems:'center',gap:6,fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.08em',color:GRADE[g].c,border:'1px solid '+GRADE[g].c+'55',borderRadius:999,padding:'4px 10px'}},
+      h('span',{style:{width:7,height:7,borderRadius:'50%',background:GRADE[g].c}}),GRADE[g].label.toUpperCase());
+
+    if(st.selChannel){
+      const c=G.channels.find(x=>x.id===st.selChannel); const v=st.votes[c.id]||{a:c.agree,d:c.disagree};
+      const g=this.grade(c); const A=byId[c.a],B=byId[c.b]; const ty=TYPES[c.type];
+      const tot=v.a+v.d; const pct=tot?Math.round(v.a/tot*100):0;
+      panel=h('div',{style:{padding:'22px'}},
+        h('button',{onClick:()=>this.setState({selChannel:null}),style:{background:'none',border:'none',color:'#5e7d66',fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.1em',cursor:'pointer',padding:0,marginBottom:18}},'← BACK'),
+        h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.14em',color:'#5e7d66',marginBottom:14}},'CHANNEL'),
+        // species A
+        h('div',{style:{display:'flex',alignItems:'center',gap:10,marginBottom:10}},taxDot(A.taxon),h('div',null,h('div',{style:{fontWeight:600,fontSize:15}},A.common||A.sci),h('div',{style:{fontStyle:'italic',fontSize:11.5,color:'#7d9a83'}},A.sci))),
+        h('div',{style:{display:'flex',alignItems:'center',gap:10,margin:'4px 0 4px 4px'}},
+          h('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,color:ty.c,border:'1px solid '+ty.c+'55',borderRadius:5,padding:'3px 8px',letterSpacing:'.06em'}},ty.glyph+' · '+ty.label.toUpperCase()),
+          h('span',{style:{color:'#5e7d66',fontSize:13}},'↓')),
+        h('div',{style:{display:'flex',alignItems:'center',gap:10,marginBottom:18}},taxDot(B.taxon),h('div',null,h('div',{style:{fontWeight:600,fontSize:15}},B.common||B.sci),h('div',{style:{fontStyle:'italic',fontSize:11.5,color:'#7d9a83'}},B.sci))),
+        h('p',{style:{fontSize:13.5,lineHeight:1.65,color:'#cdd8cf',margin:'0 0 14px'}},c.desc),
+        c.ev?h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10.5,color:'#7d9a83',background:'#0A140E',border:'1px solid #234231',borderRadius:8,padding:'10px 12px',marginBottom:18,lineHeight:1.5}},'EVIDENCE · '+c.ev):null,
+        // validation
+        h('div',{style:{borderTop:'1px solid #234231',paddingTop:16}},
+          h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}},gradePill(g),h('span',{style:{fontFamily:"'Space Mono',monospace",fontSize:11,color:'#7d9a83'}},pct+'% agree · '+tot+' votes')),
+          h('div',{style:{display:'flex',height:8,borderRadius:4,overflow:'hidden',background:'#234231',marginBottom:16}},
+            h('div',{style:{width:pct+'%',background:'#2FB45C'}}),h('div',{style:{width:(100-pct)+'%',background:'#FF6A45',opacity:.7}})),
+          h('div',{style:{display:'flex',gap:10}},
+            h('button',{onClick:()=>this.vote(c,'a'),style:{flex:1,background:'#C6F25A',color:'#0E1C13',border:'none',padding:'12px',borderRadius:8,fontFamily:"'IBM Plex Mono',monospace",fontSize:11,letterSpacing:'.06em',fontWeight:600,cursor:'pointer'}},'✓ AGREE  '+v.a),
+            h('button',{onClick:()=>this.vote(c,'d'),style:{flex:1,background:'transparent',color:'#FF6A45',border:'1px solid #FF6A4577',padding:'12px',borderRadius:8,fontFamily:"'IBM Plex Mono',monospace",fontSize:11,letterSpacing:'.06em',cursor:'pointer'}},'✕ DISAGREE  '+v.d)),
+          h('p',{style:{fontSize:11.5,lineHeight:1.6,color:'#5e7d66',margin:'16px 0 0'}},'Like an iNaturalist identification, a channel becomes ',h('span',{style:{color:'#C6F25A'}},'Research grade'),' at ≥4 agreements with ≥2/3 consensus.')));
+    } else if(st.selNode){
+      const n=byId[st.selNode]; const tax=TAXON[n.taxon]||TAXON.Animalia; const chs=incident(n.id);
+      panel=h('div',{style:{padding:'22px'}},
+        h('button',{onClick:()=>this.setState({selNode:null}),style:{background:'none',border:'none',color:'#5e7d66',fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.1em',cursor:'pointer',padding:0,marginBottom:18}},'← BACK'),
+        h('div',{style:{display:'flex',alignItems:'center',gap:10,marginBottom:6}},taxDot(n.taxon),h('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.1em',color:tax.c}},(tax.label+(n.taxon!=='Plantae'?' · ANIMAL':'')).toUpperCase())),
+        h('div',{style:{fontWeight:700,fontSize:24,letterSpacing:'-.02em',lineHeight:1.05}},n.common||n.sci),
+        h('div',{style:{fontStyle:'italic',fontSize:13,color:'#7d9a83',marginTop:4}},n.sci),
+        h('div',{style:{display:'flex',gap:10,margin:'14px 0 20px'}},
+          h('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.06em',color:n.idGrade==='research'?'#C6F25A':'#E0A23C',border:'1px solid '+(n.idGrade==='research'?'#C6F25A55':'#E0A23C55'),borderRadius:999,padding:'4px 10px'}},n.idGrade==='research'?'RESEARCH-GRADE ID':'ID NEEDS CONFIRMATION'),
+          h('span',{style:{fontFamily:"'Space Mono',monospace",fontSize:11,color:'#7d9a83',alignSelf:'center'}},n.n+' obs · deg '+n.deg)),
+        h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.12em',color:'#5e7d66',marginBottom:10}},'HARMONIZED METADATA'),
+        h('div',{style:{border:'1px solid #234231',borderRadius:8,overflow:'hidden',marginBottom:18}},Object.entries(this.metaOf(n)).map(([k,v],i)=>h('div',{key:k,style:{display:'flex',justifyContent:'space-between',gap:12,padding:'8px 12px',background:i%2?'#0b1610':'#0A140E',fontFamily:"'IBM Plex Mono',monospace",fontSize:10.5}},h('span',{style:{color:'#5e7d66'}},k),h('span',{style:{color:'#cdd8cf',textAlign:'right'}},String(v))))),
+        n.agent?h('div',null,
+          h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.12em',color:'#5e7d66',marginBottom:10}},'ACCESS PROFILE'),
+          h('div',{style:{display:'flex',flexDirection:'column',gap:8,marginBottom:12}},Object.entries(n.access).map(([k,v])=>h('div',{key:k,style:{display:'flex',justifyContent:'space-between',alignItems:'center'}},h('span',{style:{fontSize:13,color:'#b6c5b8'}},k+' access'),h('span',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.06em',color:'#FF6A45',border:'1px solid #FF6A4555',borderRadius:999,padding:'3px 10px'}},String(v).toUpperCase())))),
+          h('div',{style:{fontSize:12.5,color:'#cdd8cf',marginBottom:6}},'Proficiency — '+n.proficiency),
+          h('div',{style:{fontSize:11.5,color:'#7d9a83',marginBottom:18,lineHeight:1.5}},'Constrained inputs: '+n.inputs)
+        ):null,
+        h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.12em',color:'#5e7d66',marginBottom:12}},chs.length+' CHANNELS'),
+        h('div',{style:{display:'flex',flexDirection:'column',gap:8}},chs.map(c=>{
+          const other=byId[c.a===n.id?c.b:c.a]; const g=this.grade(c); const ty=TYPES[c.type];
+          return h('button',{key:c.id,onClick:()=>this.setState({selChannel:c.id,selNode:null}),style:{display:'flex',alignItems:'center',gap:10,background:'#0A140E',border:'1px solid #234231',borderRadius:8,padding:'11px 12px',cursor:'pointer',textAlign:'left',width:'100%'}},
+            h('span',{style:{width:8,height:8,borderRadius:'50%',background:GRADE[g].c,flex:'none'}}),
+            h('div',{style:{flex:1,minWidth:0}},h('div',{style:{fontSize:13,color:'#EFF1E9',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}},other.common||other.sci),h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:9.5,color:ty.c,letterSpacing:'.06em',marginTop:2}},ty.label.toUpperCase())),
+            h('span',{style:{color:'#5e7d66',fontSize:14}},'›'));
+        })));
+    } else {
+      const animals=G.species.filter(s=>s.taxon!=='Plantae').length;
+      panel=h('div',{style:{padding:'22px'}},
+        h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.14em',color:'#5e7d66',marginBottom:14}},'ABOUT THIS GRAPH'),
+        h('p',{style:{fontSize:13.5,lineHeight:1.7,color:'#cdd8cf',margin:'0 0 10px'}},'These 53 nodes are the ',h('span',{style:{color:'#EFF1E9'}},'seed network'),' — species mapped into validatable interactions so far, drawn from 273 observations of 175 taxa at The Grove. Every edge is a ',h('span',{style:{color:'#C6F25A'}},'channel'),' — a described, community-validated interaction.'),
+        h('p',{style:{fontSize:13.5,lineHeight:1.7,color:'#b6c5b8',margin:'0 0 20px'}},'iNaturalist validates a species ID; here the community validates the ',h('span',{style:{color:'#EFF1E9'}},'interaction'),'. Click any channel to read its evidence and vote it toward research grade.'),
+        h('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:1,background:'#234231',border:'1px solid #234231',borderRadius:10,overflow:'hidden',marginBottom:22}},
+          [['NODES MAPPED',G.species.length,'#EFF1E9'],['OBSERVED TAXA',175,'#EFF1E9'],['OBSERVATIONS',273,'#EFF1E9'],['RESEARCH-GRADE CH.',rgCount,'#C6F25A']].map((s,i)=>h('div',{key:i,style:{background:'#0b1610',padding:'14px 16px'}},h('div',{style:{fontFamily:"'Space Mono',monospace",fontSize:22,color:s[2]}},s[1]),h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:9,color:'#5e7d66',letterSpacing:'.1em',marginTop:2}},s[0])))),
+        h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.12em',color:'#5e7d66',marginBottom:12}},'TAXA'),
+        h('div',{style:{display:'flex',flexDirection:'column',gap:8,marginBottom:22}},Object.keys(TAXON).map(k=>h('div',{key:k,style:{display:'flex',alignItems:'center',gap:9,fontSize:12.5,color:'#b6c5b8'}},taxDot(k),TAXON[k].label))),
+        h('div',{style:{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.12em',color:'#5e7d66',marginBottom:12}},'VALIDATION GRADE'),
+        h('div',{style:{display:'flex',flexDirection:'column',gap:9}},Object.keys(GRADE).map(k=>h('div',{key:k,style:{display:'flex',alignItems:'center',gap:9,fontSize:12.5,color:'#b6c5b8'}},h('svg',{width:26,height:8},h('line',{x1:0,y1:4,x2:26,y2:4,stroke:GRADE[k].c,strokeWidth:2.5,strokeDasharray:GRADE[k].dash})),GRADE[k].label))),
+        h('button',{onClick:()=>this.resetVotes(),style:{marginTop:24,background:'none',border:'1px solid #234231',color:'#5e7d66',padding:'9px 14px',borderRadius:6,fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:'.08em',cursor:'pointer'}},'RESET MY VOTES'));
+    }
+
+    return { sCount:G.species.length, cCount:G.channels.length, rgCount, filterbar, graph, panel };
+  }
+}
+</script>
+</body>
+</html>

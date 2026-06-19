@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0A140E;}
+  @keyframes tfpulse{0%,100%{opacity:.3;transform:scale(.8);}50%{opacity:1;transform:scale(1.25);}}
+  a{text-decoration:none;color:inherit;}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="background:#0A140E;font-family:'Space Grotesk',sans-serif;color:#EFF1E9;overflow-x:hidden;">
+
+<!-- NAV -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(10,20,14,.82);backdrop-filter:blur(10px);border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;">
+    <a href="TerraFirme Website.dc.html" style="display:flex;align-items:center;gap:11px;">
+      <svg width="28" height="28" viewBox="0 0 120 120"><g stroke="#2FB45C" stroke-width="3" opacity=".7"><line x1="30" y1="34" x2="60" y2="26"/><line x1="60" y1="26" x2="90" y2="36"/><line x1="60" y1="26" x2="60" y2="54"/><line x1="60" y1="54" x2="40" y2="76"/><line x1="60" y1="54" x2="80" y2="78"/></g><g fill="#2FB45C"><circle cx="30" cy="34" r="7"/><circle cx="90" cy="36" r="7"/><circle cx="40" cy="76" r="7"/><circle cx="80" cy="78" r="7"/></g><circle cx="60" cy="54" r="11" fill="#C6F25A"/></svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-.03em;">terrafirme</span>
+    </a>
+    <div style="display:flex;gap:22px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:#a9bdad;">
+      <a href="about.dc.html" style="color:#C6F25A;">VISION</a>
+      <a href="TerraFirme Website.dc.html#network" style-hover="color:#C6F25A;">NETWORK</a>
+      <a href="TerraFirme Website.dc.html#projects" style-hover="color:#C6F25A;">FUTURE FARMER</a>
+      <a href="TerraFirme Website.dc.html#station" style-hover="color:#C6F25A;">STATION</a>
+      <a href="methodology.dc.html" style-hover="color:#C6F25A;">METHOD</a>
+      <a href="contact.dc.html" style-hover="color:#C6F25A;">CONTACT</a>
+      <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="background:#C6F25A;color:#0E1C13;padding:9px 18px;border-radius:6px;font-weight:600;" style-hover="background:#d6ff7a;">JOIN</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div style="position:relative;overflow:hidden;border-bottom:1px solid #234231;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff08 1px,transparent 1px);background-size:30px 30px;"></div>
+  <div style="position:relative;max-width:760px;margin:0 auto;padding:84px 40px 70px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#5e7d66;margin-bottom:22px;">VISION · OBJECTIVES · CO-CREATION</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:54px;line-height:1.0;letter-spacing:-.04em;margin:0 0 24px;">Restore what can be restored.</h1>
+    <p style="font-size:18px;line-height:1.7;color:#b6c5b8;margin:0;">If you came this far, you're interested in not only restoring, but improving ecosystems — and in the science of how a living landscape holds together.</p>
+  </div>
+</div>
+
+<!-- NARRATIVE -->
+<div style="border-bottom:1px solid #234231;">
+  <div style="max-width:720px;margin:0 auto;padding:64px 40px;font-size:17px;line-height:1.8;color:#cdd8cf;">
+    <p style="margin:0 0 24px;">Since farming was invented, human beings have been catapulted tangentially out of the ecosystem circularity and stability it once enjoyed.</p>
+    <p style="margin:0 0 24px;">In complex-systems science, a <span style="color:#EFF1E9;">resilient</span> system is one capable of recovering from disturbance, while an <span style="color:#EFF1E9;">adaptable</span> system can change to become resistant to it.</p>
+    <p style="margin:0 0 24px;">We have come to believe that the hunter-gatherer period was characteristic of a net-positive natural-capital production system. Humans were dependent on natural resources for the same things we need today — shelter, food, fiber, fodder and medicine.</p>
+    <div style="border-left:2px solid #C6F25A;padding:6px 0 6px 26px;margin:40px 0;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:32px;letter-spacing:-.03em;line-height:1.15;color:#EFF1E9;">"I can change."</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#5e7d66;margin-top:12px;">ONE NEUROBIOCHEMICAL REACTION · A TRAJECTORY-DEFINING THOUGHT</div>
+    </div>
+    <p style="margin:0 0 24px;">One day, or night, that thought sparked. We have been changing the environment to our needs ever since — slowly, then faster.</p>
+    <p style="margin:0 0 8px;">If that temporal scale is hard to picture, you can see it illustrated in Joe Bennett's Emmy-winning <span style="font-style:italic;color:#EFF1E9;">Scavenger's Reign</span>: a balanced world is destabilized when a single node in the network begins overexploiting — using or hoarding — resources. As an avid wildlife enthusiast, I'd say the animation is like discovering new biomes on Earth, each with its own balances and checks, and watching them collapse around you.</p>
+  </div>
+</div>
+
+<!-- habitat band -->
+<div style="position:relative;border-bottom:1px solid #234231;">
+  <image-slot id="ab-habitat" src="assets/photos/habitat-valley.jpg" style="width:100%;height:300px;display:block;" shape="rect" placeholder="Forest photo (wide)"></image-slot>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,14,.9),rgba(10,20,14,.3));"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;"><div style="max-width:1180px;margin:0 auto;padding:0 40px;width:100%;"><div style="max-width:420px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;line-height:1.15;letter-spacing:-.02em;">A baseline worth returning to: the Cantabrian Mixed Forests before agriculture.</div></div></div>
+</div>
+
+<!-- MISSION / OBJECTIVE / OUTCOME -->
+<div style="border-bottom:1px solid #234231;background:#0E1C13;">
+  <div style="max-width:1180px;margin:0 auto;padding:64px 40px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div style="border:1px solid #234231;border-radius:12px;padding:30px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#C6F25A;margin-bottom:16px;">MISSION</div>
+      <p style="font-size:18px;line-height:1.55;color:#EFF1E9;margin:0 0 16px;font-weight:500;letter-spacing:-.01em;">Assess, monitor, manage, replicate and report on complex and adaptive ecosystems.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a9bdad;"><span style="width:9px;height:9px;border-radius:50%;background:#C6F25A;"></span>ASSESS</span>
+        <span style="display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a9bdad;"><span style="width:9px;height:9px;border-radius:50%;background:#2FB45C;"></span>MONITOR</span>
+        <span style="display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a9bdad;"><span style="width:9px;height:9px;border-radius:50%;background:#0F8E73;"></span>MANAGE</span>
+        <span style="display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a9bdad;"><span style="width:9px;height:9px;border-radius:50%;background:#FF6A45;"></span>REPLICATE</span>
+        <span style="display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a9bdad;"><span style="width:9px;height:9px;border-radius:50%;background:#EFF1E9;"></span>REPORT</span>
+      </div>
+    </div>
+    <div style="border:1px solid #234231;border-radius:12px;padding:30px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#C6F25A;margin-bottom:16px;">OBJECTIVE</div>
+      <p style="font-size:15.5px;line-height:1.7;color:#b6c5b8;margin:0;">To co-create, with a community of wildlife enthusiasts and experts, knowledge on biological systems and their complex interactions — advancing the science of ecosystem connectivity. As design engineers, but also nodes in the system, motivation matters: the more ideas the community contributes, the faster we move.</p>
+    </div>
+    <div style="grid-column:span 2;border:1px solid #234231;border-radius:12px;padding:30px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#C6F25A;margin-bottom:16px;">THE OUTCOME</div>
+      <p style="font-size:16px;line-height:1.7;color:#cdd8cf;margin:0;max-width:820px;">As <span style="color:#EFF1E9;">homo sapiens</span> — owners of the capacity for change — we direct our efforts to first restore what can be restored of a landscape's natural capital, taking the pre-agricultural, hunter-gatherer period as a baseline. The first outcome is to co-create knowledge on the ecosystem network for the <span style="color:#C6F25A;">Cantabrian Mixed Forests</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DELIVERABLES -->
+<div style="border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:64px 40px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:34px;">
+      <h2 style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;color:#5e7d66;margin:0;">2026 / 2027 OUTPUTS</h2>
+      <p style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:500;letter-spacing:-.02em;margin:0;">Year one deliverables.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#234231;border:1px solid #234231;border-radius:10px;overflow:hidden;">
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">01</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Cantabrian network, 2026</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">Draft graph — code + live on the platform.</div></div>
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">02</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Pre-agriculture baseline</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">Reconstructed network — code + platform.</div></div>
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">03</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Priority-node methodology</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">20 pp · EN GR JP FR ES PT (PDF).</div></div>
+      <div style="background:#0E1C13;padding:24px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#C6F25A;margin-bottom:14px;">04</div><div style="font-weight:600;font-size:15px;line-height:1.25;margin-bottom:8px;">Open interactive platform</div><div style="font-size:12px;color:#7d9a83;line-height:1.5;">Public, browsable network (EN).</div></div>
+    </div>
+    <p style="font-size:14px;color:#7d9a83;margin:24px 0 0;line-height:1.6;">Year one starts on <span style="color:#C6F25A;">12 October</span>, when we launch our environmental-education card game, the Future Farmer.</p>
+  </div>
+</div>
+
+<!-- SIGN-OFF -->
+<div style="border-bottom:1px solid #234231;background:#0E1C13;">
+  <div style="max-width:720px;margin:0 auto;padding:64px 40px;text-align:center;">
+    <p style="font-size:18px;line-height:1.7;color:#cdd8cf;margin:0 0 28px;">If you want to participate in the project, explore the tiers — they maintain the platform and finance the workplan.</p>
+    <div style="display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;">
+      <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="background:#C6F25A;color:#0E1C13;padding:14px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;font-weight:600;" style-hover="background:#d6ff7a;">JOIN ON PATREON</a>
+      <a href="TerraFirme Website.dc.html#projects" style="border:1.5px solid #2FB45C;color:#2FB45C;padding:13px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;" style-hover="background:#11271a;">SEE THE PROJECTS</a>
+    </div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;color:#7d9a83;">Thank you for coming,</div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.02em;margin-top:4px;">Marcelo</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff08 1px,transparent 1px);background-size:28px 28px;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <a href="TerraFirme Website.dc.html" style="display:flex;align-items:center;gap:11px;">
+      <svg width="30" height="30" viewBox="0 0 120 120"><g stroke="#2FB45C" stroke-width="3" opacity=".7"><line x1="30" y1="34" x2="60" y2="26"/><line x1="60" y1="26" x2="90" y2="36"/><line x1="60" y1="26" x2="60" y2="54"/><line x1="60" y1="54" x2="40" y2="76"/><line x1="60" y1="54" x2="80" y2="78"/></g><g fill="#2FB45C"><circle cx="30" cy="34" r="6"/><circle cx="90" cy="36" r="6"/><circle cx="40" cy="76" r="6"/><circle cx="80" cy="78" r="6"/></g><circle cx="60" cy="54" r="10" fill="#C6F25A"/></svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-.03em;">terrafirme</span>
+    </a>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#5e7d66;">© 2026 TERRAFIRME · CANTABRIAN MIXED FORESTS</span>
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>

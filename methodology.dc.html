@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0A140E;}
+  @keyframes tfpulse{0%,100%{opacity:.3;transform:scale(.8);}50%{opacity:1;transform:scale(1.25);}}
+  a{text-decoration:none;color:inherit;}
+</style>
+</helmet>
+
+<div style="background:#0A140E;font-family:'Space Grotesk',sans-serif;color:#EFF1E9;overflow-x:hidden;">
+
+<!-- NAV -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(10,20,14,.82);backdrop-filter:blur(10px);border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;">
+    <a href="TerraFirme Website.dc.html" style="display:flex;align-items:center;gap:11px;">
+      <svg width="28" height="28" viewBox="0 0 120 120"><g stroke="#2FB45C" stroke-width="3" opacity=".7"><line x1="30" y1="34" x2="60" y2="26"/><line x1="60" y1="26" x2="90" y2="36"/><line x1="60" y1="26" x2="60" y2="54"/><line x1="60" y1="54" x2="40" y2="76"/><line x1="60" y1="54" x2="80" y2="78"/></g><g fill="#2FB45C"><circle cx="30" cy="34" r="7"/><circle cx="90" cy="36" r="7"/><circle cx="40" cy="76" r="7"/><circle cx="80" cy="78" r="7"/></g><circle cx="60" cy="54" r="11" fill="#C6F25A"/></svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-.03em;">terrafirme</span>
+    </a>
+    <div style="display:flex;gap:22px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:#a9bdad;">
+      <a href="about.dc.html" style-hover="color:#C6F25A;">VISION</a>
+      <a href="TerraFirme Website.dc.html#network" style-hover="color:#C6F25A;">NETWORK</a>
+      <a href="TerraFirme Website.dc.html#projects" style-hover="color:#C6F25A;">FUTURE FARMER</a>
+      <a href="TerraFirme Website.dc.html#station" style-hover="color:#C6F25A;">STATION</a>
+      <a href="methodology.dc.html" style="color:#C6F25A;">METHOD</a>
+      <a href="contact.dc.html" style-hover="color:#C6F25A;">CONTACT</a>
+      <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="background:#C6F25A;color:#0E1C13;padding:9px 18px;border-radius:6px;font-weight:600;" style-hover="background:#d6ff7a;">JOIN</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div style="position:relative;overflow:hidden;border-bottom:1px solid #234231;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff08 1px,transparent 1px);background-size:30px 30px;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:#5e7d66;margin-bottom:20px;">OPEN METHODOLOGY · v2026.1</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1.02;letter-spacing:-.04em;margin:0 0 22px;">Assessing priority nodes for restoration.</h1>
+      <p style="font-size:16.5px;line-height:1.72;color:#b6c5b8;max-width:500px;margin:0 0 30px;">A reproducible method for finding the connections that matter most in a degraded ecosystem — and the order in which to restore them. Open, peer-reviewable, and free to reuse.</p>
+      <div style="display:flex;gap:13px;flex-wrap:wrap;align-items:center;">
+        <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="background:#C6F25A;color:#0E1C13;padding:14px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;font-weight:600;" style-hover="background:#d6ff7a;">DOWNLOAD PDF</a>
+        <span style="font-family:'Space Mono',monospace;font-size:12px;color:#7d9a83;">20 pp · 6 languages</span>
+      </div>
+    </div>
+    <div style="border:1px solid #234231;border-radius:14px;background:#0a140e;overflow:hidden;">
+      <div style="padding:14px 18px;border-bottom:1px solid #234231;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#5e7d66;display:flex;justify-content:space-between;"><span>BETWEENNESS CENTRALITY</span><span style="color:#2FB45C;">PLOT C-07</span></div>
+      <svg viewBox="0 0 340 230" style="display:block;width:100%;height:auto;">
+        <g stroke="#2FB45C" stroke-width="1" opacity=".35"><line x1="50" y1="60" x2="130" y2="44"/><line x1="130" y1="44" x2="210" y2="60"/><line x1="210" y1="60" x2="300" y2="48"/><line x1="130" y1="44" x2="120" y2="130"/><line x1="210" y1="60" x2="230" y2="140"/><line x1="120" y1="130" x2="70" y2="190"/><line x1="120" y1="130" x2="175" y2="195"/><line x1="230" y1="140" x2="175" y2="195"/><line x1="230" y1="140" x2="300" y2="190"/><line x1="50" y1="60" x2="120" y2="130"/><line x1="300" y1="48" x2="230" y2="140"/></g>
+        <g fill="#2FB45C"><circle cx="50" cy="60" r="5"/><circle cx="130" cy="44" r="6"/><circle cx="210" cy="60" r="6"/><circle cx="300" cy="48" r="5"/><circle cx="70" cy="190" r="5"/><circle cx="300" cy="190" r="5"/></g>
+        <circle cx="120" cy="130" r="9" fill="#0F8E73"/><circle cx="230" cy="140" r="9" fill="#0F8E73"/>
+        <circle cx="175" cy="195" r="13" fill="#C6F25A" style="transform-box:fill-box;transform-origin:center;animation:tfpulse 2.6s ease-in-out infinite;"/>
+        <circle cx="175" cy="195" r="13" fill="#C6F25A"/>
+      </svg>
+      <div style="padding:13px 18px;border-top:1px solid #234231;font-family:'Space Mono',monospace;font-size:11px;color:#2FB45C;">TOP NODE: Quercus robur · score 0.91</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div style="border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:64px 40px;">
+    <h2 style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;color:#5e7d66;margin:0 0 30px;">THE METHOD — FOUR STEPS</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div style="border:1px solid #234231;border-radius:10px;padding:24px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:12px;height:12px;border-radius:50%;background:#C6F25A;"></span><span style="font-family:'Space Mono',monospace;font-size:13px;color:#7d9a83;">01</span></div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;margin-bottom:8px;">Build the graph</div><div style="font-size:13px;color:#7d9a83;line-height:1.6;">Record species and processes as nodes; every observed interaction becomes a weighted edge.</div></div>
+      <div style="border:1px solid #234231;border-radius:10px;padding:24px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:12px;height:12px;border-radius:50%;background:#2FB45C;"></span><span style="font-family:'Space Mono',monospace;font-size:13px;color:#7d9a83;">02</span></div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;margin-bottom:8px;">Score centrality</div><div style="font-size:13px;color:#7d9a83;line-height:1.6;">Compute betweenness and degree to find which nodes hold the network together.</div></div>
+      <div style="border:1px solid #234231;border-radius:10px;padding:24px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:12px;height:12px;border-radius:50%;background:#0F8E73;"></span><span style="font-family:'Space Mono',monospace;font-size:13px;color:#7d9a83;">03</span></div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;margin-bottom:8px;">Rank priority</div><div style="font-size:13px;color:#7d9a83;line-height:1.6;">Cross centrality with vulnerability to rank nodes for investigation and intervention.</div></div>
+      <div style="border:1px solid #234231;border-radius:10px;padding:24px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:12px;height:12px;border-radius:50%;background:#FF6A45;"></span><span style="font-family:'Space Mono',monospace;font-size:13px;color:#7d9a83;">04</span></div><div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;margin-bottom:8px;">Plan restoration</div><div style="font-size:13px;color:#7d9a83;line-height:1.6;">Sequence interventions to rebuild the highest-value broken edges first.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LANGUAGES + LICENSE -->
+<div style="border-bottom:1px solid #234231;background:#0E1C13;">
+  <div style="max-width:1180px;margin:0 auto;padding:56px 40px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;">
+    <div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;letter-spacing:-.025em;margin:0 0 16px;">Available in six languages.</h2>
+      <p style="font-size:15px;line-height:1.7;color:#b6c5b8;max-width:440px;margin:0 0 22px;">The methodology document and node-scoring code are released openly so any group can map and restore their own ecoregion.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="border:1px solid #234231;border-radius:999px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#C6F25A;">EN</span>
+        <span style="border:1px solid #234231;border-radius:999px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a9bdad;">GR</span>
+        <span style="border:1px solid #234231;border-radius:999px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a9bdad;">JP</span>
+        <span style="border:1px solid #234231;border-radius:999px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a9bdad;">FR</span>
+        <span style="border:1px solid #234231;border-radius:999px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a9bdad;">ES</span>
+        <span style="border:1px solid #234231;border-radius:999px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#a9bdad;">PT</span>
+      </div>
+    </div>
+    <div style="border:1px solid #234231;border-radius:12px;background:#0a140e;padding:28px;">
+      <div style="display:flex;flex-direction:column;gap:0;font-family:'IBM Plex Mono',monospace;font-size:12px;">
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #1c3327;"><span style="color:#5e7d66;">VERSION</span><span>2026.1</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #1c3327;"><span style="color:#5e7d66;">LENGTH</span><span>20 pp · PDF</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #1c3327;"><span style="color:#5e7d66;">CODE</span><span style="color:#2FB45C;">node-priority.py</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 0;"><span style="color:#5e7d66;">LICENSE</span><span style="color:#C6F25A;">CC-BY · open</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="border-bottom:1px solid #234231;">
+  <div style="max-width:1180px;margin:0 auto;padding:60px 40px;text-align:center;">
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;letter-spacing:-.03em;margin:0 0 16px;">Use it, cite it, improve it.</h2>
+    <p style="font-size:15px;color:#b6c5b8;max-width:480px;margin:0 auto 26px;line-height:1.7;">The methodology is maintained with the community on Patreon. Members get the code, raw data and every revision.</p>
+    <div style="display:flex;gap:13px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="background:#C6F25A;color:#0E1C13;padding:14px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;font-weight:600;" style-hover="background:#d6ff7a;">DOWNLOAD PDF</a>
+      <a href="https://www.patreon.com/cw/thefuturefarmer" target="_blank" style="border:1.5px solid #2FB45C;color:#2FB45C;padding:13px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;border-radius:7px;" style-hover="background:#11271a;">GET THE CODE</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(#ffffff08 1px,transparent 1px);background-size:28px 28px;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <a href="TerraFirme Website.dc.html" style="display:flex;align-items:center;gap:11px;">
+      <svg width="30" height="30" viewBox="0 0 120 120"><g stroke="#2FB45C" stroke-width="3" opacity=".7"><line x1="30" y1="34" x2="60" y2="26"/><line x1="60" y1="26" x2="90" y2="36"/><line x1="60" y1="26" x2="60" y2="54"/><line x1="60" y1="54" x2="40" y2="76"/><line x1="60" y1="54" x2="80" y2="78"/></g><g fill="#2FB45C"><circle cx="30" cy="34" r="6"/><circle cx="90" cy="36" r="6"/><circle cx="40" cy="76" r="6"/><circle cx="80" cy="78" r="6"/></g><circle cx="60" cy="54" r="10" fill="#C6F25A"/></svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:-.03em;">terrafirme</span>
+    </a>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#5e7d66;">© 2026 TERRAFIRME · OPEN METHODOLOGY · CC-BY</span>
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>
