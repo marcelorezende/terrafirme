@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expansions &mdash; The Future Farmer Card Game</title>
+<meta name="description" content="New biomes, new challenges, new strategies. Community-driven expansion packs coming soon to The Future Farmer Card Game.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+/* ── Expansion pack cards ── */
+.exp-packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+.exp-pack {
+  border-radius: 12px; overflow: hidden;
+  background: var(--wh); position: relative;
+  border: 1.5px solid rgba(30,58,40,.06);
+  transition: transform .25s, box-shadow .25s;
+}
+.exp-pack:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(30,58,40,.14); }
+.exp-pack-visual {
+  height: 200px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.exp-pack-visual.biome {
+  background: linear-gradient(135deg, #2d5238 0%, #4a7a52 40%, #c87248 100%);
+}
+.exp-pack-visual.challenges {
+  background: linear-gradient(135deg, #8b4513 0%, #d4763a 50%, #f5c16c 100%);
+}
+.exp-pack-visual.school {
+  background: linear-gradient(135deg, #3a6b5e 0%, #5fa08c 50%, #bad4ba 100%);
+}
+.exp-pack-visual-icon {
+  font-size: 4rem; filter: drop-shadow(0 4px 12px rgba(0,0,0,.2));
+  z-index: 1;
+}
+.exp-pack-visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.2) 100%);
+}
+.exp-badge {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  font-family: var(--fh); font-weight: 900; font-size: .55rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: .35rem .75rem; border-radius: 20px;
+  color: var(--wh);
+}
+.exp-badge.soon { background: var(--terra); }
+.exp-badge.vote { background: var(--fg); }
+.exp-badge.future { background: rgba(255,255,255,.2); backdrop-filter: blur(4px); }
+
+.exp-pack-body { padding: 1.5rem; }
+.exp-pack-num {
+  font-family: var(--fh); font-weight: 900; font-size: .6rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--inks); opacity: .3; margin-bottom: .3rem;
+}
+.exp-pack-name {
+  font-family: var(--fh); font-weight: 900; font-size: 1.1rem;
+  color: var(--ink); margin-bottom: .5rem;
+}
+.exp-pack-desc {
+  font-family: var(--fb); font-size: .85rem; line-height: 1.65;
+  color: var(--inks); margin-bottom: 1rem;
+}
+.exp-pack-cards {
+  display: flex; flex-wrap: wrap; gap: .3rem;
+}
+.exp-card-tag {
+  font-family: var(--fc); font-weight: 600; font-size: .62rem;
+  letter-spacing: .04em; text-transform: uppercase;
+  padding: .25rem .6rem; border-radius: 3px;
+  background: rgba(30,58,40,.06); color: var(--fg);
+}
+
+/* ── What's inside an expansion ── */
+.exp-inside {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+  margin-top: 2rem;
+}
+.exp-inside-item {
+  text-align: center; padding: 1.5rem 1rem;
+  background: var(--wh); border-radius: var(--r);
+  border: 1.5px solid rgba(30,58,40,.06);
+}
+.exp-inside-icon { font-size: 2rem; margin-bottom: .6rem; }
+.exp-inside-item h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .68rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg); margin-bottom: .3rem;
+}
+.exp-inside-item p {
+  font-family: var(--fb); font-size: .8rem; line-height: 1.5;
+  color: var(--inks);
+}
+
+/* ── Roadmap timeline ── */
+.exp-timeline { position: relative; padding-left: 2.5rem; margin-top: 2rem; }
+.exp-timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(to bottom, var(--fg), var(--terra), rgba(30,58,40,.1));
+}
+.exp-tl-item { position: relative; margin-bottom: 2.5rem; }
+.exp-tl-item:last-child { margin-bottom: 0; }
+.exp-tl-dot {
+  position: absolute; left: -2.5rem; top: .2rem;
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 3px solid var(--wh); box-shadow: 0 0 0 2px var(--fg);
+  background: var(--fg);
+}
+.exp-tl-item.future .exp-tl-dot {
+  background: var(--wh); box-shadow: 0 0 0 2px rgba(30,58,40,.2);
+}
+.exp-tl-item.active .exp-tl-dot {
+  background: var(--terra); box-shadow: 0 0 0 2px var(--terra);
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--terra); }
+  50% { box-shadow: 0 0 0 6px rgba(200,114,72,.2); }
+}
+.exp-tl-date {
+  font-family: var(--fh); font-weight: 900; font-size: .62rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: .25rem;
+}
+.exp-tl-item.future .exp-tl-date { color: var(--inks); opacity: .3; }
+.exp-tl-title {
+  font-family: var(--fh); font-weight: 900; font-size: .92rem;
+  color: var(--fg); margin-bottom: .3rem;
+}
+.exp-tl-desc {
+  font-family: var(--fb); font-size: .85rem; line-height: 1.6;
+  color: var(--inks); max-width: 560px;
+}
+
+/* ── Community-driven banner ── */
+.exp-community {
+  background: var(--fg); color: var(--cream); padding: 3.5rem 0;
+  text-align: center;
+}
+.exp-community-in {
+  max-width: 680px; margin: 0 auto; padding: 0 2rem;
+}
+.exp-community h2 {
+  font-family: var(--fh); font-weight: 900; font-size: 1.3rem;
+  letter-spacing: .04em; color: var(--cream); margin-bottom: 1rem;
+}
+.exp-community p {
+  font-family: var(--fs); font-style: italic; font-size: 1rem;
+  line-height: 1.8; color: rgba(245,228,208,.55); margin-bottom: 1.5rem;
+}
+.exp-community .btn { margin: 0 .35rem; }
+
+/* ── Vote teaser ── */
+.exp-vote-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+  margin-top: 2rem;
+}
+.exp-vote-card {
+  background: var(--wh); border-radius: var(--r); padding: 1.5rem;
+  border: 1.5px solid rgba(30,58,40,.06); text-align: center;
+  transition: border-color .2s;
+}
+.exp-vote-card:hover { border-color: var(--terra); }
+.exp-vote-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+.exp-vote-card h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg); margin-bottom: .4rem;
+}
+.exp-vote-card p {
+  font-family: var(--fs); font-style: italic; font-size: .85rem;
+  line-height: 1.6; color: var(--inks);
+}
+.exp-vote-bar-wrap { margin-top: 1.25rem; }
+.exp-vote-bar-bg {
+  width: 100%; height: 8px; border-radius: 4px;
+  background: rgba(30,58,40,.08); overflow: hidden;
+}
+.exp-vote-bar-fill {
+  height: 100%; border-radius: 4px;
+  background: var(--terra); transition: width .6s ease;
+}
+.exp-vote-pct {
+  display: inline-block; margin-top: .5rem;
+  font-family: var(--fh); font-weight: 900; font-size: 1.1rem;
+  color: var(--fg);
+  filter: blur(5px); user-select: none; pointer-events: none;
+}
+.exp-vote-lock {
+  margin-top: .75rem;
+  font-family: var(--fh); font-weight: 700; font-size: .6rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--terra);
+}
+.exp-vote-lock a { color: var(--terra); text-decoration: underline; }
+
+/* ── Notify form ── */
+.exp-notify {
+  display: flex; gap: .5rem; max-width: 420px; margin: 2rem auto 0;
+}
+.exp-notify input {
+  flex: 1; font-family: var(--fb); font-size: .85rem;
+  padding: .7rem 1rem; border: 1.5px solid rgba(30,58,40,.15);
+  border-radius: var(--r); background: var(--wh); outline: none;
+  transition: border-color .2s;
+}
+.exp-notify input:focus { border-color: var(--fg); }
+.exp-notify button {
+  font-family: var(--fh); font-weight: 900; font-size: .68rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .7rem 1.5rem; background: var(--terra); color: var(--wh);
+  border: none; border-radius: var(--r); cursor: pointer;
+  transition: background .2s; white-space: nowrap;
+}
+.exp-notify button:hover { background: var(--terra2); }
+
+/* ── Responsive ── */
+@media(max-width:1024px) {
+  .exp-packs { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:768px) {
+  .exp-packs { grid-template-columns: 1fr; }
+  .exp-inside { grid-template-columns: repeat(2, 1fr); }
+  .exp-vote-cards { grid-template-columns: 1fr; }
+  .exp-notify { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">The Future Farmer <span>Card Game</span></a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="the-game.html">The Game</a></li>
+    <li><a href="for-schools.html">For Schools</a></li>
+    <li class="nav-dropdown">
+      <a>Our Impact</a>
+      <div class="nav-dropdown-menu">
+        <a href="the-grove.html">The Grove</a>
+        <a href="the-forest-wall.html">The Forest Wall</a>
+        <a href="future-farm-fund.html">The Future Farm Fund</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a>Community</a>
+      <div class="nav-dropdown-menu">
+        <a href="card-creators.html">Card Creators</a>
+        <a href="expansions.html">Expansions</a>
+        <a href="blog.html">Field Notes</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="shop.html">Shop</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lb on" onclick="L('en')">EN</button>
+      <button class="lb" onclick="L('pt')">PT</button>
+      <button class="lb" onclick="L('es')">ES</button>
+    </div>
+    <a href="shop.html" class="nav-cta">Shop</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="sec-lbl">Expansions</span>
+  <h1>The Game<br>Keeps Growing.</h1>
+  <p>New biomes. New challenges. New strategies. Every expansion is community-funded, community-driven, and reviewed by the forester for scientific accuracy.</p>
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Expansions</div>
+</div>
+
+<!-- EXPANSION PACKS -->
+<div>
+  <div class="page-section">
+    <h2>Planned Expansions</h2>
+    <p>Each expansion introduces a new biome or theme with its own Farm Modules, Innovations, and Challenges. Cards are scientifically grounded, community-shaped, and designed to layer onto the base game.</p>
+
+    <div class="exp-packs">
+      <!-- Pack 1: Tech Farmer -->
+      <div class="exp-pack">
+        <div class="exp-pack-visual" style="background:linear-gradient(135deg, #2a4a5e 0%, #4a8aaa 40%, #7ec8e3 100%)">
+          <span class="exp-badge soon">Booster</span>
+          <span class="exp-pack-visual-icon">&#9881;&#65039;</span>
+        </div>
+        <div class="exp-pack-body">
+          <div class="exp-pack-num">Expansion 01</div>
+          <div class="exp-pack-name">Tech Farmer</div>
+          <p class="exp-pack-desc">A booster pack of cutting-edge Innovations. Drones, AI soil sensors, vertical farms, gene editing, and the tech disrupting agriculture &mdash; for better or worse. Power up your farm or watch the unintended consequences unfold.</p>
+          <div class="exp-pack-cards">
+            <span class="exp-card-tag">Precision Ag</span>
+            <span class="exp-card-tag">Drone Survey</span>
+            <span class="exp-card-tag">Vertical Farm</span>
+            <span class="exp-card-tag">AI Sensors</span>
+            <span class="exp-card-tag">Gene Editing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pack 2: Tropical Paradise -->
+      <div class="exp-pack">
+        <div class="exp-pack-visual" style="background:linear-gradient(135deg, #1a5c3a 0%, #2e8b57 40%, #90d48c 100%)">
+          <span class="exp-badge vote">Booster</span>
+          <span class="exp-pack-visual-icon">&#127796;</span>
+        </div>
+        <div class="exp-pack-body">
+          <div class="exp-pack-num">Expansion 02</div>
+          <div class="exp-pack-name">Tropical Paradise</div>
+          <p class="exp-pack-desc">A booster of lush new Farm Modules inspired by rainforest ecosystems and indigenous farming wisdom. Shade-grown cacao, swidden agriculture, açaí agroforestry, and the extraordinary biodiversity of tropical communities who have farmed sustainably for millennia.</p>
+          <div class="exp-pack-cards">
+            <span class="exp-card-tag">Cacao Forest</span>
+            <span class="exp-card-tag">Swidden</span>
+            <span class="exp-card-tag">Açaí Agro.</span>
+            <span class="exp-card-tag">Indigenous</span>
+            <span class="exp-card-tag">Canopy Layer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pack 3: Drylands -->
+      <div class="exp-pack">
+        <div class="exp-pack-visual" style="background:linear-gradient(135deg, #8b6914 0%, #c9922a 40%, #f0d48c 100%)">
+          <span class="exp-badge future">Full Edition</span>
+          <span class="exp-pack-visual-icon">&#127797;</span>
+        </div>
+        <div class="exp-pack-body">
+          <div class="exp-pack-num">Expansion 03</div>
+          <div class="exp-pack-name">Drylands</div>
+          <p class="exp-pack-desc">A complete 60-card standalone edition. Farming on the edge &mdash; from the Sahel to the Australian outback, the Negev to the Altiplano. Zaï pits, fog nets, the Great Green Wall, and the ingenuity of communities making arid land bloom.</p>
+          <div class="exp-pack-cards">
+            <span class="exp-card-tag">Zaï Pits</span>
+            <span class="exp-card-tag">Fog Nets</span>
+            <span class="exp-card-tag">Great Green Wall</span>
+            <span class="exp-card-tag">Sand Dams</span>
+            <span class="exp-card-tag">60 Cards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT'S INSIDE -->
+<div style="background:var(--parch)">
+  <div class="page-section">
+    <h2>What&rsquo;s Inside Every Expansion</h2>
+    <p>Each pack follows the same structure as the base game, so it integrates seamlessly. Shuffle in the new cards and your next game night transforms.</p>
+
+    <div class="exp-inside">
+      <div class="exp-inside-item">
+        <div class="exp-inside-icon">&#127806;</div>
+        <h3>Farm Modules</h3>
+        <p>New land-use systems from the expansion's biome. Each generates PES credits in its own way.</p>
+      </div>
+      <div class="exp-inside-item">
+        <div class="exp-inside-icon">&#128161;</div>
+        <h3>Innovations</h3>
+        <p>Region-specific technologies and strategies that give you an edge or protect your farm.</p>
+      </div>
+      <div class="exp-inside-item">
+        <div class="exp-inside-icon">&#127754;</div>
+        <h3>Challenges</h3>
+        <p>New environmental events that disrupt, force adaptation, or create unexpected alliances.</p>
+      </div>
+      <div class="exp-inside-item">
+        <div class="exp-inside-icon">&#129345;</div>
+        <h3>Community Cards</h3>
+        <p>Cards designed by backers through the Card Creators programme, reviewed by the forester.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMUNITY BANNER -->
+<div class="exp-community">
+  <div class="exp-community-in">
+    <h2>&#127793; Shaped by the Community</h2>
+    <p>Backers don't just fund expansions &mdash; they shape them. Vote on themes, submit card ideas through the Card Creators programme, and watch your contributions become part of the game. Every expansion includes at least one community-created card.</p>
+    <a href="card-creators.html" class="btn btn-g">Submit a Card Idea</a>
+    <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div>
+  <div class="page-section">
+    <h2>The Roadmap</h2>
+    <p>Every expansion is funded by the community and released when it is ready &mdash; not rushed, not compromised. Here is where we are heading.</p>
+
+    <div class="exp-timeline">
+      <div class="exp-tl-item active">
+        <div class="exp-tl-dot"></div>
+        <div class="exp-tl-date">Now</div>
+        <div class="exp-tl-title">Base Game</div>
+        <div class="exp-tl-desc">60 cards across three types. Farm Modules, Innovations, and Challenges. The foundation everything builds on.</div>
+      </div>
+      <div class="exp-tl-item">
+        <div class="exp-tl-dot"></div>
+        <div class="exp-tl-date">Year 2 &mdash; 200+ Backers</div>
+        <div class="exp-tl-title">Expansion 01: Tech Farmer (Booster)</div>
+        <div class="exp-tl-desc">The first booster pack. New Innovation cards bringing precision agriculture, drones, AI, and agtech disruption to the table.</div>
+      </div>
+      <div class="exp-tl-item future">
+        <div class="exp-tl-dot"></div>
+        <div class="exp-tl-date">Year 2&ndash;3</div>
+        <div class="exp-tl-title">Expansion 02: Tropical Paradise (Booster)</div>
+        <div class="exp-tl-desc">New Farm Modules inspired by rainforest ecosystems and indigenous farming wisdom. Includes the first batch of Card Creator submissions.</div>
+      </div>
+      <div class="exp-tl-item future">
+        <div class="exp-tl-dot"></div>
+        <div class="exp-tl-date">Year 3</div>
+        <div class="exp-tl-title">Expansion 03: Drylands (Full 60-Card Edition)</div>
+        <div class="exp-tl-desc">A complete standalone edition. Farming in arid regions worldwide &mdash; the Sahel, the outback, the Negev. The Grove reaches 500 surviving trees.</div>
+      </div>
+      <div class="exp-tl-item future">
+        <div class="exp-tl-dot"></div>
+        <div class="exp-tl-date">Year 3&ndash;4</div>
+        <div class="exp-tl-title">The Future Farmer App</div>
+        <div class="exp-tl-desc">Digital version of the card game. Grove tracker. Agroforestry learning tools. The game goes global.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VOTE TEASER -->
+<div style="background:var(--parch)">
+  <div class="page-section">
+    <h2>You Decide What Comes Next</h2>
+    <p>The next expansion is in your hands. Backers vote on the theme &mdash; the winning biome gets designed, illustrated, and printed. Here is how the community is leaning:</p>
+
+    <div class="exp-vote-cards">
+      <div class="exp-vote-card">
+        <div class="exp-vote-icon">&#127907;</div>
+        <h3>Fishing</h3>
+        <p>Coastal aquaculture, mangrove restoration, overfishing challenges, and the communities balancing harvest with ocean health. From coral reefs to river deltas.</p>
+        <div class="exp-vote-bar-wrap">
+          <div class="exp-vote-bar-bg"><div class="exp-vote-bar-fill" style="width:44%"></div></div>
+          <span class="exp-vote-pct">44%</span>
+        </div>
+      </div>
+      <div class="exp-vote-card">
+        <div class="exp-vote-icon">&#127715;</div>
+        <h3>Green Infrastructure</h3>
+        <p>Urban forests, rain gardens, green roofs, permeable pavements, and the fight to bring nature back into cities. Where engineering meets ecology.</p>
+        <div class="exp-vote-bar-wrap">
+          <div class="exp-vote-bar-bg"><div class="exp-vote-bar-fill" style="width:33%"></div></div>
+          <span class="exp-vote-pct">33%</span>
+        </div>
+      </div>
+      <div class="exp-vote-card">
+        <div class="exp-vote-icon">&#127956;</div>
+        <h3>Alpine Heights</h3>
+        <p>Mountain pastures, transhumance, avalanche risk, glacial melt, and the ancient pastoral traditions adapting to a warming world above the treeline.</p>
+        <div class="exp-vote-bar-wrap">
+          <div class="exp-vote-bar-bg"><div class="exp-vote-bar-fill" style="width:23%"></div></div>
+          <span class="exp-vote-pct">23%</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:1.75rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;padding:.85rem 1.5rem;background:var(--fg);border-radius:var(--r)">
+      <span style="font-family:var(--fh);font-weight:900;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,228,208,.55)">&#128274; Full results exclusive to backers</span>
+      <a href="shop.html" class="btn btn-o" style="font-size:.65rem;padding:.5rem 1.4rem;margin:0">Support on Kickstarter to Vote</a>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFY -->
+<div>
+  <div class="page-section" style="text-align:center">
+    <h2>Get Notified</h2>
+    <p>Be the first to know when a new expansion drops. No spam &mdash; just expansions.</p>
+    <div class="exp-notify">
+      <input type="email" placeholder="your@email.com">
+      <button onclick="this.textContent='Subscribed!';this.style.background='var(--fg)'">Notify Me</button>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="page-cta">
+  <h2>Every Backer Shapes the Game</h2>
+  <p>Expansions are funded by backers and shaped by the community. Get the base game, back us on Kickstarter, and help decide what comes next.</p>
+  <a href="shop.html" class="btn btn-g" style="margin-right:0.5rem">Get the Game</a>
+  <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
+        <p>A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
+        <p style="margin-top:.75rem;font-size:.72rem;color:rgba(255,255,255,.15)">&copy; Marcelo Rezende. All rights reserved.</p>
+      </div>
+      <div class="ft-col">
+        <h4>The Game</h4>
+        <ul>
+          <li><a href="the-game.html">About the Game</a></li>
+          <li><a href="for-schools.html">For Schools</a></li>
+          <li><a href="expansions.html">Expansions</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Our Impact</h4>
+        <ul>
+          <li><a href="the-grove.html">The Grove</a></li>
+          <li><a href="the-forest-wall.html">The Forest Wall</a></li>
+          <li><a href="future-farm-fund.html">The Future Farm Fund</a></li>
+          <li><a href="card-creators.html">Card Creators</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Field Notes</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>The Future Farmer Card Game</span>
+      <span>&#127807; Your purchase supports native tree planting</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

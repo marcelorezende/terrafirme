@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop &mdash; The Future Farmer Card Game</title>
+<meta name="description" content="Shop - The Future Farmer Card Game. A strategic card game about resilient farming.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">The Future Farmer <span>Card Game</span></a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="the-game.html">The Game</a></li>
+    <li><a href="for-schools.html">For Schools</a></li>
+    <li class="nav-dropdown">
+      <a>Our Impact</a>
+      <div class="nav-dropdown-menu">
+        <a href="the-grove.html">The Grove</a>
+        <a href="the-forest-wall.html">The Forest Wall</a>
+        <a href="future-farm-fund.html">The Future Farm Fund</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a>Community</a>
+      <div class="nav-dropdown-menu">
+        <a href="card-creators.html">Card Creators</a>
+        <a href="expansions.html">Expansions</a>
+        <a href="blog.html">Field Notes</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="shop.html">Shop</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lb on" onclick="L('en')">EN</button>
+      <button class="lb" onclick="L('pt')">PT</button>
+      <button class="lb" onclick="L('es')">ES</button>
+    </div>
+    <a href="shop.html" class="nav-cta">Shop</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="sec-lbl">Shop</span>
+  <h1>Get the Game.</h1>
+  <p>Individual decks, class sets, and promo packs. Every purchase plants a tree.</p>
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Shop</div>
+</div>
+
+<!-- CONTENT -->
+
+<!-- PRE-ORDER BANNER -->
+<div style="background:var(--terra);color:var(--cream);padding:.9rem 1.2rem;text-align:center;font-size:.88rem;letter-spacing:.04em">
+  <strong>PRE-ORDERS OPEN</strong> &middot; Ships after Kickstarter fulfilment &middot; No payment until launch
+</div>
+
+<!-- PRE-ORDER INTRO -->
+<div>
+  <div class="page-section" style="text-align:center;max-width:720px">
+    <span class="sec-lbl">Reserve Your Copy</span>
+    <h2>Pre-Order The Future Farmer</h2>
+    <p>Lock in your copy at launch pricing. No payment charged now &mdash; you&rsquo;ll receive a secure checkout link the day our Kickstarter goes live, with your reserved tier and early-bird savings already applied.</p>
+  </div>
+</div>
+
+<!-- PRE-ORDER TIERS -->
+<div style="background:var(--parch)">
+  <div class="page-section" style="max-width:1140px">
+    <div class="tier-grid">
+
+      <!-- TIER 1 -->
+      <label class="tier-card" data-tier="deck" data-price="15" data-name="Single Deck">
+        <input type="radio" name="tier" value="deck" checked>
+        <div class="tier-ribbon">Most Popular</div>
+        <div class="tier-icon">&#127793;</div>
+        <h3>Single Deck</h3>
+        <div class="tier-price"><span class="tier-currency">&euro;</span><span class="tier-amt">15</span></div>
+        <div class="tier-save">Launch price</div>
+        <ul class="tier-feat">
+          <li>60 game cards</li>
+          <li>Illustrated rulebook</li>
+          <li>Tuck-box packaging</li>
+          <li>1 tree planted in your name</li>
+          <li>Your name on The Forest Wall</li>
+        </ul>
+        <div class="tier-check">Selected</div>
+      </label>
+
+      <!-- TIER 2 -->
+      <label class="tier-card" data-tier="duo" data-price="27" data-name="Family Duo">
+        <input type="radio" name="tier" value="duo">
+        <div class="tier-icon">&#127795;</div>
+        <h3>Family Duo</h3>
+        <div class="tier-price"><span class="tier-currency">&euro;</span><span class="tier-amt">27</span></div>
+        <div class="tier-save">Save &euro;3 &middot; 2 decks</div>
+        <ul class="tier-feat">
+          <li>2 full decks (share the love)</li>
+          <li>2 illustrated rulebooks</li>
+          <li>Bonus promo card pack</li>
+          <li>2 trees planted</li>
+          <li>Both names on The Forest Wall</li>
+        </ul>
+        <div class="tier-check">Selected</div>
+      </label>
+
+      <!-- TIER 3 -->
+      <label class="tier-card" data-tier="school" data-price="99" data-name="School Pack">
+        <input type="radio" name="tier" value="school">
+        <div class="tier-icon">&#127968;</div>
+        <h3>School Pack</h3>
+        <div class="tier-price"><span class="tier-currency">&euro;</span><span class="tier-amt">99</span></div>
+        <div class="tier-save">Save &euro;21 &middot; 8 decks</div>
+        <ul class="tier-feat">
+          <li>8 decks (classroom-ready)</li>
+          <li>Teacher&rsquo;s guide included</li>
+          <li>6 classroom exercises (lifetime)</li>
+          <li>Storage box</li>
+          <li>8 trees planted in school&rsquo;s name</li>
+        </ul>
+        <div class="tier-check">Selected</div>
+      </label>
+
+    </div>
+  </div>
+</div>
+
+<!-- SCHOOL PACKAGES -->
+<div>
+  <div class="page-section">
+    <h2>School Packages</h2>
+    <p>Everything you need to bring The Future Farmer into the classroom. Each package includes printed teacher guides with discussion prompts, learning objectives, and assessment frameworks.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:2rem">
+
+      <div style="background:var(--parch);border-radius:var(--r);padding:1.8rem;text-align:center">
+        <span style="font-size:1.6rem;display:block;margin-bottom:.6rem">&#127793;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:1rem;display:block;margin-bottom:.3rem">Starter Pack</strong>
+        <p style="font-family:var(--fb);font-size:.82rem;color:var(--terra);font-weight:700;margin-bottom:.6rem">1 Deck + Teacher Guide</p>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.6;line-height:1.6;margin:0">Perfect for after-school clubs, small groups, or trialling the game before committing to a full class set.</p>
+      </div>
+
+      <div style="background:var(--parch);border-radius:var(--r);padding:1.8rem;text-align:center;border:2px solid var(--terra)">
+        <span style="font-size:1.6rem;display:block;margin-bottom:.6rem">&#127795;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:1rem;display:block;margin-bottom:.3rem">Class Set</strong>
+        <p style="font-family:var(--fb);font-size:.82rem;color:var(--terra);font-weight:700;margin-bottom:.6rem">4 Decks + Teacher Guide</p>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.6;line-height:1.6;margin:0">Enough for a full classroom of 16 students in groups of four. Your school listed as a Founding School on our website.</p>
+      </div>
+
+      <div style="background:var(--parch);border-radius:var(--r);padding:1.8rem;text-align:center">
+        <span style="font-size:1.6rem;display:block;margin-bottom:.6rem">&#127807;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:1rem;display:block;margin-bottom:.3rem">Department Set</strong>
+        <p style="font-family:var(--fb);font-size:.82rem;color:var(--terra);font-weight:700;margin-bottom:.6rem">8 Decks + 2 Teacher Guides</p>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.6;line-height:1.6;margin:0">For departments running multiple classes or year groups. Priority access to new lesson plans and expansion packs.</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- KICKSTARTER SCHOOL BUNDLE -->
+<div style="background:var(--parch)">
+  <div class="page-section" style="text-align:center">
+    <span style="font-family:var(--fh);font-weight:900;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:.6rem">Kickstarter Exclusive</span>
+    <h2>The School Bundle</h2>
+    <p style="max-width:600px;margin:0 auto 1.5rem">Back us on Kickstarter and get the Class Set with everything you need to run sustainability-focused classroom exercises &mdash; from guided game sessions to student-led research projects and farm tournaments.</p>
+
+    <div style="display:inline-grid;grid-template-columns:auto auto;gap:.6rem 1.2rem;text-align:left;margin-bottom:1.8rem">
+      <span style="font-size:.9rem">&#9989;</span><span style="font-family:var(--fb);font-size:.85rem">4 Decks (Class Set)</span>
+      <span style="font-size:.9rem">&#9989;</span><span style="font-family:var(--fb);font-size:.85rem">Printed Teacher Guide</span>
+      <span style="font-size:.9rem">&#9989;</span><span style="font-family:var(--fb);font-size:.85rem">Classroom Exercises (Lifetime Access)</span>
+      <span style="font-size:.9rem">&#9989;</span><span style="font-family:var(--fb);font-size:.85rem">Assessment Rubrics &amp; Worksheets</span>
+      <span style="font-size:.9rem">&#9989;</span><span style="font-family:var(--fb);font-size:.85rem">Founding School Recognition</span>
+      <span style="font-size:.9rem">&#9989;</span><span style="font-family:var(--fb);font-size:.85rem">Future Expansion Exercises</span>
+    </div>
+
+    <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.5;max-width:540px;margin:0 auto 1.8rem;line-height:1.6">Exercises include Monoculture vs. Diversity, The Resilience Audit, Climate Scenario Planning, The Economics of Sustainability, Design Your Own Card, and The Future Farm Tournament &mdash; with new exercises added regularly.</p>
+
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+      <a href="shop.html" class="btn btn-g">Support on Kickstarter &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER SUMMARY + FORM -->
+<div>
+  <div class="page-section" style="max-width:900px">
+    <div class="order-box">
+      <div class="order-summary">
+        <span class="sec-lbl">Your Reservation</span>
+        <h3 id="sum-name">Single Deck</h3>
+        <div class="sum-row">
+          <span>Quantity</span>
+          <div class="qty-sel">
+            <button type="button" onclick="changeQty(-1)" aria-label="Decrease">&minus;</button>
+            <span id="sum-qty">1</span>
+            <button type="button" onclick="changeQty(1)" aria-label="Increase">+</button>
+          </div>
+        </div>
+        <div class="sum-row"><span>Unit price</span><span id="sum-unit">&euro;15</span></div>
+        <div class="sum-row sum-total"><span>Reserve total</span><span id="sum-total">&euro;15</span></div>
+        <div class="sum-note">
+          <span class="dot"></span>
+          <span>Charged only when Kickstarter launches. Cancel anytime.</span>
+        </div>
+        <div class="sum-note">
+          <span class="dot"></span>
+          <span id="sum-trees">1 tree</span>
+          <span>&nbsp;planted with your order</span>
+        </div>
+      </div>
+
+      <div class="order-form">
+        <h3>Reserve Now</h3>
+        <p style="margin-top:.25rem;color:#6b6758;font-size:.88rem">We&rsquo;ll email you a checkout link when the Kickstarter goes live.</p>
+        <form onsubmit="submitPreOrder(event)">
+          <div class="field">
+            <label for="po-name">Full name</label>
+            <input type="text" id="po-name" required placeholder="Jane Appleseed">
+          </div>
+          <div class="field">
+            <label for="po-email">Email address</label>
+            <input type="email" id="po-email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="po-country">Shipping country</label>
+            <select id="po-country" required>
+              <option value="">Select a country&hellip;</option>
+              <option>Portugal</option>
+              <option>Spain</option>
+              <option>France</option>
+              <option>Germany</option>
+              <option>Italy</option>
+              <option>Netherlands</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>Canada</option>
+              <option>Other (EU)</option>
+              <option>Other (Worldwide)</option>
+            </select>
+          </div>
+          <div class="field-check">
+            <input type="checkbox" id="po-newsletter" checked>
+            <label for="po-newsletter">Send me Field Notes &mdash; occasional updates from the farm, never spam.</label>
+          </div>
+          <button type="submit" class="btn btn-g po-submit">Reserve My Copy &rarr;</button>
+          <p class="po-small">Your reservation will be confirmed by email within minutes.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAND -->
+<div style="background:var(--fg);color:var(--cream)">
+  <div class="page-section" style="max-width:1000px">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">&#128274;</div>
+        <h4 style="color:var(--cream)">No payment now</h4>
+        <p style="color:rgba(245,228,208,.7);font-size:.88rem">You&rsquo;ll only be charged when the Kickstarter launches, and only if you choose to complete checkout.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#128230;</div>
+        <h4 style="color:var(--cream)">Ships worldwide</h4>
+        <p style="color:rgba(245,228,208,.7);font-size:.88rem">Delivery to EU, UK, US, Canada and beyond. Shipping calculated at checkout based on your country.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#127795;</div>
+        <h4 style="color:var(--cream)">Every order plants a tree</h4>
+        <p style="color:rgba(245,228,208,.7);font-size:.88rem">10% of every sale funds native tree planting through The Grove. You&rsquo;ll be recognised on The Forest Wall.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+@media(max-width:900px){.tier-grid{grid-template-columns:1fr}}
+.tier-card{position:relative;background:var(--wh);border:2px solid rgba(30,58,40,.12);border-radius:14px;padding:2rem 1.6rem 1.6rem;cursor:pointer;transition:all .25s ease;display:block;box-shadow:0 2px 8px rgba(30,58,40,.04)}
+.tier-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(30,58,40,.12);border-color:rgba(200,114,72,.4)}
+.tier-card input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.tier-card:has(input:checked){border-color:var(--fg);background:var(--wh);box-shadow:0 20px 50px rgba(30,58,40,.18);transform:translateY(-4px)}
+.tier-ribbon{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--terra);color:var(--cream);padding:.35rem 1rem;border-radius:20px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.tier-icon{font-size:2.4rem;margin-bottom:.5rem}
+.tier-card h3{margin:.25rem 0 .5rem;color:var(--fg);font-size:1.35rem}
+.tier-price{display:flex;align-items:baseline;gap:.15rem;color:var(--fg);margin-bottom:.35rem}
+.tier-currency{font-size:1.2rem;font-weight:500;opacity:.7}
+.tier-amt{font-size:2.8rem;font-weight:700;line-height:1}
+.tier-save{display:inline-block;background:rgba(200,114,72,.12);color:var(--terra);padding:.2rem .65rem;border-radius:12px;font-size:.76rem;font-weight:600;letter-spacing:.03em;margin-bottom:1.1rem}
+.tier-feat{list-style:none;padding:0;margin:0 0 1.2rem;font-family:var(--fs,'Lora',serif);color:#3a4a3a;font-size:.92rem}
+.tier-feat li{padding:.45rem 0 .45rem 1.5rem;position:relative;border-top:1px dashed rgba(30,58,40,.1)}
+.tier-feat li:first-child{border-top:0}
+.tier-feat li::before{content:"✓";position:absolute;left:0;top:.45rem;color:var(--terra);font-weight:700}
+.tier-check{opacity:0;text-align:center;background:var(--fg);color:var(--cream);padding:.6rem;border-radius:8px;font-weight:600;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s}
+.tier-card:has(input:checked) .tier-check{opacity:1}
+
+.order-box{display:grid;grid-template-columns:1fr 1.2fr;gap:0;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(30,58,40,.1);border:1px solid rgba(30,58,40,.08)}
+@media(max-width:800px){.order-box{grid-template-columns:1fr}}
+.order-summary{background:var(--fg);color:var(--cream);padding:2.2rem}
+.order-summary .sec-lbl{color:var(--terra);display:block;margin-bottom:.5rem}
+.order-summary h3{color:var(--cream);font-size:1.6rem;margin:.25rem 0 1.4rem}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-top:1px solid rgba(245,228,208,.12);font-size:.95rem}
+.sum-total{font-size:1.15rem;font-weight:600;color:var(--cream);padding-top:1rem;margin-top:.3rem;border-top:2px solid rgba(245,228,208,.25)}
+.qty-sel{display:flex;align-items:center;gap:.9rem;background:rgba(245,228,208,.08);border-radius:20px;padding:.25rem .3rem}
+.qty-sel button{width:30px;height:30px;border-radius:50%;border:0;background:var(--terra);color:var(--cream);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.qty-sel button:hover{transform:scale(1.1)}
+.qty-sel span{min-width:24px;text-align:center;font-weight:600}
+.sum-note{display:flex;align-items:flex-start;gap:.6rem;margin-top:1rem;font-size:.82rem;color:rgba(245,228,208,.7);line-height:1.4}
+.sum-note .dot{width:6px;height:6px;border-radius:50%;background:var(--terra);flex-shrink:0;margin-top:.45rem}
+
+.order-form{background:var(--wh);padding:2.2rem}
+.order-form h3{color:var(--fg);font-size:1.4rem;margin:0}
+.field{margin-top:1rem}
+.field label{display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);font-weight:600;margin-bottom:.4rem}
+.field input,.field select{width:100%;padding:.78rem .95rem;border:1.5px solid rgba(30,58,40,.15);border-radius:8px;font-family:inherit;font-size:.95rem;background:var(--wh);color:var(--fg);transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus{outline:0;border-color:var(--terra);box-shadow:0 0 0 3px rgba(200,114,72,.15)}
+.field-check{display:flex;gap:.6rem;margin-top:1rem;font-size:.84rem;color:#4a4a3a;line-height:1.4}
+.field-check input{margin-top:.15rem}
+.po-submit{width:100%;margin-top:1.4rem;padding:1rem;font-size:1rem;border-radius:10px}
+.po-small{text-align:center;font-size:.75rem;color:#8a8670;margin-top:.8rem}
+
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center}
+@media(max-width:800px){.trust-grid{grid-template-columns:1fr}}
+.trust-item h4{font-size:1.05rem;margin:.6rem 0 .4rem}
+.trust-icon{font-size:2rem}
+</style>
+
+<script>
+const TIERS = {
+  deck:   {name:'Single Deck', price:15, trees:1},
+  duo:    {name:'Family Duo',  price:27, trees:2},
+  school: {name:'School Pack', price:99, trees:8}
+};
+let currentTier = 'deck';
+let currentQty = 1;
+
+document.querySelectorAll('input[name=tier]').forEach(r => {
+  r.addEventListener('change', e => { currentTier = e.target.value; updateSummary(); });
+});
+
+function changeQty(delta){
+  currentQty = Math.max(1, Math.min(50, currentQty + delta));
+  updateSummary();
+}
+
+function updateSummary(){
+  const t = TIERS[currentTier];
+  document.getElementById('sum-name').textContent = t.name;
+  document.getElementById('sum-qty').textContent = currentQty;
+  document.getElementById('sum-unit').textContent = '\u20AC' + t.price;
+  document.getElementById('sum-total').textContent = '\u20AC' + (t.price * currentQty);
+  const trees = t.trees * currentQty;
+  document.getElementById('sum-trees').textContent = trees + (trees === 1 ? ' tree' : ' trees');
+}
+
+function submitPreOrder(e){
+  e.preventDefault();
+  const name = document.getElementById('po-name').value;
+  const email = document.getElementById('po-email').value;
+  const country = document.getElementById('po-country').value;
+  const tier = TIERS[currentTier];
+  // Placeholder: wire to Mailchimp / Buttondown / Formspree endpoint
+  alert('Thank you, ' + name + '!\n\nYour reservation is in:\n' + currentQty + 'x ' + tier.name + ' (\u20AC' + (tier.price * currentQty) + ')\nShipping to: ' + country + '\n\nWe\u2019ll email ' + email + ' the moment our Kickstarter launches.');
+  // In production: POST to form endpoint (e.g. formspree.io/f/xxx)
+}
+</script>
+
+
+<!-- CTA -->
+<div class="page-cta">
+  <h2>Join the Forest</h2>
+  <p>Every game sold plants a tree. Every backer grows The Grove.</p>
+  <a href="shop.html" class="btn btn-g" style="margin-right:0.5rem">Get the Game</a>
+  <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand" style="display:flex;gap:1.2rem;align-items:flex-start">
+        <img src="../img/card-back.jpg" alt="" style="width:48px;border-radius:4px;opacity:.6;flex-shrink:0;margin-top:.15rem">
+        <div>
+        <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
+        <p>A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
+        <p style="margin-top:.75rem;font-size:.72rem;color:rgba(255,255,255,.15)">&copy; Marcelo Rezende. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>The Game</h4>
+        <ul>
+          <li><a href="the-game.html">About the Game</a></li>
+          <li><a href="for-schools.html">For Schools</a></li>
+          <li><a href="expansions.html">Expansions</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Our Impact</h4>
+        <ul>
+          <li><a href="the-grove.html">The Grove</a></li>
+          <li><a href="the-forest-wall.html">The Forest Wall</a></li>
+          <li><a href="future-farm-fund.html">The Future Farm Fund</a></li>
+          <li><a href="card-creators.html">Card Creators</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Field Notes</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>The Future Farmer Card Game</span>
+      <span>&#127807; Your purchase supports native tree planting</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Creators &mdash; The Future Farmer Card Game</title>
+<meta name="description" content="Card Creators - The Future Farmer Card Game. Submit your card idea and become a permanent part of the game.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+/* ── How It Works steps ── */
+.cc-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+.cc-step {
+  text-align: center; padding: 1.5rem 1rem;
+  background: var(--wh); border-radius: var(--r);
+  border: 1.5px solid rgba(30,58,40,.06);
+}
+.cc-step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--fg); color: var(--wh);
+  font-family: var(--fh); font-weight: 900; font-size: .85rem;
+  margin-bottom: .75rem;
+}
+.cc-step h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg); margin-bottom: .4rem;
+}
+.cc-step p {
+  font-family: var(--fb); font-size: .82rem; line-height: 1.6;
+  color: var(--inks);
+}
+
+/* ── Submit section layout ── */
+.cc-submit-layout {
+  display: grid; grid-template-columns: 1fr 320px; gap: 3rem;
+  align-items: start;
+}
+
+/* ── Form ── */
+.cc-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.cc-field label {
+  display: block; font-family: var(--fh); font-weight: 900;
+  font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg); margin-bottom: .4rem;
+}
+.cc-field input, .cc-field select, .cc-field textarea {
+  width: 100%; font-family: var(--fb); font-weight: 500;
+  font-size: .88rem; color: var(--ink);
+  padding: .75rem 1rem; border-radius: var(--r);
+  border: 1.5px solid rgba(30,58,40,.15);
+  background: var(--wh); outline: none;
+  transition: border-color .2s;
+}
+.cc-field input:focus, .cc-field select:focus, .cc-field textarea:focus {
+  border-color: var(--fg);
+}
+.cc-field textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.cc-field select { cursor: pointer; appearance: auto; }
+.cc-field .cc-hint {
+  font-family: var(--fb); font-size: .72rem; color: var(--inks);
+  opacity: .5; margin-top: .3rem;
+}
+.cc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cc-submit-btn {
+  display: inline-block; padding: .85rem 2.5rem;
+  font-family: var(--fh); font-weight: 900; font-size: .72rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--wh); background: var(--terra); border: none;
+  border-radius: var(--r); cursor: pointer;
+  transition: background .2s;
+}
+.cc-submit-btn:hover { background: var(--terra2); }
+.cc-form-note {
+  font-family: var(--fs); font-style: italic; font-size: .78rem;
+  color: var(--inks); opacity: .45; line-height: 1.5;
+}
+.cc-success {
+  display: none; padding: 1.5rem; border-radius: var(--r);
+  background: rgba(30,58,40,.06); text-align: center;
+}
+.cc-success h3 {
+  font-family: var(--fh); font-weight: 900; font-size: 1rem;
+  color: var(--fg); margin-bottom: .5rem;
+}
+.cc-success p {
+  font-family: var(--fs); font-style: italic; font-size: .88rem;
+  color: var(--inks); line-height: 1.6;
+}
+
+/* ── Live card preview ── */
+.cc-preview-wrap {
+  position: sticky; top: 80px;
+}
+.cc-preview-label {
+  font-family: var(--fh); font-weight: 900; font-size: .62rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--inks); opacity: .35; margin-bottom: .75rem; text-align: center;
+}
+.cc-card {
+  border-radius: 12px; overflow: hidden;
+  background: var(--wh);
+  box-shadow: 0 12px 40px rgba(30,58,40,.12);
+  transition: transform .3s;
+}
+.cc-card:hover { transform: translateY(-4px); }
+.cc-card-top {
+  padding: 1.5rem 1.5rem 1rem;
+  border-top: 4px solid var(--fg);
+  display: flex; flex-direction: column;
+}
+.cc-card-top.fm { border-top-color: var(--fg); }
+.cc-card-top.in { border-top-color: #5880a0; }
+.cc-card-top.ch { border-top-color: var(--terra); }
+.cc-card-icon { font-size: 1.6rem; margin-bottom: .5rem; }
+.cc-card-type {
+  font-family: var(--fh); font-weight: 900; font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(30,58,40,.35); margin-bottom: .3rem;
+}
+.cc-card-top.in .cc-card-type { color: #4a6888; }
+.cc-card-top.ch .cc-card-type { color: var(--terra); }
+.cc-card-name {
+  font-family: var(--fh); font-weight: 900; font-size: 1.15rem;
+  letter-spacing: .02em; color: var(--ink); margin-bottom: .6rem;
+  min-height: 1.4em;
+}
+.cc-card-desc {
+  font-family: var(--fs); font-style: italic; font-size: .84rem;
+  line-height: 1.7; color: var(--inks); min-height: 3.4em;
+}
+.cc-card-quote {
+  font-family: var(--fs); font-style: italic; font-size: .74rem;
+  line-height: 1.5; color: var(--fg); opacity: .55;
+  margin-top: .5rem; padding-top: .5rem;
+  border-top: 1px dashed rgba(30,58,40,.12);
+  min-height: 1.2em;
+}
+.cc-card-quote::before { content: '\201C'; }
+.cc-card-quote::after  { content: '\201D'; }
+.cc-card-foot {
+  padding: .75rem 1.5rem 1rem;
+  background: rgba(30,58,40,.025);
+  border-top: 1px solid rgba(30,58,40,.06);
+}
+.cc-card-tags {
+  display: flex; flex-wrap: wrap; gap: .3rem;
+}
+.cc-card-tag {
+  font-family: var(--fc); font-weight: 600; font-size: .62rem;
+  letter-spacing: .04em; text-transform: uppercase;
+  padding: .2rem .55rem; border-radius: 3px;
+  background: rgba(30,58,40,.06); color: var(--fg);
+}
+.cc-card-credit {
+  margin-top: .6rem;
+  font-family: var(--fh); font-weight: 900; font-size: .55rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(30,58,40,.2);
+}
+
+/* ── Recognition badges ── */
+.cc-recognition {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  margin-top: 2rem;
+}
+.cc-badge {
+  text-align: center; padding: 2rem 1.25rem;
+  background: var(--wh); border-radius: var(--r);
+  border: 1.5px solid rgba(30,58,40,.06);
+}
+.cc-badge-icon { font-size: 2rem; margin-bottom: .75rem; }
+.cc-badge h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg); margin-bottom: .4rem;
+}
+.cc-badge p {
+  font-family: var(--fb); font-size: .82rem; line-height: 1.6;
+  color: var(--inks);
+}
+
+/* ── Responsive ── */
+@media(max-width:1024px) {
+  .cc-submit-layout { grid-template-columns: 1fr; }
+  .cc-preview-wrap { position: static; max-width: 320px; margin: 0 auto; }
+}
+@media(max-width:768px) {
+  .cc-steps { grid-template-columns: repeat(2, 1fr); }
+  .cc-recognition { grid-template-columns: 1fr; }
+  .cc-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">The Future Farmer <span>Card Game</span></a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="the-game.html">The Game</a></li>
+    <li><a href="for-schools.html">For Schools</a></li>
+    <li class="nav-dropdown">
+      <a>Our Impact</a>
+      <div class="nav-dropdown-menu">
+        <a href="the-grove.html">The Grove</a>
+        <a href="the-forest-wall.html">The Forest Wall</a>
+        <a href="future-farm-fund.html">The Future Farm Fund</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a>Community</a>
+      <div class="nav-dropdown-menu">
+        <a href="card-creators.html">Card Creators</a>
+        <a href="expansions.html">Expansions</a>
+        <a href="blog.html">Field Notes</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="shop.html">Shop</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lb on" onclick="L('en')">EN</button>
+      <button class="lb" onclick="L('pt')">PT</button>
+      <button class="lb" onclick="L('es')">ES</button>
+    </div>
+    <a href="shop.html" class="nav-cta">Shop</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="sec-lbl">Card Creators</span>
+  <h1>Card Creators.</h1>
+  <p>Your idea. Reviewed. Validated. Designed. Permanently in the game.</p>
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Card Creators</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div>
+  <div class="page-section">
+    <h2>How It Works</h2>
+    <p>Every backer can submit card ideas. Quarterly, the top submissions are shortlisted and put to a community vote. The forester reviews voted cards for scientific accuracy, game balance, and ecological integrity.</p>
+    <div class="cc-steps">
+      <div class="cc-step">
+        <div class="cc-step-num">1</div>
+        <h3>Submit</h3>
+        <p>Fill out the card form below with your idea, mechanic, and the real-world science behind it.</p>
+      </div>
+      <div class="cc-step">
+        <div class="cc-step-num">2</div>
+        <h3>Review</h3>
+        <p>The forester checks scientific accuracy, game balance, and ecological integrity.</p>
+      </div>
+      <div class="cc-step">
+        <div class="cc-step-num">3</div>
+        <h3>Vote</h3>
+        <p>Shortlisted cards go to a quarterly community vote among all backers.</p>
+      </div>
+      <div class="cc-step">
+        <div class="cc-step-num">4</div>
+        <h3>Printed</h3>
+        <p>Winning cards get professionally illustrated and permanently added to the game.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RECOGNITION -->
+<div style="background:var(--parch)">
+  <div class="page-section">
+    <h2>Recognition</h2>
+    <p>Being a Card Creator is the highest honour in The Future Farmer community.</p>
+    <div class="cc-recognition">
+      <div class="cc-badge">
+        <div class="cc-badge-icon">&#127942;</div>
+        <h3>Your Name in the Game</h3>
+        <p>Listed in the Card Creators section of The Forest Wall in every future edition of the game.</p>
+      </div>
+      <div class="cc-badge">
+        <div class="cc-badge-icon">&#127183;</div>
+        <h3>Free Expansion</h3>
+        <p>Receive a complimentary copy of the expansion pack that contains your card.</p>
+      </div>
+      <div class="cc-badge">
+        <div class="cc-badge-icon">&#127795;</div>
+        <h3>Tree in The Grove</h3>
+        <p>A tree planted in your name at The Grove &mdash; your card grows the forest too.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBMIT A CARD -->
+<div>
+  <div class="page-section">
+    <h2>Submit Your Card</h2>
+    <p>Design your card below. As you fill in the form, the live preview on the right shows exactly how it will look in the game.</p>
+
+    <div class="cc-submit-layout" style="margin-top:2rem">
+      <!-- Form -->
+      <div>
+        <form class="cc-form" id="cc-form" onsubmit="return submitCard(event)">
+          <div class="cc-row">
+            <div class="cc-field">
+              <label for="cc-name">Card Name</label>
+              <input type="text" id="cc-name" placeholder="e.g. Biochar Amendment" maxlength="40" required
+                oninput="updatePreview()">
+            </div>
+            <div class="cc-field">
+              <label for="cc-type">Card Type</label>
+              <select id="cc-type" required onchange="updatePreview()">
+                <option value="fm">Farm Module</option>
+                <option value="in">Innovation</option>
+                <option value="ch">Challenge</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cc-field">
+            <label for="cc-mechanic">Card Effect / Mechanic</label>
+            <textarea id="cc-mechanic" placeholder="What does this card do when played? Describe the in-game effect." rows="3" maxlength="200" required
+              oninput="updatePreview()"></textarea>
+            <div class="cc-hint">Max 200 characters. Think of the text printed on the card.</div>
+          </div>
+
+          <div class="cc-field">
+            <label for="cc-quote">Funny Quote / Pun</label>
+            <input type="text" id="cc-quote" placeholder="e.g. &quot;I'm rooting for you!&quot;" maxlength="80"
+              oninput="updatePreview()">
+            <div class="cc-hint">A short witty line printed at the bottom of the card. Keep it punny.</div>
+          </div>
+
+          <div class="cc-field">
+            <label for="cc-rationale">Scientific Rationale</label>
+            <textarea id="cc-rationale" placeholder="Why is this ecologically or agriculturally accurate? Link to the real science." rows="3" maxlength="500" required></textarea>
+            <div class="cc-hint">This helps the forester validate your card. Not printed on the card itself.</div>
+          </div>
+
+          <div class="cc-row">
+            <div class="cc-field">
+              <label for="cc-tags">Tags</label>
+              <input type="text" id="cc-tags" placeholder="e.g. Soil, Carbon, Resilience" maxlength="60"
+                oninput="updatePreview()">
+              <div class="cc-hint">Comma-separated. Up to 4 tags.</div>
+            </div>
+            <div class="cc-field">
+              <label for="cc-author">Your Name</label>
+              <input type="text" id="cc-author" placeholder="How you want to be credited" maxlength="40" required
+                oninput="updatePreview()">
+            </div>
+          </div>
+
+          <div class="cc-field">
+            <label for="cc-email">Email</label>
+            <input type="email" id="cc-email" placeholder="your@email.com" required>
+            <div class="cc-hint">Only used to notify you about your submission. Never shared.</div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <button type="submit" class="cc-submit-btn">Submit Card Idea</button>
+            <span class="cc-form-note">Open to everyone. Kickstarter backers get priority review.</span>
+          </div>
+        </form>
+
+        <div class="cc-success" id="cc-success">
+          <h3>&#127793; Card Submitted!</h3>
+          <p>Thank you for your idea. The forester will review it and shortlisted cards will be announced in the next quarterly community vote.</p>
+        </div>
+      </div>
+
+      <!-- Live preview -->
+      <div class="cc-preview-wrap">
+        <div class="cc-preview-label">Live Card Preview</div>
+        <div class="cc-card" id="cc-card">
+          <div class="cc-card-top fm" id="cc-card-top">
+            <span class="cc-card-icon" id="cc-card-icon">&#127806;</span>
+            <div class="cc-card-type" id="cc-card-type">Farm Module</div>
+            <div class="cc-card-name" id="cc-card-name">Your Card Name</div>
+            <p class="cc-card-desc" id="cc-card-desc">Your card effect will appear here as you type&hellip;</p>
+            <div class="cc-card-quote" id="cc-card-quote">Your pun here&hellip;</div>
+          </div>
+          <div class="cc-card-foot">
+            <div class="cc-card-tags" id="cc-card-tags">
+              <span class="cc-card-tag">Tag</span>
+            </div>
+            <div class="cc-card-credit" id="cc-card-credit">Created by &mdash;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var typeMap = {
+  fm: { label: 'Farm Module', icon: '&#127806;', cls: 'fm' },
+  in: { label: 'Innovation', icon: '&#128161;', cls: 'in' },
+  ch: { label: 'Challenge', icon: '&#127754;', cls: 'ch' }
+};
+
+function updatePreview() {
+  var name = document.getElementById('cc-name').value || 'Your Card Name';
+  var type = document.getElementById('cc-type').value;
+  var mechanic = document.getElementById('cc-mechanic').value || 'Your card effect will appear here as you type\u2026';
+  var quote = document.getElementById('cc-quote').value || 'Your pun here\u2026';
+  var tags = document.getElementById('cc-tags').value;
+  var author = document.getElementById('cc-author').value;
+  var info = typeMap[type];
+
+  document.getElementById('cc-card-name').textContent = name;
+  document.getElementById('cc-card-desc').textContent = mechanic;
+  document.getElementById('cc-card-quote').textContent = quote;
+  document.getElementById('cc-card-icon').innerHTML = info.icon;
+  document.getElementById('cc-card-type').textContent = info.label;
+  document.getElementById('cc-card-credit').textContent = author ? 'Created by ' + author : 'Created by \u2014';
+
+  var top = document.getElementById('cc-card-top');
+  top.className = 'cc-card-top ' + info.cls;
+
+  var tagsEl = document.getElementById('cc-card-tags');
+  if (tags.trim()) {
+    tagsEl.innerHTML = tags.split(',').slice(0, 4).map(function(t) {
+      return '<span class="cc-card-tag">' + t.trim() + '</span>';
+    }).join('');
+  } else {
+    tagsEl.innerHTML = '<span class="cc-card-tag">Tag</span>';
+  }
+}
+
+function submitCard(e) {
+  e.preventDefault();
+  // Show success message
+  document.getElementById('cc-form').style.display = 'none';
+  document.getElementById('cc-success').style.display = 'block';
+  return false;
+}
+</script>
+
+<!-- CTA -->
+<div class="page-cta">
+  <h2>Join the Forest</h2>
+  <p>Every game sold plants a tree. Every backer grows The Grove.</p>
+  <a href="shop.html" class="btn btn-g" style="margin-right:0.5rem">Get the Game</a>
+  <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
+        <p>A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
+        <p style="margin-top:.75rem;font-size:.72rem;color:rgba(255,255,255,.15)">&copy; Marcelo Rezende. All rights reserved.</p>
+      </div>
+      <div class="ft-col">
+        <h4>The Game</h4>
+        <ul>
+          <li><a href="the-game.html">About the Game</a></li>
+          <li><a href="for-schools.html">For Schools</a></li>
+          <li><a href="expansions.html">Expansions</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Our Impact</h4>
+        <ul>
+          <li><a href="the-grove.html">The Grove</a></li>
+          <li><a href="the-forest-wall.html">The Forest Wall</a></li>
+          <li><a href="future-farm-fund.html">The Future Farm Fund</a></li>
+          <li><a href="card-creators.html">Card Creators</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Field Notes</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>The Future Farmer Card Game</span>
+      <span>&#127807; Your purchase supports native tree planting</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

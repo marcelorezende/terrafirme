@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Game &mdash; The Future Farmer Card Game</title>
+<meta name="description" content="The Game - The Future Farmer Card Game. A strategic card game about resilient farming.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">The Future Farmer <span>Card Game</span></a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="the-game.html">The Game</a></li>
+    <li><a href="for-schools.html">For Schools</a></li>
+    <li class="nav-dropdown">
+      <a>Our Impact</a>
+      <div class="nav-dropdown-menu">
+        <a href="the-grove.html">The Grove</a>
+        <a href="the-forest-wall.html">The Forest Wall</a>
+        <a href="future-farm-fund.html">The Future Farm Fund</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a>Community</a>
+      <div class="nav-dropdown-menu">
+        <a href="card-creators.html">Card Creators</a>
+        <a href="expansions.html">Expansions</a>
+        <a href="blog.html">Field Notes</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="shop.html">Shop</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lb on" onclick="L('en')">EN</button>
+      <button class="lb" onclick="L('pt')">PT</button>
+      <button class="lb" onclick="L('es')">ES</button>
+    </div>
+    <a href="shop.html" class="nav-cta">Shop</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="sec-lbl">The Game</span>
+  <h1>Build Your Farm.<br>Grow the Future.</h1>
+  <p>A strategic card game about resilient farming, ecosystem credits, and outsmarting rivals.</p>
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; The Game</div>
+</div>
+
+<!-- CONTENT -->
+
+<div>
+  <div class="page-section" style="display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center">
+    <div>
+      <h2>About the Game</h2>
+      <p>The Future Farmer Card Game is a strategic game where players race to build resilient, productive farms that generate ecosystem service credits (PES) &mdash; the currency that wins the game. Along the way, you&rsquo;ll weather droughts, pests, and economic recessions while leveraging agroforestry, food forests, and cutting-edge innovations.</p>
+    </div>
+    <div style="flex-shrink:0;display:none" class="game-card-visual">
+      <img src="../img/card-back.jpg" alt="The Future Farmer Card Game" style="width:180px;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.15);transform:rotate(3deg)">
+    </div>
+  </div>
+  <style>.game-card-visual{display:block!important}@media(max-width:700px){.game-card-visual{display:none!important}.page-section[style*="grid-template-columns:1fr auto"]{display:block!important}}</style>
+</div>
+
+<!-- THE MAKING OF -->
+<div style="background:var(--parch)">
+  <div class="page-section">
+    <span style="font-family:var(--fh);font-weight:900;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:.6rem">The Making Of</span>
+    <h2>Hand-Drawn, Play-Tested, Perfected</h2>
+    <p>Before the polished cards you see today, every single card was sketched by hand, cut from paper, and shuffled into a homemade prototype. Evenings at the kitchen table became playtest sessions with friends and family &mdash; refining rules, balancing mechanics, and discovering which moments sparked the most laughter and strategy.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem">
+      <div style="border-radius:var(--r);overflow:hidden">
+        <img src="../img/making-of-1.jpg" alt="Playtesting the hand-drawn prototype with friends around a table" style="width:100%;height:auto;display:block;border-radius:var(--r)">
+      </div>
+      <div style="border-radius:var(--r);overflow:hidden">
+        <img src="../img/making-of-2.jpg" alt="Close-up of hand-drawn prototype cards during development" style="width:100%;height:auto;display:block;border-radius:var(--r)">
+      </div>
+      <div style="border-radius:var(--r);overflow:hidden">
+        <img src="../img/making-of-3.jpg" alt="Iterating on card designs and game mechanics" style="width:100%;height:auto;display:block;border-radius:var(--r)">
+      </div>
+      <div style="border-radius:var(--r);overflow:hidden">
+        <img src="../img/making-of-4.jpg" alt="Hand-drawn prototype cards and box design laid out on a shelf" style="width:100%;height:auto;display:block;border-radius:var(--r)">
+      </div>
+    </div>
+    <p style="font-family:var(--fs);font-style:italic;font-size:.75rem;color:var(--inks);opacity:.45;margin-top:.8rem">From a forester&rsquo;s sketchbook to a game you can hold in your hands.</p>
+    <style>@media(max-width:600px){[style*="grid-template-columns:repeat(4,1fr)"]{ grid-template-columns:repeat(2,1fr)!important }}</style>
+  </div>
+</div>
+
+<!-- HOW TO PLAY -->
+<div>
+  <div class="page-section">
+    <h2>How to Play</h2>
+    <p>Challenge your friends and see who can build the farm of the future despite the effects of climate change. Survive hurricanes, wildfires, and droughts by increasing your farm&rsquo;s ecosystem credits. Work with innovations to unlock new technologies that can boost your productivity. Gather the highest number of ecosystem credits by growing sustainably to win.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem">
+
+      <div style="background:var(--parch);border-radius:var(--r);padding:1.6rem;text-align:center">
+        <span style="font-size:1.8rem;display:block;margin-bottom:.5rem">&#127183;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:.78rem;letter-spacing:.06em;display:block;margin-bottom:.4rem">1. Deal</strong>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.6;line-height:1.5;margin:0">Shuffle the deck. Deal <strong>5 cards</strong> to each player. Place the remaining deck face-down on the table.</p>
+      </div>
+
+      <div style="background:var(--parch);border-radius:var(--r);padding:1.6rem;text-align:center">
+        <span style="font-size:1.8rem;display:block;margin-bottom:.5rem">&#9757;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:.78rem;letter-spacing:.06em;display:block;margin-bottom:.4rem">2. Draw</strong>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.6;line-height:1.5;margin:0">Each turn, draw <strong>one card</strong> from the deck. If the deck runs out, shuffle the discard pile back in.</p>
+      </div>
+
+      <div style="background:var(--parch);border-radius:var(--r);padding:1.6rem;text-align:center">
+        <span style="font-size:1.8rem;display:block;margin-bottom:.5rem">&#127806;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:.78rem;letter-spacing:.06em;display:block;margin-bottom:.4rem">3. Play</strong>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.6;line-height:1.5;margin:0">Play <strong>one card</strong> from your hand &mdash; a Farm Module to your farm, an Innovation, or a Challenge against an opponent.</p>
+      </div>
+
+      <div style="background:var(--parch);border-radius:var(--r);padding:1.6rem;text-align:center">
+        <span style="font-size:1.8rem;display:block;margin-bottom:.5rem">&#9999;&#65039;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:.78rem;letter-spacing:.06em;display:block;margin-bottom:.4rem">4. Manage</strong>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:var(--inks);opacity:.6;line-height:1.5;margin:0">Your hand should always be <strong>5 cards</strong>. If you have more at the end of your turn, discard down to 5.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- WINNING & GAME DETAILS -->
+<div style="background:var(--parch)">
+  <div class="page-section">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem">
+
+      <div>
+        <span style="font-size:1.4rem;display:block;margin-bottom:.5rem">&#127942;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.06em;display:block;margin-bottom:.5rem">Winning the Game</strong>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.85rem;color:var(--inks);opacity:.6;line-height:1.7;margin:0">The first player to accumulate <strong>15 ecosystem credits</strong> wins. You can adjust this goal to make games shorter or longer. For 3&ndash;4 players, or for longer 2-player games, play until the deck runs out &mdash; the player with the most credits at that point takes the win.</p>
+      </div>
+
+      <div>
+        <span style="font-size:1.4rem;display:block;margin-bottom:.5rem">&#128101;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.06em;display:block;margin-bottom:.5rem">Players &amp; Setup</strong>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.85rem;color:var(--inks);opacity:.6;line-height:1.7;margin:0"><strong>2&ndash;4 players</strong>, ages 10 and up. The deck contains <strong>60 cards</strong> (53 unique) across three types. A game with 15 credits as the goal typically runs 20&ndash;30 minutes. Decide the first player randomly and play clockwise.</p>
+      </div>
+
+      <div>
+        <span style="font-size:1.4rem;display:block;margin-bottom:.5rem">&#129309;</span>
+        <strong style="font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.06em;display:block;margin-bottom:.5rem">Optional: Team Play</strong>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.85rem;color:var(--inks);opacity:.6;line-height:1.7;margin:0">Form teams of two. Team members can share credits but not cards. Combine your strategies, protect each other&rsquo;s farms, and race to the goal together.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CARD TYPES & THE CARD BOOK -->
+<div style="background:var(--fg);color:var(--cream);padding:4rem 0">
+  <div style="max-width:var(--max);margin:0 auto;padding:0 2.5rem">
+    <div style="text-align:center;margin-bottom:3rem">
+      <span style="font-family:var(--fh);font-weight:900;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:.6rem">53 Unique Cards &middot; 60 in the Deck</span>
+      <h2 style="font-family:var(--fh);font-weight:900;font-size:2rem;letter-spacing:.02em;text-transform:uppercase;margin-bottom:1rem">Three Types of Cards</h2>
+      <p style="font-family:var(--fs);font-style:italic;font-size:.95rem;color:rgba(245,228,208,.6);max-width:600px;margin:0 auto;line-height:1.7">Every card is rooted in real forestry and sustainable agriculture science. Farm Modules build your farm, Challenges test your resilience, and Innovations give you the edge.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem" class="type-overview-grid">
+      <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:2rem;border-left:3px solid var(--fl)">
+        <span style="font-size:1.6rem;display:block;margin-bottom:.6rem">&#127806;</span>
+        <h3 style="font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;color:var(--fl)">Farm Modules</h3>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:rgba(245,228,208,.5);line-height:1.6">Activities you implement in your farm. Each module produces ecosystem service credits &mdash; the more credits a card has, the harder it is to destroy. Build a diverse, resilient operation to reach the goal first.</p>
+        <span style="font-family:var(--fh);font-weight:900;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,228,208,.3);margin-top:.8rem;display:block">18 CARDS &middot; 1&ndash;5 PES EACH</span>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:2rem;border-left:3px solid #5880a0">
+        <span style="font-size:1.6rem;display:block;margin-bottom:.6rem">&#128161;</span>
+        <h3 style="font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;color:#7ea8c8">Innovations</h3>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:rgba(245,228,208,.5);line-height:1.6">A farmer&rsquo;s best resource. You&rsquo;ll wear many hats on your farm &mdash; use the right tools to protect your farm, boost your productivity, or slow down your neighbours. Some provide ongoing benefits, others are powerful one-time plays.</p>
+        <span style="font-family:var(--fh);font-weight:900;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,228,208,.3);margin-top:.8rem;display:block">21 CARDS &middot; POWER &amp; PROTECTION</span>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:12px;padding:2rem;border-left:3px solid var(--terra)">
+        <span style="font-size:1.6rem;display:block;margin-bottom:.6rem">&#127786;</span>
+        <h3 style="font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;color:var(--terra)">Challenges</h3>
+        <p style="font-family:var(--fs);font-style:italic;font-size:.82rem;color:rgba(245,228,208,.5);line-height:1.6">The climate is going bananas. One-off effects you play on yourself or on your opponents &mdash; sometimes both. Droughts, floods, pests, and recessions will test every farm at the table.</p>
+        <span style="font-family:var(--fh);font-weight:900;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,228,208,.3);margin-top:.8rem;display:block">14 CARDS &middot; CHALLENGES</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL CARD CATALOG -->
+<div style="padding:4rem 0">
+  <div style="max-width:var(--max);margin:0 auto;padding:0 2.5rem">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <h2 style="font-family:var(--fh);font-weight:900;font-size:1.6rem;letter-spacing:.02em;text-transform:uppercase;margin-bottom:.8rem">Full Card Catalog</h2>
+      <p style="font-family:var(--fs);font-style:italic;font-size:.88rem;color:var(--inks);opacity:.6;max-width:520px;margin:0 auto;line-height:1.6">Browse every card in the base edition. 53 unique cards, each rooted in real science.</p>
+    </div>
+
+    <!-- ═══════════════ FARM MODULES ═══════════════ -->
+    <div class="type-section">
+      <h3 class="type-hd fm-hd"><span>&#127806;</span> Farm Modules <em>18 cards</em></h3>
+      <div class="catalog-grid">
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Agri-tourism</h4><p class="cc-desc">Open your farm to visitors and show the city folks where their food comes from. A unique revenue stream connecting farmers and consumers.</p><span class="cc-pes">+3 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Agroforestry</h4><p class="cc-desc">The power of trees and crops combined. A sustainable system enhancing biodiversity, improving soil, and creating a resilient ecosystem.</p><span class="cc-pes">+3 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Alley Cropping</h4><p class="cc-desc">Plant rows of trees with crops in the alleys between. The trees provide shade, fix nitrogen, and create microclimates that boost yields.</p><span class="cc-pes">+2 PES</span></div></div>
+      </div>
+      <div class="content-gated"><div class="gated-content"><div class="catalog-grid">
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Aquaculture</h4><p class="cc-desc">Fish farming &mdash; raising aquatic organisms in controlled environments. For the pescatarians out there!</p><span class="cc-pes">+2 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Beekeeping</h4><p class="cc-desc">Also known as apiculture. Raise and care for honeybees to produce honey, beeswax, and pollination services. Let&rsquo;s hope you&rsquo;re not allergic.</p><span class="cc-pes">+2 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Crop Monoculture</h4><p class="cc-desc">Growing a single crop species on a large area. The old way &mdash; efficient but risky, vulnerable to pests and soil degradation.</p><span class="cc-pes">+1 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Food Forest</h4><p class="cc-desc">An edible forest garden mimicking natural forest structure. Multiple layers of trees, shrubs, herbs, and ground cover. Open market 24/7.</p><span class="cc-pes">+3 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Forest Conservation</h4><p class="cc-desc">Preserve and protect forest ecosystems. Maintain biodiversity, prevent deforestation, and promote sustainable land use. Have you heard of wild pets?</p><span class="cc-pes">+5 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Forest Plantation</h4><p class="cc-desc">A managed single-species tree plantation. Less diversity than royal families, but efficient for timber and pulp production at scale.</p><span class="cc-pes">+1 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Hedgerows</h4><p class="cc-desc">Linear rows of trees and shrubs forming living boundaries. Keep that nosy neighbour on their side of the fence.</p><span class="cc-pes">+1 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Home Garden</h4><p class="cc-desc">A small-scale personal garden growing a diverse range of food plants. The real farm to fork.</p><span class="cc-pes">+3 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Intercropping</h4><p class="cc-desc">Grow two or more crops in the same field at the same time. Like a conga line at a wedding &mdash; better together.</p><span class="cc-pes">+2 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Live Fence</h4><p class="cc-desc">A living boundary made of trees, shrubs, or hedges. Defines property, provides privacy, and even the sheep like it.</p><span class="cc-pes">+2 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Mixed-Forest Plantation</h4><p class="cc-desc">A managed forest with diverse tree species. Greater resilience, improved biodiversity &mdash; you can see the animals coming back.</p><span class="cc-pes">+3 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Orchard</h4><p class="cc-desc">An agricultural area dedicated to fruit-bearing trees or shrubs. Your favourite fruits at your doorstep.</p><span class="cc-pes">+2 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Rice and Fish</h4><p class="cc-desc">Integrate rice cultivation with fish in the same paddy. The fish eat pests and fertilise the water. It&rsquo;s fishy in a good way.</p><span class="cc-pes">+4 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Windbreak</h4><p class="cc-desc">A linear planting of trees or shrubs providing shelter from wind. You want a breeze, not a storm.</p><span class="cc-pes">+2 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner fm"><span class="cc-label fm-l">Farm Module</span><h4 class="cc-name">Woodlot</h4><p class="cc-desc">A small dedicated area for cultivating and managing trees. There is always room for more trees.</p><span class="cc-pes">+2 PES</span></div></div>
+      </div></div>
+      <div class="content-gate">
+        <span style="font-size:1.4rem">&#128274;</span>
+        <span class="gate-title">Full Farm Modules List</span>
+        <span class="gate-sub">Unlock all 18 farm modules with card effects and PES values</span>
+        <a href="shop.html" class="gate-btn">Support on Kickstarter</a>
+      </div></div>
+    </div>
+
+    <!-- ═══════════════ INNOVATIONS ═══════════════ -->
+    <div class="type-section">
+      <h3 class="type-hd in-hd"><span>&#128161;</span> Innovations <em>21 cards</em></h3>
+      <div class="catalog-grid">
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Artificial Intelligence</h4><p class="cc-desc">Discard to search any card in the deck and put it on your farm. Keep up with your tech.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Artificial Selection</h4><p class="cc-desc">Breed your own varieties. Selective breeding of plants and animals for desirable traits to enhance yields and resilience.</p><span class="cc-pes">+1 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Contour Planting</h4><p class="cc-desc">Discard to put a Farm Module from the Discard Pile back in your farm. Rule #1 in farming.</p></div></div>
+      </div>
+      <div class="content-gated"><div class="gated-content"><div class="catalog-grid">
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Cover Crops</h4><p class="cc-desc">The green blanket. Plants grown to protect and enrich soil between harvests, suppressing weeds and fixing nitrogen.</p><span class="cc-pes">+1 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Farmers Association</h4><p class="cc-desc">Every farmer plays with one card always facing up. Join the team!</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Farmers Market</h4><p class="cc-desc">All players gain +2 PES credits. It&rsquo;s a win-win for everybody.</p><span class="cc-pes">+2 PES (all)</span></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Fire Break</h4><p class="cc-desc">Protects your Farm Modules from Wildfire. Expect the worst.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">GMOs</h4><p class="cc-desc">Flip a coin. Heads: +1 PES Credit. Tails: &minus;1 PES Credit. Trust the science, right?</p><span class="cc-pes">&plusmn;1 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">High Speed Internet</h4><p class="cc-desc">At the end of your turn, draw one card then discard one. Too much information? No way!</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Insurance</h4><p class="cc-desc">Discard to block a Challenge targeting your farm. Better safe than sorry.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Irrigation</h4><p class="cc-desc">+1 PES Credit for each Farm Module in your farm. Make it rain on your farm.</p><span class="cc-pes">+1 PES/FM</span></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Land Acquisition</h4><p class="cc-desc">Steal a Farm Module from an opponent. If destroyed, return it. They were not using it anyway.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Meteorological Station</h4><p class="cc-desc">Return this card to your hand to prevent Drought or Floods. One step ahead of the competition.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Mulching</h4><p class="cc-desc">Protect your Farm Modules against Drought. Plants also enjoy a little blanket.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">No Tillage</h4><p class="cc-desc">Do not disturb your downstairs neighbours. Plant directly into undisturbed soil to preserve structure and boost organic matter.</p><span class="cc-pes">+1 PES</span></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Precision Farming</h4><p class="cc-desc">At the start of your turn you can see a random card from an opponent&rsquo;s hand. GPS: On.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Pruning</h4><p class="cc-desc">+1 PES credit for each Farm Module in your farm. Painting is to a painter what pruning is to a farmer.</p><span class="cc-pes">+1 PES/FM</span></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Terracing</h4><p class="cc-desc">Protects your Farm Modules from Landslides. It also looks great.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Tree Protectors</h4><p class="cc-desc">If Forest Plantation or Forest Conservation enters the Discard Pile, put it on your farm. Private school for trees.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Water Harvesting</h4><p class="cc-desc">All your Farm Modules are immune to Drought. Water for every farm.</p></div></div>
+        <div class="cat-card"><div class="cc-inner in"><span class="cc-label in-l">Innovation</span><h4 class="cc-name">Weeding</h4><p class="cc-desc">Protect your Farm Modules from Pests and Diseases. Give your farmland a manicure.</p></div></div>
+      </div></div>
+      <div class="content-gate">
+        <span style="font-size:1.4rem">&#128274;</span>
+        <span class="gate-title">Full Innovations List</span>
+        <span class="gate-sub">Unlock all 21 innovations with card effects and PES values</span>
+        <a href="shop.html" class="gate-btn">Support on Kickstarter</a>
+      </div></div>
+    </div>
+
+    <!-- ═══════════════ CHALLENGES ═══════════════ -->
+    <div class="type-section">
+      <h3 class="type-hd ch-hd"><span>&#127786;</span> Challenges <em>14 cards</em></h3>
+      <div class="catalog-grid">
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Drought</h4><p class="cc-desc">Destroy all Farm Modules of one opponent worth 3 or fewer credits. It&rsquo;s a growing problem.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Dust Storm</h4><p class="cc-desc">Destroy one Farm Module worth 3 or fewer credits. What dust happened?</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Flash Flood</h4><p class="cc-desc">Destroy one Farm Module of your opponent. Honey! I can&rsquo;t find the sheep.</p></div></div>
+      </div>
+      <div class="content-gated"><div class="gated-content"><div class="catalog-grid">
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Flood</h4><p class="cc-desc">Destroy all Farm Modules of one opponent worth 2 or fewer credits. You should build an ark.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Frost</h4><p class="cc-desc">Destroy 2 Farm Modules with 1 PES credit. When frost bites.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Greenwashing</h4><p class="cc-desc">Destroy one Innovation. It is everywhere now.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Heatwave</h4><p class="cc-desc">Destroy one Farm Module worth 3 or fewer credits. Is it hot in here?</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Hurricane</h4><p class="cc-desc">Destroy one Farm Module with 2 or fewer credits. You&rsquo;re not in Kansas anymore.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Landslide</h4><p class="cc-desc">Destroy 2 Farm Modules. You did not see that coming.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Nitrification</h4><p class="cc-desc">Destroy one Aquaculture or Rice+Fish from one of your opponents. You wouldn&rsquo;t want to swim there.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Ocean Intrusion</h4><p class="cc-desc">Destroy one Farm Module. It&rsquo;s about to get salty.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Pests and Diseases</h4><p class="cc-desc">Destroy all Farm Modules of one opponent worth 2 or fewer credits. I larva you.</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Recession</h4><p class="cc-desc">Destroy all Innovation cards. Yours included. Did you hear about the market?</p></div></div>
+        <div class="cat-card"><div class="cc-inner ch"><span class="cc-label ch-l">Challenge</span><h4 class="cc-name">Wildfire</h4><p class="cc-desc">Destroy all Farm Modules in the game. Yours included. Fast and furious.</p></div></div>
+      </div></div>
+      <div class="content-gate">
+        <span style="font-size:1.4rem">&#128274;</span>
+        <span class="gate-title">Full Challenges List</span>
+        <span class="gate-sub">Unlock all 14 challenges with card effects</span>
+        <a href="shop.html" class="gate-btn">Support on Kickstarter</a>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+/* Card catalog */
+.type-section{margin-bottom:3rem}
+.type-hd{font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.6rem 0 .6rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+.type-hd em{font-style:normal;font-weight:700;font-size:.6rem;letter-spacing:.12em;opacity:.4;margin-left:auto}
+.fm-hd{border-left:3px solid var(--fg);color:var(--fg)}
+.in-hd{border-left:3px solid #5880a0;color:#4a6888}
+.ch-hd{border-left:3px solid var(--terra);color:var(--terra)}
+.catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.cat-card{background:var(--cream);border-radius:10px;overflow:hidden;border:1.5px solid rgba(30,58,40,.08);
+  box-shadow:0 4px 16px rgba(30,58,40,.06);transition:all .25s}
+.cat-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(30,58,40,.12)}
+.cc-inner{padding:1.2rem 1.4rem}
+.cc-inner.fm{border-top:3px solid var(--fg)}
+.cc-inner.in{border-top:3px solid #5880a0}
+.cc-inner.ch{border-top:3px solid var(--terra)}
+.cc-label{font-family:var(--fh);font-weight:900;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:.3rem}
+.fm-l{color:var(--fg)}.in-l{color:#4a6888}.ch-l{color:var(--terra)}
+.cc-name{font-family:var(--fh);font-weight:900;font-size:.95rem;letter-spacing:.02em;text-transform:uppercase;margin-bottom:.4rem}
+.cc-desc{font-family:var(--fs);font-style:italic;font-size:.78rem;line-height:1.6;color:var(--inks);opacity:.7}
+.cc-pes{font-family:var(--fh);font-weight:900;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--inks);opacity:.35;display:block;margin-top:.6rem}
+/* Kickstarter gate */
+.content-gated{position:relative;margin-top:1.2rem;max-height:320px;overflow:hidden}
+.gated-content{filter:blur(6px);pointer-events:none;user-select:none}
+.content-gate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(to bottom,rgba(253,250,245,.3) 0%,rgba(253,250,245,.85) 60%,rgba(253,250,245,.95) 100%);border-radius:12px;text-align:center;padding:2rem}
+.gate-title{font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--fg);display:block;margin:.3rem 0}
+.gate-sub{font-family:var(--fs);font-style:italic;font-size:.78rem;color:var(--inks);opacity:.55;display:block;margin-bottom:.8rem}
+.gate-btn{font-family:var(--fh);font-weight:900;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.6rem 1.6rem;background:var(--terra);color:var(--wh);border:none;border-radius:var(--r);
+  text-decoration:none;display:inline-block;transition:all .2s}
+.gate-btn:hover{background:var(--terra2);transform:translateY(-2px)}
+@media(max-width:1024px){.catalog-grid{grid-template-columns:repeat(2,1fr)}.type-overview-grid{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:768px){.catalog-grid{grid-template-columns:1fr}.type-overview-grid{grid-template-columns:1fr!important}}
+</style>
+
+<!-- CTA -->
+<div class="page-cta">
+  <h2>Join the Forest</h2>
+  <p>Every game sold plants a tree. Every backer grows The Grove.</p>
+  <a href="shop.html" class="btn btn-g" style="margin-right:0.5rem">Get the Game</a>
+  <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand" style="display:flex;gap:1.2rem;align-items:flex-start">
+        <img src="../img/card-back.jpg" alt="" style="width:48px;border-radius:4px;opacity:.6;flex-shrink:0;margin-top:.15rem">
+        <div>
+        <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
+        <p>A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
+        <p style="margin-top:.75rem;font-size:.72rem;color:rgba(255,255,255,.15)">&copy; Marcelo Rezende. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>The Game</h4>
+        <ul>
+          <li><a href="the-game.html">About the Game</a></li>
+          <li><a href="for-schools.html">For Schools</a></li>
+          <li><a href="expansions.html">Expansions</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Our Impact</h4>
+        <ul>
+          <li><a href="the-grove.html">The Grove</a></li>
+          <li><a href="the-forest-wall.html">The Forest Wall</a></li>
+          <li><a href="future-farm-fund.html">The Future Farm Fund</a></li>
+          <li><a href="card-creators.html">Card Creators</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Field Notes</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>The Future Farmer Card Game</span>
+      <span>&#127807; Your purchase supports native tree planting</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

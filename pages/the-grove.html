@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grove &mdash; The Future Farmer Card Game</title>
+<meta name="description" content="The Grove &mdash; a 10-hectare degraded dryland slope being restored one tree at a time. Every game sold plants a tree.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+/* Grove-specific styles */
+.grove-hero {
+  position: relative;
+  height: 85vh;
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 1.5rem 4rem;
+  text-align: center;
+}
+.grove-hero-img {
+  position: absolute;
+  inset: 0;
+  background: url('../images/drone_land_2020_01.JPG') center/cover no-repeat;
+  z-index: 0;
+}
+.grove-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,58,40,.85) 0%, rgba(30,58,40,.3) 50%, transparent 100%);
+  z-index: 1;
+}
+.grove-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+.grove-hero-content .sec-lbl {
+  background: rgba(255,255,255,.12);
+  color: var(--fl);
+}
+.grove-hero-content h1 {
+  font-family: var(--fh);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  color: var(--wh);
+  margin: 0.6rem 0 1rem;
+}
+.grove-hero-content p {
+  font-family: var(--fs);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: rgba(255,255,255,.85);
+  line-height: 1.6;
+}
+
+/* Photo section */
+.grove-photo {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--r);
+  margin: 2rem 0;
+  box-shadow: 0 8px 40px rgba(0,0,0,.12);
+}
+.grove-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.grove-photo-caption {
+  font-family: var(--fc);
+  font-size: 0.78rem;
+  color: var(--inks);
+  opacity: 0.6;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+/* Stats counter */
+.grove-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin: 2.5rem 0;
+}
+.grove-stat {
+  text-align: center;
+}
+.grove-stat-num {
+  font-family: var(--fh);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--fg);
+  display: block;
+  line-height: 1;
+}
+.grove-stat-label {
+  font-family: var(--fc);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--inks);
+  opacity: 0.6;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* Two-col layout */
+.grove-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+/* Drone video embed */
+.grove-video {
+  background: var(--fg);
+  padding: 3rem 5%;
+}
+.grove-video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-bottom: 56.25%;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 12px 50px rgba(0,0,0,.25);
+}
+.grove-video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.grove-video-cap {
+  max-width: var(--max);
+  margin: 1.2rem auto 0;
+  font-family: var(--fs);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(245,228,208,.6);
+  text-align: center;
+}
+
+/* Photo gallery */
+.grove-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.grove-gallery-item {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+.grove-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.grove-gallery-item:hover img {
+  transform: scale(1.05);
+}
+.grove-gallery-cap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1rem 0.8rem;
+  background: linear-gradient(to top, rgba(30,58,40,.85) 0%, transparent 100%);
+  font-family: var(--fc);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,.9);
+  text-transform: uppercase;
+}
+
+@media(max-width:768px) {
+  .grove-two-col {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .grove-stats {
+    gap: 1.5rem;
+  }
+  .grove-video {
+    padding: 2rem 4%;
+  }
+  .grove-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .inat-stats { flex-direction: column; gap: 1.5rem; }
+  .inat-gallery { grid-template-columns: repeat(2, 1fr); }
+  .inat-feed-list { grid-template-columns: 1fr; }
+  .inat-cta-row { flex-direction: column; }
+}
+
+/* Photo gallery masonry */
+.grove-pg {
+  background: var(--fg);
+  padding: 3.5rem 5%;
+}
+.grove-pg-hd {
+  max-width: var(--max);
+  margin: 0 auto 2rem;
+}
+.grove-pg h2 {
+  font-family: var(--fh);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--wh);
+  margin-bottom: .4rem;
+}
+.grove-pg-hd p {
+  font-family: var(--fs);
+  font-style: italic;
+  font-size: .92rem;
+  color: rgba(245,228,208,.55);
+}
+.grove-pg-grid {
+  columns: 4;
+  column-gap: .5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.grove-pg-item {
+  break-inside: avoid;
+  margin-bottom: .5rem;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.grove-pg-item img {
+  width: 100%;
+  display: block;
+  transition: transform .45s ease;
+}
+.grove-pg-item:hover img {
+  transform: scale(1.04);
+}
+.grove-pg-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,58,40,.5) 0%, transparent 40%);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.grove-pg-item:hover::after {
+  opacity: 1;
+}
+
+/* Lightbox */
+.grove-lb {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10,20,15,.92);
+  backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.grove-lb.open {
+  display: flex;
+}
+.grove-lb img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: 0 20px 80px rgba(0,0,0,.4);
+  object-fit: contain;
+}
+.grove-lb-cap {
+  font-family: var(--fs);
+  font-style: italic;
+  font-size: .88rem;
+  color: rgba(245,228,208,.7);
+  margin-top: 1rem;
+  text-align: center;
+}
+.grove-lb-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,.1);
+  color: var(--cream);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+.grove-lb-close:hover {
+  background: rgba(255,255,255,.2);
+}
+.grove-lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,.08);
+  color: var(--cream);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+.grove-lb-nav:hover { background: rgba(255,255,255,.18); }
+.grove-lb-prev { left: 1.5rem; }
+.grove-lb-next { right: 1.5rem; }
+@media(max-width:900px) {
+  .grove-pg-grid { columns: 3; }
+}
+@media(max-width:600px) {
+  .grove-pg-grid { columns: 2; }
+  .grove-lb-prev { left: .5rem; }
+  .grove-lb-next { right: .5rem; }
+}
+
+/* ── iNaturalist: The Grove is Alive ── */
+.inat-section { background: var(--cream); }
+.inat-intro { max-width: 680px; margin-bottom: 2rem; }
+.inat-intro p { font-family: var(--fb); font-size: 1rem; line-height: 1.75; color: var(--inks); }
+
+.inat-stats {
+  display: flex; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;
+}
+.inat-stat {
+  flex: 1; min-width: 140px; background: var(--wh);
+  border: 1.5px solid rgba(30,58,40,.08); border-radius: var(--r);
+  padding: 1.5rem; text-align: center;
+}
+.inat-stat-num {
+  font-family: var(--fh); font-weight: 900; font-size: 2rem;
+  color: var(--fg); line-height: 1; margin-bottom: .35rem;
+}
+.inat-stat-num.loading { color: rgba(30,58,40,.15); }
+.inat-stat-label {
+  font-family: var(--fb); font-weight: 600; font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--inks); opacity: .5;
+}
+
+.inat-gallery-hd {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;
+}
+.inat-gallery-hd h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .85rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--fg);
+}
+.inat-filters {
+  display: flex; gap: 4px;
+}
+.inat-filter {
+  font-family: var(--fh); font-weight: 700; font-size: .62rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .4rem .9rem; border-radius: 20px; cursor: pointer;
+  border: 1.5px solid rgba(30,58,40,.15); background: transparent;
+  color: var(--inks); transition: all .2s;
+}
+.inat-filter:hover { border-color: var(--fg); color: var(--fg); }
+.inat-filter.active { background: var(--fg); color: var(--wh); border-color: var(--fg); }
+
+.inat-gallery {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+}
+.inat-card {
+  background: var(--wh); border-radius: var(--r); overflow: hidden;
+  border: 1.5px solid rgba(30,58,40,.06);
+  transition: transform .2s, box-shadow .2s; cursor: pointer;
+  text-decoration: none; display: block;
+}
+.inat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,58,40,.1); }
+.inat-card-img {
+  width: 100%; aspect-ratio: 1; object-fit: cover; display: block;
+  background: var(--parch);
+}
+.inat-card-body { padding: .75rem .85rem; }
+.inat-card-latin {
+  font-family: var(--fs); font-style: italic; font-size: .82rem;
+  color: var(--fg); line-height: 1.3; margin-bottom: .2rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.inat-card-common {
+  font-family: var(--fb); font-weight: 600; font-size: .7rem;
+  color: var(--inks); opacity: .5;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.inat-card-badge {
+  display: inline-block; margin-top: .4rem;
+  font-family: var(--fh); font-weight: 900; font-size: .55rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .2rem .5rem; border-radius: 3px;
+  background: var(--terra); color: var(--wh);
+}
+
+/* Recent sightings feed */
+.inat-feed { margin-top: 3rem; }
+.inat-feed h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .85rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--fg);
+  margin-bottom: 1.25rem;
+}
+.inat-feed-list {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+}
+.inat-feed-item {
+  display: flex; align-items: center; gap: .85rem;
+  background: var(--wh); border-radius: var(--r); padding: .75rem;
+  border: 1.5px solid rgba(30,58,40,.06); text-decoration: none;
+  transition: border-color .2s;
+}
+.inat-feed-item:hover { border-color: rgba(30,58,40,.18); }
+.inat-feed-thumb {
+  width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+  flex-shrink: 0; background: var(--parch);
+}
+.inat-feed-info {}
+.inat-feed-species {
+  font-family: var(--fs); font-style: italic; font-size: .82rem;
+  color: var(--fg); line-height: 1.3;
+}
+.inat-feed-date {
+  font-family: var(--fb); font-size: .68rem; color: var(--inks); opacity: .4;
+  margin-top: .15rem;
+}
+
+/* CTA row */
+.inat-cta-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap;
+  padding-top: 2rem; border-top: 1px solid rgba(30,58,40,.08);
+}
+.inat-cta-text {
+  font-family: var(--fs); font-style: italic; font-size: .88rem;
+  color: var(--inks); line-height: 1.6; text-align: center; max-width: 420px;
+}
+.inat-cta-btns { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+
+.inat-loading {
+  text-align: center; padding: 3rem 0;
+  font-family: var(--fs); font-style: italic; color: var(--inks); opacity: .4;
+}
+.inat-error {
+  text-align: center; padding: 2rem;
+  font-family: var(--fb); font-size: .85rem; color: var(--terra);
+}
+
+/* iNaturalist attribution */
+.inat-attribution {
+  margin-top: 1.5rem; text-align: center;
+  font-family: var(--fb); font-size: .7rem; color: var(--inks); opacity: .3;
+}
+.inat-attribution a { color: var(--fg); text-decoration: underline; }
+
+/* Species timeline */
+.inat-timeline { margin: 2.5rem 0 3rem; }
+.inat-timeline h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .85rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--fg);
+  margin-bottom: 1.25rem;
+}
+.timeline-chart { display: flex; flex-direction: column; gap: .75rem; }
+.timeline-year {
+  display: grid; grid-template-columns: 56px 1fr 40px; gap: .75rem;
+  align-items: center;
+}
+.timeline-year-label {
+  font-family: var(--fh); font-weight: 700; font-size: .82rem;
+  color: var(--fg); text-align: right;
+}
+.timeline-bar-track {
+  height: 28px; background: rgba(30,58,40,.04); border-radius: 6px;
+  overflow: hidden; display: flex; position: relative;
+}
+.timeline-bar-seg {
+  height: 100%; transition: width .6s ease;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh); font-size: .58rem; font-weight: 700;
+  color: rgba(255,255,255,.9); letter-spacing: .03em;
+  min-width: 0; overflow: hidden; white-space: nowrap;
+}
+.timeline-year-total {
+  font-family: var(--fh); font-weight: 900; font-size: .85rem;
+  color: var(--fg);
+}
+.timeline-legend {
+  display: flex; flex-wrap: wrap; gap: .6rem 1.2rem;
+  margin-top: 1rem;
+}
+.timeline-legend-item {
+  display: flex; align-items: center; gap: .35rem;
+  font-family: var(--fb); font-size: .68rem; color: var(--inks); opacity: .7;
+}
+.timeline-legend-dot {
+  width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+}
+.timeline-loading {
+  text-align: center; padding: 2rem 0;
+  font-family: var(--fs); font-style: italic; color: var(--inks); opacity: .4;
+}
+
+/* Ecosystem food web */
+.food-web { margin-top: 3rem; }
+.food-web h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .85rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--fg);
+  margin-bottom: .5rem;
+}
+.food-web-frame {
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,.12);
+  border: 1.5px solid rgba(30,58,40,.08);
+  height: 80vh;
+  min-height: 600px;
+  max-height: 900px;
+}
+.food-web-frame iframe {
+  width: 100%; height: 100%; border: 0; display: block;
+}
+@media(max-width:768px) {
+  .timeline-year { grid-template-columns: 40px 1fr 32px; }
+  .timeline-year-label { font-size: .72rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">The Future Farmer <span>Card Game</span></a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="the-game.html">The Game</a></li>
+    <li><a href="for-schools.html">For Schools</a></li>
+    <li class="nav-dropdown">
+      <a>Our Impact</a>
+      <div class="nav-dropdown-menu">
+        <a href="the-grove.html">The Grove</a>
+        <a href="the-forest-wall.html">The Forest Wall</a>
+        <a href="future-farm-fund.html">The Future Farm Fund</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a>Community</a>
+      <div class="nav-dropdown-menu">
+        <a href="card-creators.html">Card Creators</a>
+        <a href="expansions.html">Expansions</a>
+        <a href="blog.html">Field Notes</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="shop.html">Shop</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lb on" onclick="L('en')">EN</button>
+      <button class="lb" onclick="L('pt')">PT</button>
+      <button class="lb" onclick="L('es')">ES</button>
+    </div>
+    <a href="shop.html" class="nav-cta">Shop</a>
+  </div>
+</nav>
+
+<!-- HERO: Drone aerial photo -->
+<div class="grove-hero">
+  <div class="grove-hero-img"></div>
+  <div class="grove-hero-overlay"></div>
+  <div class="grove-hero-content">
+    <span class="sec-lbl">The Grove</span>
+    <h1>The Grove.</h1>
+    <p>We call it The Grove. Not because it is one yet, but because it will be.</p>
+  </div>
+</div>
+
+<!-- THE SITE -->
+<div>
+  <div class="page-section">
+    <div class="grove-two-col">
+      <div>
+        <h2>Ten Hectares for the Future</h2>
+        <p>Tucked into a valley in central Portugal, there is a slope that most people would walk past without a second look. Sun-scorched in summer. Windswept in winter. Rocky, steep, and stubbornly dry. This is not the kind of land that makes the cover of a nature magazine.</p>
+        <p style="margin-top:1rem">But it is exactly the kind of land that needs someone to show up, year after year, with a bag of seedlings and the patience to see what takes root.</p>
+        <div class="grove-stats">
+          <div class="grove-stat">
+            <span class="grove-stat-num">10</span>
+            <span class="grove-stat-label">Hectares</span>
+          </div>
+          <div class="grove-stat">
+            <span class="grove-stat-num">5,855</span>
+            <span class="grove-stat-label">Trees Planted</span>
+          </div>
+          <div class="grove-stat">
+            <span class="grove-stat-num">21+</span>
+            <span class="grove-stat-label">Native Species</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="grove-photo">
+          <img src="../images/faia_01.jpg" alt="Seedlings planted on the steep, rocky restoration slope with scattered green hills in the background" loading="lazy">
+        </div>
+        <p class="grove-photo-caption">Young seedlings finding their footing on the slope. Give them a few years.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO GALLERY -->
+<div class="grove-pg">
+  <div class="grove-pg-hd">
+    <h2>The Grove in Photos</h2>
+    <p>Planting days, seasons changing, wildlife arriving. The real story of a hillside becoming a forest.</p>
+  </div>
+  <div class="grove-pg-grid">
+    <div class="grove-pg-item" data-cap="The valley from above — ten hectares of restoration"><img src="../images/grove-gallery/grove-01-aerial.jpg" alt="Aerial drone view of the restoration valley" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Installing tree guards on the rocky slope"><img src="../images/grove-gallery/grove-02-planting.jpg" alt="Person installing tree guards on the slope" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Seedlings on the truck, ready for planting day"><img src="../images/grove-gallery/grove-04-nursery.jpg" alt="Trays of seedlings loaded on a truck" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Oak acorns ripening — the next generation"><img src="../images/grove-gallery/grove-07-acorns.jpg" alt="Close-up of oak acorns on a branch" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Drilling holes in the hard ground"><img src="../images/grove-gallery/grove-06-drilling.jpg" alt="Two people drilling planting holes" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="A birdhouse among the pines — new residents moving in"><img src="../images/grove-gallery/grove-09-birdhouse.jpg" alt="Handmade birdhouse in a pine tree" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Autumn colour on a young oak"><img src="../images/grove-gallery/grove-08-autumn.jpg" alt="Red autumn leaves on a young oak tree" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Sheep sharing the hillside with new saplings"><img src="../images/grove-gallery/grove-10-sheep.jpg" alt="Sheep grazing among tree guards on the slope" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Close-up seedlings before heading to the slope"><img src="../images/grove-gallery/grove-05-seedlings.jpg" alt="Native seedlings in trays with autumn colours" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Tiger beetles — one of 210 species recorded"><img src="../images/grove-gallery/grove-11-beetle.jpg" alt="Green tiger beetles on bare ground" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Two planters working the slope"><img src="../images/grove-gallery/grove-03-team.jpg" alt="Two people planting on the hillside" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Granite boulders and moss — the bones of this landscape"><img src="../images/grove-gallery/grove-12-rocks.jpg" alt="Moss-covered granite boulders with pine behind" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Fungi returning to the forest floor"><img src="../images/grove-gallery/grove-13-mushroom.jpg" alt="Pale mushroom on the forest floor" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Collecting acorns for next season"><img src="../images/grove-gallery/grove-15-acornjar.jpg" alt="Hand holding a bottle of collected acorns" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Checking on a tall young sapling"><img src="../images/grove-gallery/grove-16-person.jpg" alt="Person standing next to a tall sapling" loading="lazy"></div>
+    <div class="grove-pg-item" data-cap="Red leaves catching the autumn light"><img src="../images/grove-gallery/grove-14-redleaves.jpg" alt="Vibrant red autumn leaves against the sky" loading="lazy"></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="grove-lb" id="grove-lb">
+  <button class="grove-lb-close" onclick="closeLB()">&times;</button>
+  <button class="grove-lb-nav grove-lb-prev" onclick="navLB(-1)">&#8249;</button>
+  <button class="grove-lb-nav grove-lb-next" onclick="navLB(1)">&#8250;</button>
+  <img id="grove-lb-img" src="" alt="">
+  <div class="grove-lb-cap" id="grove-lb-cap"></div>
+</div>
+
+<script>
+(function() {
+  var items = document.querySelectorAll('.grove-pg-item');
+  var lb = document.getElementById('grove-lb');
+  var lbImg = document.getElementById('grove-lb-img');
+  var lbCap = document.getElementById('grove-lb-cap');
+  var current = 0;
+
+  items.forEach(function(item, i) {
+    item.addEventListener('click', function() {
+      current = i;
+      showLB();
+    });
+  });
+
+  window.closeLB = function() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  window.navLB = function(dir) {
+    current = (current + dir + items.length) % items.length;
+    showLB();
+  };
+
+  function showLB() {
+    var img = items[current].querySelector('img');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = items[current].getAttribute('data-cap') || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) closeLB();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLB();
+    if (e.key === 'ArrowLeft') navLB(-1);
+    if (e.key === 'ArrowRight') navLB(1);
+  });
+})();
+</script>
+
+<!-- BIODIVERSITY COMING BACK -->
+<div class="inat-section">
+  <div class="page-section">
+    <h2>Biodiversity Coming Back</h2>
+    <div class="inat-intro">
+      <p>Before this project began, the land was a monoculture of pine &mdash; row after row of the same species, planted for timber and little else. The soil was thin, the undergrowth was sparse, and wildlife had very little reason to stay.</p>
+      <p style="margin-top:1rem">Today, over 20 species of native trees grow on this slope: cork oak, wild cherry, strawberry tree, carob, chestnut, birch, alder, and more. And as the diversity of trees grows, the animals follow. Birds are nesting. Insects are pollinating. Fungi are threading through the soil. We track it all through <a href="https://www.inaturalist.org/projects/thegrove" target="_blank" rel="noopener" style="color:var(--terra);font-weight:600">iNaturalist</a> &mdash; a living record of a hillside waking up.</p>
+    </div>
+
+    <!-- Species per class per year timeline -->
+    <div class="inat-timeline">
+      <h3>Species Recorded Over Time</h3>
+      <div id="timeline-chart" class="timeline-chart">
+        <div class="timeline-loading">Loading species timeline&hellip;</div>
+      </div>
+      <div id="timeline-legend" class="timeline-legend"></div>
+    </div>
+
+    <!-- Live stat counters -->
+    <div class="inat-stats">
+      <div class="inat-stat">
+        <div class="inat-stat-num loading" id="inat-species">&mdash;</div>
+        <div class="inat-stat-label">Species Identified</div>
+      </div>
+      <div class="inat-stat">
+        <div class="inat-stat-num loading" id="inat-obs">&mdash;</div>
+        <div class="inat-stat-label">Observations</div>
+      </div>
+      <div class="inat-stat">
+        <div class="inat-stat-num loading" id="inat-observers">&mdash;</div>
+        <div class="inat-stat-label">Observers</div>
+      </div>
+      <div class="inat-stat">
+        <div class="inat-stat-num" style="color:var(--terra)">&#127793;</div>
+        <div class="inat-stat-label">One Living Site</div>
+      </div>
+    </div>
+
+    <!-- Species photo gallery -->
+    <div class="inat-gallery-hd">
+      <h3>Species Gallery</h3>
+      <div class="inat-filters">
+        <button class="inat-filter active" data-taxon="">All</button>
+        <button class="inat-filter" data-taxon="Aves">Birds</button>
+        <button class="inat-filter" data-taxon="Plantae">Plants</button>
+        <button class="inat-filter" data-taxon="Insecta">Insects</button>
+        <button class="inat-filter" data-taxon="Fungi">Fungi</button>
+      </div>
+    </div>
+    <div class="inat-gallery" id="inat-gallery">
+      <div class="inat-loading">Loading species from iNaturalist&hellip;</div>
+    </div>
+
+    <!-- Recent sightings -->
+    <div class="inat-feed">
+      <h3>Recent Sightings</h3>
+      <div class="inat-feed-list" id="inat-feed">
+        <div class="inat-loading">Loading recent observations&hellip;</div>
+      </div>
+    </div>
+
+    <!-- Ecosystem food web -->
+    <div class="food-web">
+      <h3>The Grove &mdash; Ecosystem Web</h3>
+      <p style="font-family:var(--fs);font-style:italic;font-size:.9rem;color:var(--inks);margin-bottom:1rem;max-width:680px">210 species. Hundreds of feeding relationships. Click on any node to explore how life connects on this hillside.</p>
+      <div class="food-web-frame">
+        <iframe src="food-web.html" title="The Grove — Ecosystem Web" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="inat-cta-row">
+      <div class="inat-cta-text">Every bird, every beetle, every mushroom pushing through the soil is proof that something is changing on this hillside. Be part of it.</div>
+      <div class="inat-cta-btns">
+        <a href="shop.html" class="btn btn-g">Get the Game</a>
+        <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+        <a href="https://www.inaturalist.org/projects/thegrove" target="_blank" rel="noopener" class="btn btn-g" style="background:var(--fg2)">Explore on iNaturalist</a>
+      </div>
+    </div>
+
+    <p class="inat-attribution">Biodiversity data powered by <a href="https://www.inaturalist.org/projects/thegrove" target="_blank" rel="noopener">iNaturalist</a> &mdash; TheGrove project</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var API = 'https://api.inaturalist.org/v1';
+  var PROJECT = 'thegrove';
+  var allSpecies = [];
+
+  // Fetch project stats
+  fetch(API + '/observations?project_id=' + PROJECT + '&per_page=0')
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var el = document.getElementById('inat-obs');
+      el.textContent = d.total_results.toLocaleString();
+      el.classList.remove('loading');
+    }).catch(function() {});
+
+  fetch(API + '/observations/observers?project_id=' + PROJECT + '&per_page=0')
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var el = document.getElementById('inat-observers');
+      el.textContent = d.total_results.toLocaleString();
+      el.classList.remove('loading');
+    }).catch(function() {});
+
+  // Species count (from verified CSV export — 210 unique taxon IDs)
+  var elSpecies = document.getElementById('inat-species');
+  elSpecies.textContent = '210';
+  elSpecies.classList.remove('loading');
+
+  // Fetch species with photos (for gallery)
+  fetch(API + '/observations/species_counts?project_id=' + PROJECT + '&per_page=200')
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      allSpecies = d.results.filter(function(r) {
+        return r.taxon && r.taxon.default_photo;
+      });
+      renderGallery('');
+    }).catch(function() {
+      document.getElementById('inat-gallery').innerHTML =
+        '<div class="inat-error">Could not load species data. <a href="https://www.inaturalist.org/projects/thegrove" target="_blank">View on iNaturalist</a></div>';
+    });
+
+  // Render gallery filtered by iconic taxon
+  function renderGallery(taxonFilter) {
+    var container = document.getElementById('inat-gallery');
+    var filtered = taxonFilter
+      ? allSpecies.filter(function(r) { return r.taxon.iconic_taxon_name === taxonFilter; })
+      : allSpecies;
+    var show = filtered.slice(0, 12);
+
+    if (show.length === 0) {
+      container.innerHTML = '<div class="inat-loading" style="grid-column:1/-1">No species found for this filter.</div>';
+      return;
+    }
+
+    container.innerHTML = show.map(function(r) {
+      var t = r.taxon;
+      var photo = t.default_photo.medium_url || t.default_photo.square_url || '';
+      var latin = t.name || 'Unknown';
+      var common = t.preferred_common_name || '';
+      var url = 'https://www.inaturalist.org/taxa/' + t.id;
+      var badge = r.count > 5 ? '<span class="inat-card-badge">' + r.count + ' sightings</span>' : '';
+      return '<a class="inat-card" href="' + url + '" target="_blank" rel="noopener">' +
+        '<img class="inat-card-img" src="' + photo + '" alt="' + latin + '" loading="lazy">' +
+        '<div class="inat-card-body">' +
+          '<div class="inat-card-latin">' + latin + '</div>' +
+          (common ? '<div class="inat-card-common">' + common + '</div>' : '') +
+          badge +
+        '</div></a>';
+    }).join('');
+  }
+
+  // Filter buttons
+  document.querySelectorAll('.inat-filter').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.inat-filter').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      renderGallery(btn.getAttribute('data-taxon'));
+    });
+  });
+
+  // Fetch recent observations
+  fetch(API + '/observations?project_id=' + PROJECT + '&per_page=6&order_by=observed_on&order=desc&photos=true')
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var container = document.getElementById('inat-feed');
+      if (!d.results || d.results.length === 0) {
+        container.innerHTML = '<div class="inat-loading">No recent observations.</div>';
+        return;
+      }
+      container.innerHTML = d.results.map(function(o) {
+        var photo = o.photos && o.photos[0] ? o.photos[0].url.replace('square', 'small') : '';
+        var name = o.taxon ? (o.taxon.name || o.species_guess || 'Unknown') : (o.species_guess || 'Unknown');
+        var common = o.taxon && o.taxon.preferred_common_name ? o.taxon.preferred_common_name : '';
+        var date = o.observed_on || '';
+        var url = 'https://www.inaturalist.org/observations/' + o.id;
+        return '<a class="inat-feed-item" href="' + url + '" target="_blank" rel="noopener">' +
+          (photo ? '<img class="inat-feed-thumb" src="' + photo + '" alt="' + name + '" loading="lazy">' : '') +
+          '<div class="inat-feed-info">' +
+            '<div class="inat-feed-species">' + name + (common ? ' <span style="font-style:normal;opacity:.5;font-size:.72rem">(' + common + ')</span>' : '') + '</div>' +
+            '<div class="inat-feed-date">' + date + '</div>' +
+          '</div></a>';
+      }).join('');
+    }).catch(function() {
+      document.getElementById('inat-feed').innerHTML =
+        '<div class="inat-error">Could not load recent observations. <a href="https://www.inaturalist.org/projects/thegrove" target="_blank">View on iNaturalist</a></div>';
+    });
+  // ── Species per class per year timeline ──
+  var TAXON_COLORS = {
+    Plantae:  '#4a8c5c',
+    Aves:     '#c87248',
+    Insecta:  '#d4a843',
+    Fungi:    '#8b5a2b',
+    Arachnida:'#a0522d',
+    Mammalia: '#5b7fa5',
+    Reptilia: '#7a9a6e',
+    Amphibia: '#6b8e8e',
+    Mollusca: '#b08d7a',
+    Actinopterygii: '#6cafc7',
+    Other:    '#999'
+  };
+  var TAXON_LABELS = {
+    Plantae: 'Plants', Aves: 'Birds', Insecta: 'Insects',
+    Fungi: 'Fungi', Arachnida: 'Arachnids', Mammalia: 'Mammals',
+    Reptilia: 'Reptiles', Amphibia: 'Amphibians', Mollusca: 'Molluscs',
+    Actinopterygii: 'Fish', Other: 'Other'
+  };
+
+  // Cumulative species per class per year (from iNaturalist CSV export, 210 unique species by taxon_id)
+  var TIMELINE_DATA = [
+    {year:2020, counts:{Plantae:22, Fungi:6, Insecta:12, Mollusca:1}},
+    {year:2021, counts:{Plantae:25, Fungi:8, Insecta:20, Amphibia:3, Arachnida:4, Mollusca:1, Other:1}},
+    {year:2022, counts:{Plantae:30, Aves:2, Fungi:14, Insecta:39, Amphibia:4, Arachnida:5, Mammalia:1, Mollusca:1, Other:1}},
+    {year:2023, counts:{Plantae:43, Aves:2, Fungi:28, Insecta:60, Amphibia:5, Arachnida:5, Mammalia:2, Mollusca:2, Other:5}},
+    {year:2024, counts:{Plantae:43, Aves:2, Fungi:30, Insecta:64, Amphibia:5, Arachnida:6, Mammalia:5, Mollusca:2, Other:5}},
+    {year:2025, counts:{Plantae:70, Aves:2, Fungi:34, Insecta:74, Amphibia:6, Arachnida:8, Mammalia:8, Mollusca:2, Other:6}}
+  ];
+
+  (function() {
+    var allTaxa = {};
+    TIMELINE_DATA.forEach(function(y) {
+      Object.keys(y.counts).forEach(function(t) { allTaxa[t] = true; });
+    });
+    var taxaOrder = Object.keys(TAXON_COLORS).filter(function(t) { return allTaxa[t]; });
+
+    // Max is the last year's total (full cumulative)
+    var last = TIMELINE_DATA[TIMELINE_DATA.length - 1];
+    var maxTotal = 0;
+    taxaOrder.forEach(function(t) { maxTotal += (last.counts[t] || 0); });
+
+    var chart = document.getElementById('timeline-chart');
+    chart.innerHTML = TIMELINE_DATA.map(function(y) {
+      var sum = 0;
+      taxaOrder.forEach(function(t) { sum += (y.counts[t] || 0); });
+      var bars = taxaOrder.map(function(t) {
+        var c = y.counts[t] || 0;
+        if (c === 0) return '';
+        var pct = (c / maxTotal * 100).toFixed(1);
+        var label = c >= 3 ? c : '';
+        return '<div class="timeline-bar-seg" style="width:' + pct + '%;background:' + TAXON_COLORS[t] + '" title="' + (TAXON_LABELS[t] || t) + ': ' + c + ' species">' + label + '</div>';
+      }).join('');
+      return '<div class="timeline-year">' +
+        '<div class="timeline-year-label">' + y.year + '</div>' +
+        '<div class="timeline-bar-track">' + bars + '</div>' +
+        '<div class="timeline-year-total">' + sum + '</div>' +
+      '</div>';
+    }).join('');
+
+    var legend = document.getElementById('timeline-legend');
+    legend.innerHTML = taxaOrder.map(function(t) {
+      return '<div class="timeline-legend-item">' +
+        '<div class="timeline-legend-dot" style="background:' + TAXON_COLORS[t] + '"></div>' +
+        (TAXON_LABELS[t] || t) +
+      '</div>';
+    }).join('');
+  })();
+
+})();
+</script>
+
+<!-- DRONE VIDEO -->
+<div class="grove-video">
+  <div class="grove-video-wrap">
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vZ4MJ3S1ZsM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <p class="grove-video-cap">Ten hectares of degraded hillside, slowly becoming a forest again.</p>
+</div>
+
+<!-- YOUR TREE -->
+<div>
+  <div class="page-section">
+    <h2>Your Tree on the Slope</h2>
+    <p>Patrons at Field Patron tier and above get a tree planted in their name. A real seedling, on a real hillside, facing the same sun and wind as every other tree in The Grove. Every November, you will hear how it is doing &mdash; alongside photos and video from the planting visit.</p>
+    <p style="margin-top:1rem">We are working towards giving every named tree GPS coordinates, so you can find yours on the map and watch it grow year after year.</p>
+
+    <div class="grove-gallery">
+      <div class="grove-gallery-item">
+        <img src="../images/enrichment_planting.jpg" alt="Trays of native seedlings ready for the hillside" loading="lazy">
+        <span class="grove-gallery-cap">Seedlings heading to the slope</span>
+      </div>
+      <div class="grove-gallery-item">
+        <img src="../images/carob_tree.jpg" alt="A young carob tree growing between rocks" loading="lazy">
+        <span class="grove-gallery-cap">Carob finding its way</span>
+      </div>
+      <div class="grove-gallery-item">
+        <img src="../images/faia_01.jpg" alt="A beech tree seedling on the restoration slope" loading="lazy">
+        <span class="grove-gallery-cap">Native beech taking hold</span>
+      </div>
+      <div class="grove-gallery-item">
+        <img src="../images/drone_land_2020_01.JPG" alt="Aerial view of the ten-hectare restoration site" loading="lazy">
+        <span class="grove-gallery-cap">The slope from above</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="page-cta">
+  <h2>Help Build The Grove</h2>
+  <p>Every game sold plants a tree. Every backer grows The Grove. Join us.</p>
+  <a href="shop.html" class="btn btn-g" style="margin-right:0.5rem">Get the Game</a>
+  <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand" style="display:flex;gap:1.2rem;align-items:flex-start">
+        <img src="../img/card-back.jpg" alt="" style="width:48px;border-radius:4px;opacity:.6;flex-shrink:0;margin-top:.15rem">
+        <div>
+        <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
+        <p>A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
+        <p style="margin-top:.75rem;font-size:.72rem;color:rgba(255,255,255,.15)">&copy; Marcelo Rezende. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>The Game</h4>
+        <ul>
+          <li><a href="the-game.html">About the Game</a></li>
+          <li><a href="for-schools.html">For Schools</a></li>
+          <li><a href="expansions.html">Expansions</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Our Impact</h4>
+        <ul>
+          <li><a href="the-grove.html">The Grove</a></li>
+          <li><a href="the-forest-wall.html">The Forest Wall</a></li>
+          <li><a href="future-farm-fund.html">The Future Farm Fund</a></li>
+          <li><a href="card-creators.html">Card Creators</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Field Notes</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>The Future Farmer Card Game</span>
+      <span>&#127807; Your purchase supports native tree planting</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

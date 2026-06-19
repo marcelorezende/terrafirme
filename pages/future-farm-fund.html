@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Future Farm Fund &mdash; The Future Farmer Card Game</title>
+<meta name="description" content="See exactly where your money goes. 10% plants trees, 20% funds farming education for schools and farmers, 70% makes the game. Full transparency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+/* ── Revenue split donut ── */
+.fff-split { text-align: center; padding: 0; }
+.fff-donut-wrap {
+  display: inline-block; position: relative;
+  width: 280px; height: 280px; margin-bottom: 2rem;
+}
+.fff-donut {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--fg) 0% 10%,
+    var(--terra) 10% 30%,
+    var(--deep) 30% 100%
+  );
+  position: relative;
+}
+.fff-donut::after {
+  content: '';
+  position: absolute; inset: 28%; border-radius: 50%;
+  background: var(--wh);
+}
+.fff-donut-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 1;
+}
+.fff-donut-center span:first-child {
+  font-family: var(--fh); font-weight: 900; font-size: 1.5rem;
+  color: var(--fg);
+}
+.fff-donut-center span:last-child {
+  font-family: var(--fb); font-size: .72rem; color: var(--inks);
+  opacity: .5; margin-top: .2rem;
+}
+
+.fff-legend {
+  display: flex; justify-content: center; gap: 2rem;
+  flex-wrap: wrap; margin-bottom: 1rem;
+}
+.fff-legend-item {
+  display: flex; align-items: center; gap: .5rem;
+}
+.fff-legend-dot {
+  width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+}
+.fff-legend-label {
+  font-family: var(--fh); font-weight: 900; font-size: .68rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink);
+}
+.fff-legend-pct {
+  font-family: var(--fh); font-weight: 900; font-size: .68rem;
+  color: var(--inks); opacity: .4;
+}
+
+/* ── Three pillars ── */
+.fff-pillars {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.fff-pillar {
+  background: var(--wh); border-radius: var(--r);
+  border: 1.5px solid rgba(30,58,40,.06);
+  overflow: hidden; transition: transform .2s, box-shadow .2s;
+}
+.fff-pillar:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,58,40,.1); }
+.fff-pillar-bar { height: 4px; }
+.fff-pillar-bar.trees { background: var(--fg); }
+.fff-pillar-bar.edu { background: var(--terra); }
+.fff-pillar-bar.game { background: var(--deep); }
+.fff-pillar-body { padding: 1.5rem; }
+.fff-pillar-icon { font-size: 2rem; margin-bottom: .75rem; }
+.fff-pillar-pct {
+  font-family: var(--fh); font-weight: 900; font-size: 2rem;
+  color: var(--fg); line-height: 1; margin-bottom: .25rem;
+}
+.fff-pillar.edu .fff-pillar-pct { color: var(--terra); }
+.fff-pillar.game .fff-pillar-pct { color: var(--inks); opacity: .5; }
+.fff-pillar h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg); margin-bottom: .5rem;
+}
+.fff-pillar p {
+  font-family: var(--fb); font-size: .85rem; line-height: 1.65;
+  color: var(--inks);
+}
+
+/* ── Promise banner ── */
+.fff-promise {
+  background: var(--fg); color: var(--cream); padding: 3.5rem 0;
+  text-align: center;
+}
+.fff-promise-in {
+  max-width: 680px; margin: 0 auto; padding: 0 2rem;
+}
+.fff-promise h2 {
+  font-family: var(--fh); font-weight: 900; font-size: 1.3rem;
+  letter-spacing: .04em; color: var(--cream); margin-bottom: 1rem;
+}
+.fff-promise p {
+  font-family: var(--fs); font-style: italic; font-size: 1rem;
+  line-height: 1.8; color: rgba(245,228,208,.55);
+}
+
+/* ── How each pillar works ── */
+.fff-detail {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+  align-items: center;
+}
+.fff-detail-reverse { direction: rtl; }
+.fff-detail-reverse > * { direction: ltr; }
+.fff-detail-text h2 {
+  font-family: var(--fh); font-weight: 900; font-size: 1.2rem;
+  color: var(--fg); margin-bottom: .75rem;
+}
+.fff-detail-text p {
+  font-family: var(--fb); font-size: .92rem; line-height: 1.75;
+  color: var(--inks); margin-bottom: .75rem;
+}
+.fff-detail-visual {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center;
+  padding: 3rem 2rem;
+  border-radius: var(--r);
+}
+.fff-detail-visual.trees { background: rgba(30,58,40,.06); }
+.fff-detail-visual.edu { background: var(--tp); }
+.fff-detail-bignum {
+  font-family: var(--fh); font-weight: 900; font-size: 3.5rem;
+  line-height: 1; margin-bottom: .25rem;
+}
+.fff-detail-visual.trees .fff-detail-bignum { color: var(--fg); }
+.fff-detail-visual.edu .fff-detail-bignum { color: var(--terra); }
+.fff-detail-visual span:last-child {
+  font-family: var(--fb); font-size: .78rem; color: var(--inks); opacity: .5;
+}
+
+/* ── Stories ── */
+.fff-stories-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  margin-top: 2rem;
+}
+.fff-story {
+  background: var(--wh); border-radius: var(--r);
+  border: 1.5px solid rgba(30,58,40,.06);
+  padding: 1.5rem; text-align: center;
+}
+.fff-story-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+.fff-story h3 {
+  font-family: var(--fh); font-weight: 900; font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg); margin-bottom: .4rem;
+}
+.fff-story p {
+  font-family: var(--fs); font-style: italic; font-size: .85rem;
+  line-height: 1.6; color: var(--inks);
+}
+.fff-story-coming {
+  font-family: var(--fh); font-weight: 900; font-size: .6rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--terra); margin-top: .75rem;
+}
+
+/* ── Responsive ── */
+@media(max-width:768px) {
+  .fff-pillars { grid-template-columns: 1fr; }
+  .fff-detail { grid-template-columns: 1fr; gap: 2rem; }
+  .fff-detail-reverse { direction: ltr; }
+  .fff-stories-grid { grid-template-columns: 1fr; }
+  .fff-donut-wrap { width: 220px; height: 220px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">The Future Farmer <span>Card Game</span></a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="the-game.html">The Game</a></li>
+    <li><a href="for-schools.html">For Schools</a></li>
+    <li class="nav-dropdown">
+      <a>Our Impact</a>
+      <div class="nav-dropdown-menu">
+        <a href="the-grove.html">The Grove</a>
+        <a href="the-forest-wall.html">The Forest Wall</a>
+        <a href="future-farm-fund.html">The Future Farm Fund</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a>Community</a>
+      <div class="nav-dropdown-menu">
+        <a href="card-creators.html">Card Creators</a>
+        <a href="expansions.html">Expansions</a>
+        <a href="blog.html">Field Notes</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="shop.html">Shop</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lb on" onclick="L('en')">EN</button>
+      <button class="lb" onclick="L('pt')">PT</button>
+      <button class="lb" onclick="L('es')">ES</button>
+    </div>
+    <a href="shop.html" class="nav-cta">Shop</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="sec-lbl">Where Your Money Goes</span>
+  <h1>The Future<br>Farm Fund.</h1>
+  <p>Full transparency. Every cent from every game sale is accounted for &mdash; and 30% goes directly to trees, schools, and farming education.</p>
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; The Future Farm Fund</div>
+</div>
+
+<!-- REVENUE SPLIT -->
+<div>
+  <div class="page-section fff-split" style="padding-top:5rem">
+    <h2>How We Split Every Sale</h2>
+
+    <div class="fff-donut-wrap">
+      <div class="fff-donut"></div>
+      <div class="fff-donut-center">
+        <span>30%</span>
+        <span>for impact</span>
+      </div>
+    </div>
+
+    <div class="fff-legend">
+      <div class="fff-legend-item">
+        <div class="fff-legend-dot" style="background:var(--fg)"></div>
+        <span class="fff-legend-label">Tree Planting &amp; Care</span>
+        <span class="fff-legend-pct">10%</span>
+      </div>
+      <div class="fff-legend-item">
+        <div class="fff-legend-dot" style="background:var(--terra)"></div>
+        <span class="fff-legend-label">Farming Education</span>
+        <span class="fff-legend-pct">20%</span>
+      </div>
+      <div class="fff-legend-item">
+        <div class="fff-legend-dot" style="background:var(--deep)"></div>
+        <span class="fff-legend-label">Game Production</span>
+        <span class="fff-legend-pct">70%</span>
+      </div>
+    </div>
+
+    <!-- Three pillars -->
+    <div class="fff-pillars">
+      <div class="fff-pillar">
+        <div class="fff-pillar-bar trees"></div>
+        <div class="fff-pillar-body">
+          <div class="fff-pillar-icon">&#127795;</div>
+          <div class="fff-pillar-pct">10%</div>
+          <h3>Tree Planting &amp; Care</h3>
+          <p>Planting, replanting, pruning, invasive species removal, fire break maintenance, and monitoring at The Grove.</p>
+        </div>
+      </div>
+      <div class="fff-pillar edu">
+        <div class="fff-pillar-bar edu"></div>
+        <div class="fff-pillar-body">
+          <div class="fff-pillar-icon">&#127891;</div>
+          <div class="fff-pillar-pct">20%</div>
+          <h3>Farming Education</h3>
+          <p>Bringing the game to schools, creating lesson plans, funding farmer grants for field days, workshops, and agricultural training.</p>
+        </div>
+      </div>
+      <div class="fff-pillar game">
+        <div class="fff-pillar-bar game"></div>
+        <div class="fff-pillar-body">
+          <div class="fff-pillar-icon">&#127183;</div>
+          <div class="fff-pillar-pct">70%</div>
+          <h3>Game Production</h3>
+          <p>Illustration, printing, packaging, shipping, fulfilment, and all the costs of putting a physical game in your hands.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMISE -->
+<div class="fff-promise">
+  <div class="fff-promise-in">
+    <h2>&#127807; Our Promise</h2>
+    <p>We do not hide behind vague claims. Every year, we publish exactly how much was raised, how many trees were planted, how many schools received the game, and how many restoration activities funded. Backers see the full financial breakdown. Transparent and accountable.</p>
+  </div>
+</div>
+
+<!-- TREE PLANTING DETAIL -->
+<div>
+  <div class="page-section">
+    <div class="fff-detail">
+      <div class="fff-detail-text">
+        <h2>&#127795; Tree Planting &amp; Care</h2>
+        <p>10% of every game sale funds native tree planting and long-term land care at The Grove &mdash; a 10-hectare degraded dryland slope in central Portugal being restored one tree at a time.</p>
+        <p>This is not a carbon-offset scheme. It is a hands-on restoration project. Funds go towards planting and replanting native seedlings, pruning to encourage healthy growth, removal of invasive species that threaten native ecosystems, fire break maintenance to protect the land, and ongoing monitoring and evaluation to track survival rates and ecological recovery. Every action is documented and published to all backers.</p>
+        <a href="the-grove.html" style="font-family:var(--fh);font-weight:900;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);text-decoration:none">See The Grove &rarr;</a>
+      </div>
+      <div class="fff-detail-visual trees">
+        <div class="fff-detail-bignum">10%</div>
+        <span>of every game sold</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION DETAIL -->
+<div style="background:var(--parch)">
+  <div class="page-section">
+    <div class="fff-detail fff-detail-reverse">
+      <div class="fff-detail-text">
+        <h2>&#127891; Farming Education</h2>
+        <p>Knowledge grows the future. This fund has two missions: put the game in the hands of students, and put farmers in the field where they learn best.</p>
+        <p><strong style="color:var(--fg)">In schools:</strong> We donate game copies to classrooms in vulnerable communities, develop ready-to-use lesson plans aligned with environmental science curricula, and partner with educators to turn gameplay into real learning about agroforestry, climate resilience, and sustainable land management.</p>
+        <p><strong style="color:var(--fg)">For farmers:</strong> We fund grants for smallholder farmers &mdash; particularly in lower-income contexts &mdash; to attend agriculture field days, join permaculture design courses, participate in hands-on workshops, and access practical training they could not otherwise afford. Every funded farmer walks away with knowledge they can apply to their land the very next season.</p>
+        <p>Partnerships with local agricultural organisations and schools provide credible, established channels for fund disbursement. Every funded school, every sponsored farmer &mdash; a real story, shared with our community.</p>
+      </div>
+      <div class="fff-detail-visual edu">
+        <div class="fff-detail-bignum">20%</div>
+        <span>of every game sold</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GAME PRODUCTION DETAIL -->
+<div>
+  <div class="page-section">
+    <div class="fff-detail">
+      <div class="fff-detail-text">
+        <h2>&#127183; Game Production</h2>
+        <p>70% of every sale goes into making the game exist. That means paying illustrators and designers to bring every card to life, printing on responsibly sourced card stock, packaging, quality control, and shipping the finished product to your door.</p>
+        <p>It also covers the less visible work: game design and playtesting, website development, community management, customer support, and the operational costs of running a small, independent studio. Every card you hold went through dozens of iterations before it earned its place in the deck.</p>
+        <p>We are a small team, and this game is made with care &mdash; not by a factory line, but by people who believe that a card game can change how we think about farming, forests, and our future.</p>
+      </div>
+      <div class="fff-detail-visual" style="background:rgba(200,190,170,.15)">
+        <div class="fff-detail-bignum" style="color:var(--inks);opacity:.5">70%</div>
+        <span>of every game sold</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORIES -->
+<div>
+  <div class="page-section">
+    <h2>Impact Stories</h2>
+    <p>Every school that receives the game, every farmer who attends a workshop &mdash; that is a story. As the programme grows, this is where their journeys will live.</p>
+
+    <div class="fff-stories-grid">
+      <div class="fff-story">
+        <div class="fff-story-icon">&#127979;</div>
+        <h3>First School</h3>
+        <p>The first classroom game donation and lesson plan will be delivered at launch. Students will learn about sustainable farming while playing &mdash; and their teacher will have a ready-made curriculum to guide the conversation.</p>
+        <div class="fff-story-coming">Coming with launch</div>
+      </div>
+      <div class="fff-story">
+        <div class="fff-story-icon">&#129340;</div>
+        <h3>First Farmer Grant</h3>
+        <p>The first farmer bursary &mdash; covering a field day, a workshop, or a full course &mdash; will be awarded once the game launches. Their story starts here.</p>
+        <div class="fff-story-coming">Coming with launch</div>
+      </div>
+      <div class="fff-story">
+        <div class="fff-story-icon">&#128227;</div>
+        <h3>Full Transparency</h3>
+        <p>Annual reports published to all backers showing how many schools received the game, how many farmers were funded, and the real impact on the ground.</p>
+        <div class="fff-story-coming">Annual reports</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="page-cta">
+  <h2>Teach a Student. Fund a Farmer. Plant a Tree. Play a Game.</h2>
+  <p>Every game sold splits its revenue between making the game, planting trees, and bringing farming education to schools and farmers who need it most. No hidden fees, no vague promises.</p>
+  <a href="shop.html" class="btn btn-g" style="margin-right:0.5rem">Get the Game</a>
+  <a href="shop.html" class="btn btn-o">Support on Kickstarter</a>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <span class="ft-brand-nm">The Future Farmer <span>Card Game</span></span>
+        <p>A playful card game about resilient farming. Designed in the EU. Shared with the World.</p>
+        <p style="margin-top:.75rem;font-size:.72rem;color:rgba(255,255,255,.15)">&copy; Marcelo Rezende. All rights reserved.</p>
+      </div>
+      <div class="ft-col">
+        <h4>The Game</h4>
+        <ul>
+          <li><a href="the-game.html">About the Game</a></li>
+          <li><a href="for-schools.html">For Schools</a></li>
+          <li><a href="expansions.html">Expansions</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Our Impact</h4>
+        <ul>
+          <li><a href="the-grove.html">The Grove</a></li>
+          <li><a href="the-forest-wall.html">The Forest Wall</a></li>
+          <li><a href="future-farm-fund.html">The Future Farm Fund</a></li>
+          <li><a href="card-creators.html">Card Creators</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Field Notes</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>The Future Farmer Card Game</span>
+      <span>&#127807; Your purchase supports native tree planting</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

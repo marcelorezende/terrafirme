@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Future Farmer — Classroom Exercise Sheets</title>
+<style>
+  /* ── Reset & base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    font-size: 11pt;
+    color: #212121;
+    background: #f5f5f5;
+    line-height: 1.5;
+  }
+
+  /* ── Page wrapper (A4 feel on screen) ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 16mm auto;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    padding: 18mm 20mm 18mm 20mm;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* ── Subject colour map ── */
+  .science          { --accent: #1B5E20; --light: #E8F5E9; }
+  .environment      { --accent: #33691E; --light: #F1F8E9; }
+  .mathematics      { --accent: #1A237E; --light: #E8EAF6; }
+  .design           { --accent: #4A148C; --light: #F3E5F5; }
+  .ethics           { --accent: #B71C1C; --light: #FFEBEE; }
+  .cross-subject    { --accent: #E65C00; --light: #FFF3E0; }
+
+  /* ── Cover page ── */
+  .cover {
+    background: #2E7D32;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+  .cover h1 { font-size: 36pt; font-weight: 800; letter-spacing: 0.04em; }
+  .cover .sub1 { font-size: 20pt; color: #A5D6A7; }
+  .cover h2 { font-size: 22pt; font-weight: 700; margin-top: 16px; }
+  .cover .meta { font-size: 11pt; color: #C8E6C9; font-style: italic; margin-top: 4px; }
+  .cover .url { font-size: 10pt; color: #A5D6A7; margin-top: 24px; }
+  .cover .divider { width: 80px; height: 3px; background: #A5D6A7; margin: 16px auto; }
+
+  /* ── Table of contents ── */
+  .toc h2 { font-size: 18pt; color: #2E7D32; margin-bottom: 6px; }
+  .toc-rule { height: 3px; background: #2E7D32; margin-bottom: 20px; }
+  .toc-item { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+  .toc-subject { font-weight: 700; font-size: 11pt; }
+  .toc-title { font-size: 11pt; color: #555; }
+  .toc-note { font-size: 9.5pt; color: #888; font-style: italic; margin-top: 24px; }
+
+  /* ── Sheet header banner ── */
+  .sheet-header {
+    background: var(--accent);
+    color: #fff;
+    padding: 16px 20px;
+    margin: -18mm -20mm 20px -20mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .sheet-header-left .tag {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+  .sheet-header-left h1 { font-size: 20pt; font-weight: 700; line-height: 1.1; }
+  .sheet-header-left .tagline { font-style: italic; font-size: 10pt; color: rgba(255,255,255,0.8); margin-top: 4px; }
+  .sheet-header-right { text-align: right; }
+  .sheet-header-right .game-name { font-size: 10pt; font-weight: 700; letter-spacing: 0.04em; }
+  .sheet-header-right .year { font-size: 9pt; color: rgba(255,255,255,0.75); margin-top: 2px; font-style: italic; }
+
+  /* ── Student info row ── */
+  .student-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .student-info span { font-size: 10pt; color: #555; }
+
+  /* ── Section headings ── */
+  .section-heading {
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    margin-top: 18px;
+  }
+  .section-rule {
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+
+  /* ── Bullet lists ── */
+  ul.objectives, ul.tips {
+    padding-left: 20px;
+    margin-bottom: 0;
+  }
+  ul.objectives li, ul.tips li { margin-bottom: 4px; font-size: 10.5pt; }
+
+  /* ── Materials ── */
+  .materials { font-size: 10.5pt; color: #444; }
+
+  /* ── Intro ── */
+  .intro { font-size: 10.5pt; color: #444; line-height: 1.6; }
+
+  /* ── Activity blocks ── */
+  .activity { margin-bottom: 14px; }
+  .activity-title {
+    font-weight: 700;
+    font-size: 11pt;
+    color: #212121;
+    margin-bottom: 4px;
+  }
+  .activity-title span {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 700;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-right: 6px;
+  }
+  .activity p { font-size: 10.5pt; margin-bottom: 3px; color: #333; }
+  .activity .fill-line {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 10.5pt;
+    color: #333;
+  }
+  .activity .fill-line .line {
+    flex: 1;
+    border-bottom: 1px solid #bbb;
+    min-width: 120px;
+    height: 18px;
+  }
+
+  /* ── Table in activity ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 10px;
+    font-size: 10pt;
+  }
+  .data-table th {
+    background: var(--accent);
+    color: #fff;
+    padding: 5px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .data-table td {
+    border: 1px solid #ddd;
+    padding: 14px 10px 6px;
+    vertical-align: top;
+  }
+  .data-table tr:nth-child(even) td { background: var(--light); }
+
+  /* ── Answer box ── */
+  .answer-box {
+    background: var(--light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 8px 12px;
+    min-height: 72px;
+    margin: 6px 0 12px;
+    font-size: 9pt;
+    color: #888;
+    font-style: italic;
+  }
+  .answer-box .label { font-weight: 600; display: block; margin-bottom: 28px; }
+
+  /* ── Reflection ── */
+  .reflection-q {
+    font-size: 10.5pt;
+    margin-bottom: 4px;
+    color: #333;
+  }
+
+  /* ── Teacher notes page ── */
+  .teacher-notes-banner {
+    background: #EEEEEE;
+    padding: 10px 14px;
+    margin: -18mm -20mm 20px -20mm;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #555;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .tn-section-heading {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #555;
+    margin-top: 16px;
+    margin-bottom: 4px;
+  }
+  .tn-rule { height: 1px; background: #ccc; margin-bottom: 8px; }
+  .tn-body { font-size: 10pt; color: #444; line-height: 1.6; }
+  ul.tn-list { padding-left: 18px; }
+  ul.tn-list li { font-size: 10pt; color: #444; margin-bottom: 4px; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; font-size: 10.5pt; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      padding: 15mm 18mm;
+      width: 100%;
+    }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ TOOLBAR (screen only) ════════════════════ -->
+<div class="no-print" style="
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: #2E7D32; color: #fff; display: flex;
+  align-items: center; justify-content: space-between;
+  padding: 10px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', sans-serif;">
+  <span style="font-weight:700; font-size:13pt;">🌱 The Future Farmer — Exercise Sheets</span>
+  <button onclick="window.print()" style="
+    background:#fff; color:#2E7D32; border:none; border-radius:4px;
+    padding:8px 20px; font-size:11pt; font-weight:700; cursor:pointer;">
+    🖨 Print / Save as PDF
+  </button>
+</div>
+<div class="no-print" style="height:52px;"></div>
+
+<!-- ═══════════════════════════════ COVER PAGE ═══════════════════════════════ -->
+<div class="page cover">
+  <div class="divider"></div>
+  <h1>THE FUTURE FARMER</h1>
+  <div class="sub1">Card Game</div>
+  <div class="divider"></div>
+  <h2>Classroom Exercise Sheets</h2>
+  <div class="meta">For Middle School &nbsp;·&nbsp; Ages 11–14 &nbsp;·&nbsp; 6 Subjects</div>
+  <div style="height:8px;"></div>
+  <div style="font-size:10pt; color:rgba(255,255,255,0.65);">Science &nbsp;·&nbsp; Environmental Studies &nbsp;·&nbsp; Mathematics &amp; Strategy</div>
+  <div style="font-size:10pt; color:rgba(255,255,255,0.65);">Design Thinking &nbsp;·&nbsp; Ethics &amp; Society &nbsp;·&nbsp; Cross-Subject Project</div>
+  <div class="url">thefuturefarmercardgame.com</div>
+  <div class="divider"></div>
+</div>
+
+<!-- ═══════════════════════════════ TABLE OF CONTENTS ════════════════════════ -->
+<div class="page toc">
+  <h2>Contents</h2>
+  <div class="toc-rule"></div>
+
+  <div class="toc-item">
+    <div class="toc-subject" style="color:#1B5E20;">Science</div>
+    <div style="color:#ccc;">—</div>
+    <div class="toc-title">Meet Your Crop &nbsp;·&nbsp; 45 min</div>
+  </div>
+  <div class="toc-item">
+    <div class="toc-subject" style="color:#33691E;">Environmental Studies</div>
+    <div style="color:#ccc;">—</div>
+    <div class="toc-title">When Challenges Strike &nbsp;·&nbsp; 45–60 min</div>
+  </div>
+  <div class="toc-item">
+    <div class="toc-subject" style="color:#1A237E;">Mathematics &amp; Strategy</div>
+    <div style="color:#ccc;">—</div>
+    <div class="toc-title">Farm by Numbers &nbsp;·&nbsp; 50 min</div>
+  </div>
+  <div class="toc-item">
+    <div class="toc-subject" style="color:#4A148C;">Design Thinking</div>
+    <div style="color:#ccc;">—</div>
+    <div class="toc-title">Design a Card &nbsp;·&nbsp; 60 min</div>
+  </div>
+  <div class="toc-item">
+    <div class="toc-subject" style="color:#B71C1C;">Ethics &amp; Society</div>
+    <div style="color:#ccc;">—</div>
+    <div class="toc-title">Fair Farm or Every Farmer for Themselves? &nbsp;·&nbsp; 45 min</div>
+  </div>
+  <div class="toc-item">
+    <div class="toc-subject" style="color:#E65C00;">Cross-Subject Project</div>
+    <div style="color:#ccc;">—</div>
+    <div class="toc-title">The Future Farm Report &nbsp;·&nbsp; 2–3 lessons</div>
+  </div>
+
+  <p class="toc-note">Each sheet includes a student-facing exercise section and a teacher notes page with learning objectives, teaching tips, and answer guidance.</p>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SHEET 1 — SCIENCE
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="page science">
+  <div class="sheet-header">
+    <div class="sheet-header-left">
+      <div class="tag">★ Science</div>
+      <h1>Meet Your Crop</h1>
+      <div class="tagline">Research a real crop and bring it to the game table</div>
+    </div>
+    <div class="sheet-header-right">
+      <div class="game-name">THE FUTURE FARMER</div>
+      <div class="year">Years 7–9 &nbsp;·&nbsp; 45 min</div>
+    </div>
+  </div>
+
+  <div class="student-info">
+    <span>Name: ___________________________________</span>
+    <span>Date: ________________</span>
+    <span>Class: ________________</span>
+  </div>
+
+  <div class="section-heading">Learning Objectives</div>
+  <div class="section-rule"></div>
+  <ul class="objectives">
+    <li>Identify the key growing conditions of a chosen crop (climate, soil, water).</li>
+    <li>Connect real agricultural science to game mechanics.</li>
+    <li>Communicate scientific findings clearly to peers.</li>
+  </ul>
+
+  <div class="section-heading">What You'll Need</div>
+  <div class="section-rule"></div>
+  <p class="materials">The Future Farmer Card Game deck &nbsp;·&nbsp; Internet access or library resources &nbsp;·&nbsp; This worksheet &nbsp;·&nbsp; Pencil or pen</p>
+
+  <div class="section-heading">Introduction</div>
+  <div class="section-rule"></div>
+  <p class="intro">Before you play a round of The Future Farmer, you are going to research one real crop. Understanding where food actually comes from — and what it needs to grow — will change how you think about every card you play.</p>
+
+  <div class="section-heading">Activities</div>
+  <div class="section-rule"></div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 1</span> Choose Your Crop</div>
+    <p>Pick any crop that interests you (e.g. wheat, cassava, coffee, soybeans, rice). Write its name below and give one reason you chose it.</p>
+    <div class="answer-box"><span class="label">My crop &amp; why I chose it:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 2</span> Growing Conditions</div>
+    <p>Research your crop and complete this table:</p>
+    <table class="data-table">
+      <tr><th>Factor</th><th>Your Answer</th></tr>
+      <tr><td>Climate needed</td><td></td></tr>
+      <tr><td>Soil type</td><td></td></tr>
+      <tr><td>Water needs (low / medium / high)</td><td></td></tr>
+      <tr><td>Where in the world it is mainly grown</td><td></td></tr>
+      <tr><td>One threat that can damage this crop</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 3</span> Link to the Game</div>
+    <p>Look through the Farm Module cards. Find one card that could represent your crop, or one Challenge card that could affect it. Write the card name and explain the connection.</p>
+    <div class="answer-box"><span class="label">Card name + connection:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 4</span> Share with the Class</div>
+    <p>Prepare a 60-second verbal summary of your findings. After everyone shares, play a round — watch for your crop's challenges to appear on the table!</p>
+  </div>
+
+  <div class="section-heading">Reflection</div>
+  <div class="section-rule"></div>
+  <p class="reflection-q">1. What surprised you most about the growing conditions your crop needs?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+  <p class="reflection-q">2. How did knowing about this crop change the way you played the game?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+</div>
+
+<!-- Teacher Notes — Science -->
+<div class="page science">
+  <div class="teacher-notes-banner">Teacher Notes &nbsp;·&nbsp; Science: Meet Your Crop</div>
+
+  <div class="tn-section-heading">About This Sheet</div>
+  <div class="tn-rule"></div>
+  <p class="tn-body">This sheet works well as a pre-game warm-up activity. Students benefit from choosing their own crops as it increases engagement. Allow 20 minutes for research, 10 minutes for sharing, then move directly into a game round. Works well with science curriculum units on plants, agriculture, and ecosystems.</p>
+
+  <div class="tn-section-heading">Teaching Tips</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Pair students who chose crops from different continents — good for geography cross-links.</li>
+    <li>If internet access is limited, prepare a printed "crop fact sheet" with 6–8 crops.</li>
+    <li>The sharing step doubles as a low-stakes speaking exercise.</li>
+  </ul>
+
+  <div class="tn-section-heading">Answer Guidance</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Activity 2 has no single correct answer — look for accuracy and appropriate level of detail.</li>
+    <li>Activity 3: accept any reasonable connection; the quality of the explanation matters more than the card chosen.</li>
+    <li>Reflection 2: look for evidence that students are thinking beyond the rules (e.g. "I protected my wheat because Drought was in the discard pile").</li>
+  </ul>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SHEET 2 — ENVIRONMENTAL STUDIES
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="page environment">
+  <div class="sheet-header">
+    <div class="sheet-header-left">
+      <div class="tag">★ Environmental Studies</div>
+      <h1>When Challenges Strike</h1>
+      <div class="tagline">Connect in-game Challenges to real-world environmental events</div>
+    </div>
+    <div class="sheet-header-right">
+      <div class="game-name">THE FUTURE FARMER</div>
+      <div class="year">Years 7–9 &nbsp;·&nbsp; 45–60 min</div>
+    </div>
+  </div>
+
+  <div class="student-info">
+    <span>Name: ___________________________________</span>
+    <span>Date: ________________</span>
+    <span>Class: ________________</span>
+  </div>
+
+  <div class="section-heading">Learning Objectives</div>
+  <div class="section-rule"></div>
+  <ul class="objectives">
+    <li>Identify real-world environmental events that correspond to game Challenge cards.</li>
+    <li>Explain cause-and-effect relationships between environmental factors and food production.</li>
+    <li>Reflect on sustainable responses to environmental challenges.</li>
+  </ul>
+
+  <div class="section-heading">What You'll Need</div>
+  <div class="section-rule"></div>
+  <p class="materials">The Future Farmer Card Game deck (Challenge cards set aside) &nbsp;·&nbsp; Internet access or prepared news articles &nbsp;·&nbsp; This worksheet</p>
+
+  <div class="section-heading">Introduction</div>
+  <div class="section-rule"></div>
+  <p class="intro">In The Future Farmer, Challenge cards can disrupt any player's farm. But these are not just game mechanics — Drought, flooding, pest outbreaks, and soil depletion are real threats facing farmers every day. In this activity you will investigate one of these challenges in the real world.</p>
+
+  <div class="section-heading">Activities</div>
+  <div class="section-rule"></div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 1</span> Pick Your Challenge</div>
+    <p>Choose one Challenge card from the game deck. Write its name and its in-game effect below.</p>
+    <div class="answer-box"><span class="label">Challenge card name + in-game effect:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 2</span> Find a Real-World Example</div>
+    <p>Research a real environmental event that matches your chosen Challenge.</p>
+    <table class="data-table">
+      <tr><th>Question</th><th>Your Answer</th></tr>
+      <tr><td>Where did it happen?</td><td></td></tr>
+      <tr><td>When?</td><td></td></tr>
+      <tr><td>How did it affect food production?</td><td></td></tr>
+      <tr><td>Source (website / article title)</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 3</span> Cause and Effect</div>
+    <p>Draw a simple cause-and-effect diagram: <em>[Environmental cause] → [Impact on crops] → [Impact on people]</em></p>
+    <div class="answer-box" style="min-height:90px;"><span class="label">Your diagram:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 4</span> Sustainable Response</div>
+    <p>What can farmers do to reduce the impact of this challenge? List at least two real strategies.</p>
+    <div class="answer-box"><span class="label">Sustainable strategies:</span></div>
+  </div>
+
+  <div class="section-heading">Reflection</div>
+  <div class="section-rule"></div>
+  <p class="reflection-q">1. Is it fair that some regions face more environmental challenges than others? Explain your reasoning.</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+  <p class="reflection-q">2. If you could add a new Challenge card to the game based on your research, what would it be and what would its effect be?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+</div>
+
+<!-- Teacher Notes — Environmental Studies -->
+<div class="page environment">
+  <div class="teacher-notes-banner">Teacher Notes &nbsp;·&nbsp; Environmental Studies: When Challenges Strike</div>
+
+  <div class="tn-section-heading">About This Sheet</div>
+  <div class="tn-rule"></div>
+  <p class="tn-body">This sheet supports environmental studies units on climate change, food security, and sustainability. It works well after students have played at least one full game round so they understand how Challenge cards feel in play. The pause-and-discuss approach (playing, then stopping when a Challenge card appears) is particularly effective.</p>
+
+  <div class="tn-section-heading">Teaching Tips</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Assign each student a different Challenge card to prevent duplication and allow a richer class discussion.</li>
+    <li>Activity 3 can be done on a separate piece of paper and attached to the sheet.</li>
+    <li>This sheet pairs well with the Science "Meet Your Crop" sheet — students can investigate how their chosen crop is affected by their chosen Challenge.</li>
+  </ul>
+
+  <div class="tn-section-heading">Answer Guidance</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Activity 2: look for a specific, real event with a named location and time period — not general statements.</li>
+    <li>Activity 3: a good diagram will show at least two steps of consequence (not just crop loss, but knock-on effects on communities or economies).</li>
+    <li>Activity 4: acceptable strategies include irrigation improvements, crop rotation, drought-resistant varieties, insurance schemes, community seed banks, etc.</li>
+  </ul>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SHEET 3 — MATHEMATICS & STRATEGY
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="page mathematics">
+  <div class="sheet-header">
+    <div class="sheet-header-left">
+      <div class="tag">★ Mathematics &amp; Strategy</div>
+      <h1>Farm by Numbers</h1>
+      <div class="tagline">Track credits, calculate value, and build the most efficient farm</div>
+    </div>
+    <div class="sheet-header-right">
+      <div class="game-name">THE FUTURE FARMER</div>
+      <div class="year">Years 7–9 &nbsp;·&nbsp; 50 min</div>
+    </div>
+  </div>
+
+  <div class="student-info">
+    <span>Name: ___________________________________</span>
+    <span>Date: ________________</span>
+    <span>Class: ________________</span>
+  </div>
+
+  <div class="section-heading">Learning Objectives</div>
+  <div class="section-rule"></div>
+  <ul class="objectives">
+    <li>Apply addition and subtraction to track a running credit balance.</li>
+    <li>Calculate and compare ratios of value to cost.</li>
+    <li>Use data from a completed game to draw strategic conclusions.</li>
+  </ul>
+
+  <div class="section-heading">What You'll Need</div>
+  <div class="section-rule"></div>
+  <p class="materials">The Future Farmer Card Game (one complete round) &nbsp;·&nbsp; This worksheet &nbsp;·&nbsp; Calculator (optional)</p>
+
+  <div class="section-heading">Introduction</div>
+  <div class="section-rule"></div>
+  <p class="intro">Every card in The Future Farmer has a credit value. Managing your credits well is the difference between winning and losing. In this activity you will record your game data and use maths to analyse how efficiently you built your farm.</p>
+
+  <div class="section-heading">Activities</div>
+  <div class="section-rule"></div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 1</span> Credit Tracker</div>
+    <p>As you play (or after the game), record each Farm Module you placed:</p>
+    <table class="data-table">
+      <tr><th>Card Name</th><th>Credits</th><th>Round Placed</th></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td style="font-weight:700;">Total credits at end of game:</td><td colspan="2"></td></tr>
+    </table>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 2</span> Efficiency Ratio</div>
+    <div class="fill-line">Total rounds played: <div class="line"></div></div>
+    <div class="fill-line">My credits per round: <div class="line"></div> ÷ <div class="line"></div> = <div class="line"></div></div>
+    <div class="fill-line">Another player's credits per round: <div class="line"></div> ÷ <div class="line"></div> = <div class="line"></div></div>
+    <p>Who was more efficient, and by how much?</p>
+    <div class="answer-box"><span class="label">Your comparison:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 3</span> Challenge the Strategy</div>
+    <p>Look at the Challenge cards that appeared during the game. Which strategy was hurt more — many cheap cards or fewer expensive cards? Explain with numbers.</p>
+    <div class="answer-box"><span class="label">Strategy analysis:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 4</span> Optimal Farm Design</div>
+    <p>Using the cards available, design the farm you think would score highest. List the cards, their values, and the total. Then play another round and test your theory!</p>
+    <div class="answer-box"><span class="label">My optimal farm plan:</span></div>
+  </div>
+
+  <div class="section-heading">Reflection</div>
+  <div class="section-rule"></div>
+  <p class="reflection-q">1. What is the relationship between risk and reward when choosing high-value Farm Modules?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+  <p class="reflection-q">2. If you played the game again, what one change to your strategy would you make, and why?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+</div>
+
+<!-- Teacher Notes — Mathematics -->
+<div class="page mathematics">
+  <div class="teacher-notes-banner">Teacher Notes &nbsp;·&nbsp; Mathematics &amp; Strategy: Farm by Numbers</div>
+
+  <div class="tn-section-heading">About This Sheet</div>
+  <div class="tn-rule"></div>
+  <p class="tn-body">This sheet reinforces KS3 mathematics skills: arithmetic, ratio, and data interpretation. It works best when completed during or immediately after a game round. Students who struggle with the efficiency ratio may benefit from a worked example on the board first. High-ability students can be challenged to calculate the probability of a Challenge card appearing in a given round.</p>
+
+  <div class="tn-section-heading">Teaching Tips</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Activity 1 can be set up before the game starts so students track in real time.</li>
+    <li>Pair students for Activity 2 so they can compare each other's data directly.</li>
+    <li>Activity 3 connects to the specific wording on the Drought card ("worth 3 or fewer credits") — good for literal comprehension of rules.</li>
+    <li>Extension: challenge students to calculate the percentage difference between efficiency ratios.</li>
+  </ul>
+
+  <div class="tn-section-heading">Answer Guidance</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Activity 2: ensure students are dividing correctly — watch for "credits × rounds" errors.</li>
+    <li>Activity 3: a many-cheap-cards strategy is generally more vulnerable to challenges that destroy all modules below a threshold.</li>
+    <li>Reflection 1: look for understanding of trade-offs (high-value cards give more points but are riskier targets for Challenges).</li>
+  </ul>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SHEET 4 — DESIGN THINKING
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="page design">
+  <div class="sheet-header">
+    <div class="sheet-header-left">
+      <div class="tag">★ Design Thinking</div>
+      <h1>Design a Card</h1>
+      <div class="tagline">Apply design thinking to create a new Farm Module for the game</div>
+    </div>
+    <div class="sheet-header-right">
+      <div class="game-name">THE FUTURE FARMER</div>
+      <div class="year">Years 7–9 &nbsp;·&nbsp; 60 min</div>
+    </div>
+  </div>
+
+  <div class="student-info">
+    <span>Name: ___________________________________</span>
+    <span>Date: ________________</span>
+    <span>Class: ________________</span>
+  </div>
+
+  <div class="section-heading">Learning Objectives</div>
+  <div class="section-rule"></div>
+  <ul class="objectives">
+    <li>Apply a design thinking process (define, ideate, prototype, test).</li>
+    <li>Balance creativity with rules-based constraints.</li>
+    <li>Give and receive structured feedback on a design.</li>
+  </ul>
+
+  <div class="section-heading">What You'll Need</div>
+  <div class="section-rule"></div>
+  <p class="materials">The Future Farmer Card Game deck (for reference) &nbsp;·&nbsp; Blank index cards or card template printout &nbsp;·&nbsp; Coloured pencils or markers &nbsp;·&nbsp; This worksheet</p>
+
+  <div class="section-heading">Introduction</div>
+  <div class="section-rule"></div>
+  <p class="intro">The Future Farmer has dozens of Farm Module cards — each one represents something a real farmer might build or grow. Your challenge is to design a brand-new card that fits into the game. It needs a name, a credit value, an effect (if any), and artwork.</p>
+
+  <div class="section-heading">Activities</div>
+  <div class="section-rule"></div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Define</span> Activity 1 — Research Real Farming Practices</div>
+    <p>List three real farming practices or technologies that do NOT already exist as cards in the game. Then circle the one you'll develop.</p>
+    <div class="fill-line">1. <div class="line"></div></div>
+    <div class="fill-line">2. <div class="line"></div></div>
+    <div class="fill-line">3. <div class="line"></div></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Ideate</span> Activity 2 — Plan Your Card</div>
+    <div class="fill-line">Card name: <div class="line"></div></div>
+    <div class="fill-line">Credit value (1–10): <div class="line" style="max-width:50px;"></div> &nbsp; Why? <div class="line"></div></div>
+    <div class="fill-line">Special effect (optional): <div class="line"></div></div>
+    <div class="fill-line">Why would a player want this? <div class="line"></div></div>
+    <div class="fill-line">What makes it balanced? <div class="line"></div></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Prototype</span> Activity 3 — Draw Your Card</div>
+    <p>Use the blank card template (or an index card) to draw and label your card. Include: name, credit value, effect text, and a simple illustration.</p>
+    <div class="answer-box" style="min-height:100px;"><span class="label">Sketch your card here if you don't have a blank template:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Test</span> Activity 4 — Peer Feedback</div>
+    <p>Swap your card with a partner. They should answer:</p>
+    <div class="fill-line">Is the credit value fair? (too high / about right / too low): <div class="line"></div></div>
+    <div class="fill-line">Is the effect clear? (yes / no / partly): <div class="line"></div></div>
+    <div class="fill-line">One thing they like: <div class="line"></div></div>
+    <div class="fill-line">One suggestion to improve it: <div class="line"></div></div>
+    <p style="margin-top:6px;">Use their feedback to refine your card.</p>
+  </div>
+
+  <div class="section-heading">Reflection</div>
+  <div class="section-rule"></div>
+  <p class="reflection-q">1. What was the hardest part of making your card balanced — not too strong, not too weak?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+  <p class="reflection-q">2. How does designing a card change the way you think about the rules of the game?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+</div>
+
+<!-- Teacher Notes — Design Thinking -->
+<div class="page design">
+  <div class="teacher-notes-banner">Teacher Notes &nbsp;·&nbsp; Design Thinking: Design a Card</div>
+
+  <div class="tn-section-heading">About This Sheet</div>
+  <div class="tn-rule"></div>
+  <p class="tn-body">This sheet aligns with design technology and creative arts curricula. It deliberately mirrors a professional card game design process. The peer feedback step (Activity 4) is crucial — encourage students to be specific rather than vague. As an extension, test the new cards in an actual game round and let the class vote on which card best fits the game's theme and balance.</p>
+
+  <div class="tn-section-heading">Teaching Tips</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Prepare a one-page "existing cards reference list" so students know what's already in the game.</li>
+    <li>Remind students that real games go through dozens of revisions — the feedback step isn't criticism, it's improvement.</li>
+    <li>For a longer project, this activity can span two lessons: design in lesson 1, playtest in lesson 2.</li>
+    <li>The "Define / Ideate / Prototype / Test" labels in each activity heading mirror the design thinking framework explicitly.</li>
+  </ul>
+
+  <div class="tn-section-heading">Answer Guidance</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Activity 2: a credit value of 1–3 suggests a basic/utility card; 4–6 mid-range; 7–10 powerful/rare. Guide students to justify their choice.</li>
+    <li>Activity 4: check that feedback is specific — "I like the drawing" is not helpful; "the effect is unclear because…" is.</li>
+    <li>There are no wrong designs, but good designs will show the student has considered both the real-world concept and game balance.</li>
+  </ul>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SHEET 5 — ETHICS & SOCIETY
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="page ethics">
+  <div class="sheet-header">
+    <div class="sheet-header-left">
+      <div class="tag">★ Ethics &amp; Society</div>
+      <h1>Fair Farm or Every Farmer for Themselves?</h1>
+      <div class="tagline">Examine fairness, cooperation, and food systems through gameplay</div>
+    </div>
+    <div class="sheet-header-right">
+      <div class="game-name">THE FUTURE FARMER</div>
+      <div class="year">Years 7–9 &nbsp;·&nbsp; 45 min</div>
+    </div>
+  </div>
+
+  <div class="student-info">
+    <span>Name: ___________________________________</span>
+    <span>Date: ________________</span>
+    <span>Class: ________________</span>
+  </div>
+
+  <div class="section-heading">Learning Objectives</div>
+  <div class="section-rule"></div>
+  <ul class="objectives">
+    <li>Identify ethical dilemmas that arise during competitive gameplay.</li>
+    <li>Compare individual strategies to cooperative ones.</li>
+    <li>Relate game decisions to real-world questions about food justice.</li>
+  </ul>
+
+  <div class="section-heading">What You'll Need</div>
+  <div class="section-rule"></div>
+  <p class="materials">The Future Farmer Card Game (one complete round) &nbsp;·&nbsp; This worksheet</p>
+
+  <div class="section-heading">Introduction</div>
+  <div class="section-rule"></div>
+  <p class="intro">During a game of The Future Farmer, you will face moments where you can help another player — or hurt them. These are not just game decisions. The same questions arise in real food systems: should countries share resources? Should large farms help smaller ones? This sheet asks you to slow down and think about the ethics of those choices.</p>
+
+  <div class="section-heading">Activities</div>
+  <div class="section-rule"></div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 1</span> Spot the Dilemma</div>
+    <p>During the game, record one moment when you had to make an ethical decision (e.g. you could have played a card that helped you but harmed another player).</p>
+    <div class="answer-box"><span class="label">The situation and what you decided:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 2</span> Two Paths</div>
+    <p>For the dilemma you described, write what would have happened under each choice:</p>
+    <div class="fill-line">If I acted in my own interest: <div class="line"></div></div>
+    <div class="fill-line">If I considered the other player: <div class="line"></div></div>
+    <p style="margin-top:6px;">Which choice do you think was more fair? Why?</p>
+    <div class="answer-box"><span class="label">Your reasoning:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 3</span> Real World Connection</div>
+    <p>Think of a real situation in the food system where a similar ethical choice arises. (Examples: a wealthy country buying up farmland in a poorer country; a supermarket refusing to raise prices paid to local farmers.)</p>
+    <div class="answer-box"><span class="label">Real-world parallel:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Activity 4</span> Class Debate Setup</div>
+    <p>Prepare one argument FOR and one argument AGAINST this statement: <em>"In the game — and in real life — it is always right to do what is best for your own farm first."</em></p>
+    <div class="fill-line">FOR: <div class="line"></div></div>
+    <div class="fill-line">AGAINST: <div class="line"></div></div>
+  </div>
+
+  <div class="section-heading">Reflection</div>
+  <div class="section-rule"></div>
+  <p class="reflection-q">1. Do you think a fully cooperative version of The Future Farmer — where all players work together — would be more or less fun? More or less realistic?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+  <p class="reflection-q">2. What does a "fair" food system look like, in your opinion? Use at least one example from the game.</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+</div>
+
+<!-- Teacher Notes — Ethics -->
+<div class="page ethics">
+  <div class="teacher-notes-banner">Teacher Notes &nbsp;·&nbsp; Ethics &amp; Society: Fair Farm or Every Farmer for Themselves?</div>
+
+  <div class="tn-section-heading">About This Sheet</div>
+  <div class="tn-rule"></div>
+  <p class="tn-body">This sheet works particularly well as a post-game debrief. It supports PSHE, citizenship, and humanities curricula. Activity 4 can be extended into a structured class debate. Ensure that the real-world examples in Activity 3 are treated sensitively — students may have personal connections to food insecurity or land rights issues.</p>
+
+  <div class="tn-section-heading">Teaching Tips</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Before the game, tell students they will be completing this sheet afterwards — it encourages them to notice ethical decisions as they happen.</li>
+    <li>Activity 3 benefits from brief teacher-led examples before students write independently.</li>
+    <li>The debate in Activity 4 can be run as a fishbowl discussion (small inner group debates, outer group observes and scores arguments).</li>
+  </ul>
+
+  <div class="tn-section-heading">Answer Guidance</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Activity 1: any genuine game moment qualifies — there are no wrong answers here.</li>
+    <li>Activity 2: look for students acknowledging that both choices have legitimate reasoning, not just that one is obviously right.</li>
+    <li>Reflection 1: strong answers will engage with both the fun/realism dimensions rather than answering only one.</li>
+  </ul>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SHEET 6 — CROSS-SUBJECT PROJECT
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="page cross-subject">
+  <div class="sheet-header">
+    <div class="sheet-header-left">
+      <div class="tag">★ Cross-Subject Project</div>
+      <h1>The Future Farm Report</h1>
+      <div class="tagline">Art · Geography · Writing — one project that brings it all together</div>
+    </div>
+    <div class="sheet-header-right">
+      <div class="game-name">THE FUTURE FARMER</div>
+      <div class="year">Years 7–9 &nbsp;·&nbsp; 2–3 lessons</div>
+    </div>
+  </div>
+
+  <div class="student-info">
+    <span>Name: ___________________________________</span>
+    <span>Date: ________________</span>
+    <span>Class: ________________</span>
+  </div>
+
+  <div class="section-heading">Learning Objectives</div>
+  <div class="section-rule"></div>
+  <ul class="objectives">
+    <li>Apply knowledge from science, geography, and creative writing in a single project.</li>
+    <li>Research a local or traditional farming practice and represent it creatively.</li>
+    <li>Communicate findings through multiple formats (map, illustration, written report).</li>
+  </ul>
+
+  <div class="section-heading">What You'll Need</div>
+  <div class="section-rule"></div>
+  <p class="materials">The Future Farmer Card Game (for inspiration and reference) &nbsp;·&nbsp; Internet or library access &nbsp;·&nbsp; Blank paper for illustration &nbsp;·&nbsp; This worksheet</p>
+
+  <div class="section-heading">Introduction</div>
+  <div class="section-rule"></div>
+  <p class="intro">This project brings together everything you have explored in The Future Farmer lessons. You will choose a local, traditional, or indigenous farming practice, investigate it across three subject lenses — Geography, Art, and Creative Writing — and produce a short Future Farm Report to present to the class.</p>
+
+  <div class="section-heading">Activities</div>
+  <div class="section-rule"></div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Geography</span> Activity 1 — Map It</div>
+    <p>Choose a farming practice from anywhere in the world that connects to the game's themes. On a blank page, draw or trace a simple map showing: where the practice is used, the climate, what is grown/raised, and one Challenge this region commonly faces. Attach your map to this worksheet.</p>
+    <div class="answer-box"><span class="label">Farming practice name + region:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Art</span> Activity 2 — Illustrate a Card</div>
+    <p>Design a Farm Module card inspired by your chosen farming practice. Draw it on a blank card or piece of paper. Include: card name, credit value, a short flavour text (one evocative sentence), and an illustration. Attach your card artwork to this worksheet.</p>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Writing</span> Activity 3 — A Farmer's Story</div>
+    <p>Write a short story (150–250 words) told from the perspective of a farmer using your chosen practice. Include at least one moment where a Challenge (from the game) affects their farm.</p>
+    <div class="answer-box" style="min-height:130px;"><span class="label">Your story:</span></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-title"><span>Present</span> Activity 4 — The Future Farm Report</div>
+    <p>Bring together your map, card artwork, and story into a short 2–3 minute presentation. Be ready to answer: <em>Why does this farming practice matter today?</em></p>
+  </div>
+
+  <div class="section-heading">Reflection</div>
+  <div class="section-rule"></div>
+  <p class="reflection-q">1. Which part of the project — map, card design, or story — best captured the farming practice, in your opinion? Why?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+  <p class="reflection-q">2. After completing this project, has your view of where your food comes from changed? How?</p>
+  <div class="answer-box"><span class="label">Your answer:</span></div>
+</div>
+
+<!-- Teacher Notes — Cross-Subject -->
+<div class="page cross-subject">
+  <div class="teacher-notes-banner">Teacher Notes &nbsp;·&nbsp; Cross-Subject Project: The Future Farm Report</div>
+
+  <div class="tn-section-heading">About This Sheet</div>
+  <div class="tn-rule"></div>
+  <p class="tn-body">This multi-lesson project is designed to be the capstone activity for a Future Farmer classroom unit. It explicitly requires cross-subject skills: geographical research and cartography, visual art and card design, and narrative creative writing. It can be assessed against multiple subject objectives simultaneously. Presentations can be informal (share with a partner) or formal (class gallery walk with cards displayed).</p>
+
+  <div class="tn-section-heading">Suggested Lesson Plan</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li><strong>Lesson 1:</strong> Introduce the project, students choose their farming practice and complete Activity 1 (map).</li>
+    <li><strong>Lesson 2:</strong> Activities 2 and 3 — allow students to work at their own pace.</li>
+    <li><strong>Lesson 3:</strong> Presentations and class discussion.</li>
+    <li>Consider inviting a local farmer or environmental educator to hear the presentations.</li>
+  </ul>
+
+  <div class="tn-section-heading">Answer Guidance</div>
+  <div class="tn-rule"></div>
+  <ul class="tn-list">
+    <li>Activity 1: look for maps that show accurate geographic context, not just a rough sketch.</li>
+    <li>Activity 2: assess card design on clarity and thematic fit, not artistic skill.</li>
+    <li>Activity 3: strong stories will show cause and effect clearly and demonstrate empathy for the farmer's perspective.</li>
+    <li>Reflection 2: personal reflections are valid — what matters is evidence of genuine engagement with the theme.</li>
+  </ul>
+</div>
+
+</body>
+</html>
